@@ -2,24 +2,9 @@
 layout: post
 title: My First Blog Post
 date: 2011-01-05 22:13:36.000000000 -05:00
-type: post
-parent_id: '0'
-published: true
-password: ''
-status: publish
 categories:
 - Meta
 tags: []
-meta:
-  _edit_last: '1'
-  _wp_old_slug: ''
-  dsq_thread_id: '4212226152'
-author:
-  login: EricHogue
-  email: eric@erichogue.ca
-  display_name: Eric Hogue
-  first_name: Eric
-  last_name: Hogue
 permalink: "/2011/01/meta/my-first-blog-post/"
 ---
 Welcome to my new blog. I intend on using this blog to write about various subjects that should be of interest for developers. I should blog about things I learn while developing at work or on my personal projects. I might also write about the life and career of a developer.

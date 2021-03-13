@@ -2,29 +2,9 @@
 layout: post
 title: Self Improvement Vs The Family
 date: 2011-01-20 21:38:30.000000000 -05:00
-type: post
-parent_id: '0'
-published: true
-password: ''
-status: publish
 categories:
 - Training
-tags:
-- Training
-meta:
-  _edit_last: '1'
-  _aioseop_title: Self Improvement Vs The Family
-  _aioseop_description: A discussion about why we don't have to neglect our families
-    to practice and become better developers.
-  _wp_old_slug: ''
-  _aioseop_keywords: self improvement, family, practice, learning, programming
-  dsq_thread_id: '4215983984'
-author:
-  login: EricHogue
-  email: eric@erichogue.ca
-  display_name: Eric Hogue
-  first_name: Eric
-  last_name: Hogue
+tags: []
 permalink: "/2011/01/training/self-improvement-vs-the-family/"
 ---
 About a month ago, a very [animated discussion](http://groups.google.com/group/software_craftsmanship/browse_thread/thread/a8ebf102445b1409 "About learning and self-improvement") took place on the [Software Craftsmanship Google Group](http://groups.google.com/group/software_craftsmanship "Software Craftsmanship Google Group"). The debate was about studying at home vs spending time with the family.

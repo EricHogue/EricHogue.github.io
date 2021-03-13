@@ -2,31 +2,12 @@
 layout: post
 title: My Impressions Of devLAB Montreal
 date: 2011-01-27 21:16:53.000000000 -05:00
-type: post
-parent_id: '0'
-published: true
-password: ''
-status: publish
 categories:
 - Events
-tags:
-- events
 - Montreal
 - PHP
 - Training
-meta:
-  _edit_last: '1'
-  _aioseop_title: My Impressions Of devLAB Montreal
-  _aioseop_description: Talk about the Montreal tech event devLAB Montreal
-  _wp_old_slug: ''
-  _aioseop_keywords: devLab, event, programming, Node, Node.js
-  dsq_thread_id: '4215984012'
-author:
-  login: EricHogue
-  email: eric@erichogue.ca
-  display_name: Eric Hogue
-  first_name: Eric
-  last_name: Hogue
+tags: []
 permalink: "/2011/01/events/my-impressions-of-devlab-montreal/"
 ---
 Wednesday I went to an event called [devLAB Montréal](http://devlabmtl.org/ "devLAB Montréal"). This is a weekly event that is held in [Evocatio](http://evo.cat.io/ "Evocatio") offices in the old Montréal. It was my first time there, but it was the third time they held it.

@@ -2,31 +2,13 @@
 layout: post
 title: Debugging PHP In Eclipse
 date: 2011-02-02 20:39:54.000000000 -05:00
-type: post
-parent_id: '0'
-published: true
-password: ''
-status: publish
 categories:
 - PHP
-tags:
 - Debugging
 - Eclipse
 - PHP
 - Xdebug
-meta:
-  _edit_last: '1'
-  _aioseop_keywords: eclipse, php, debug, xdebug
-  _aioseop_title: Debugging PHP In Eclipse
-  _wp_old_slug: ''
-  _aioseop_description: 'How to setup Eclipse to debug PHP scripts and web pages. '
-  dsq_thread_id: '4213736362'
-author:
-  login: EricHogue
-  email: eric@erichogue.ca
-  display_name: Eric Hogue
-  first_name: Eric
-  last_name: Hogue
+tags: []
 permalink: "/2011/02/php/debugging-php-in-eclipse/"
 ---
 Debugging a PHP application can be painful. When I have a bug in my code I tend to use echo and error\_log to pinpoint the source of the problem. Then I can usually look at the code and figure out what my mistake is.
@@ -38,22 +20,24 @@ There is a very good [tutorial](http://www.eclipse.org/pdt/articles/debugger/os-
 ## Setup XDebug
 
 Make sure that Xdebug is installed on your machine. Execute the following command and verify that you have at least one row with "xdebug" in it.  
-`
+```bash
 php -m | grep xdebug -i
-`
+```
 
 If XDebug is not installed on your system, you can can install it with this command:  
-`
+
+```bash
 sudo apt-get install php5-xdebug
-`
+```
 
 You have to allow remote debugging if you want to debug web pages. Edit /etc/php5/conf.d/xdebug.ini and add those lines:  
-`
+
+```bash
 xdebug.remote_enable=On
 xdebug.remote_host="localhost"
 xdebug.remote_port=9000
 xdebug.remote_handler="dbgp"
-`
+```
 
 ## Configure Eclipse
 

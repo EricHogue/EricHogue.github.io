@@ -2,32 +2,13 @@
 layout: post
 title: Why Am I Getting The Zend PHP 5.3 Certification
 date: 2011-01-16 20:03:20.000000000 -05:00
-type: post
-parent_id: '0'
-published: true
-password: ''
-status: publish
 categories:
 - Training
-tags:
 - Goals
 - PHP
-- Training
 - ZCE
 - Zend
-meta:
-  _edit_last: '1'
-  _aioseop_keywords: ZCE, Zend PHP 5.3 Certification, PHP, PHP 5.3
-  _aioseop_description: Reasons why I am studying to get my Zend PHP 5.3 Certification
-  _aioseop_title: Why Am I Getting The Zend PHP 5.3 Certification
-  _wp_old_slug: ''
-  dsq_thread_id: '4212226144'
-author:
-  login: EricHogue
-  email: eric@erichogue.ca
-  display_name: Eric Hogue
-  first_name: Eric
-  last_name: Hogue
+tags: []
 permalink: "/2011/01/training/why-am-i-getting-the-zend-php-5-3-certification/"
 ---
 I have been programming in PHP for 5 years. PHP was not a choice I made, I had to learn it when my bosses acquired a company that was using Perl and PHP. At this time, I had to switch from doing desktop applications in C# to doing web applications with PHP. This was a major change in philosophy, and at the time I didn't know much about web development.
@@ -36,7 +17,7 @@ I learned the language and most of what I know about the web by working with it.
 
 ## Get A Better Knowledge Of PHP
 
-The main reason I decided to take the ZCE exam, is the preparation. By studying for the exam, I get a very nice revision of the core features of the language. It forces me to take a new look at many things I have taken for granted. By doing it, I also learn some new things. I didn't know that in PHP you could use 'And' and 'Or' instead of the '&&' and '||' logical operators. By reading the manual, I learned about those, and I also learned that they have a different precedence.
+The main reason I decided to take the ZCE exam, is the preparation. By studying for the exam, I get a very nice revision of the core features of the language. It forces me to take a new look at many things I have taken for granted. By doing it, I also learn some new things. I didn't know that in PHP you could use 'And' and 'Or' instead of the '&&' and '\|\|' logical operators. By reading the manual, I learned about those, and I also learned that they have a different precedence.
 
 I have also learned that the empty array evaluate to false. I could have easily try that and find out, but it never occurs to me to actually use an array in a conditional. When I want to do something only when an array as some element, I check the count first. Now I know that I can just use the array. I'm not sure that it's a good idea, it might make the code harder to understand, but at least it's a choice I will make.
 

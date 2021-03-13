@@ -2,29 +2,9 @@
 layout: post
 title: Driving Technical Change
 date: 2011-01-25 22:00:46.000000000 -05:00
-type: post
-parent_id: '0'
-published: true
-password: ''
-status: publish
 categories:
 - Books
-tags:
-- Books
-meta:
-  _edit_last: '1'
-  _aioseop_description: 'My critics of the book Driving Technical Change by Terrence
-    Ryan. '
-  _aioseop_title: Driving Technical Change
-  _wp_old_slug: ''
-  _aioseop_keywords: 'Driving Technical Change, book, critics, '
-  dsq_thread_id: '4215984267'
-author:
-  login: EricHogue
-  email: eric@erichogue.ca
-  display_name: Eric Hogue
-  first_name: Eric
-  last_name: Hogue
+tags: []
 permalink: "/2011/01/books/driving-technical-change/"
 ---
 Last week I read the book [Driving Technical Change](http://www.terrenceryan.com/blog/post.cfm/i-m-an-author-driving-technical-change "Driving Technical Change") by [Terrence Ryan](http://www.terrenceryan.com/ "Terrence Ryan"). This is a small book. I took me only 4 days to read it. Here's what I thought of it.

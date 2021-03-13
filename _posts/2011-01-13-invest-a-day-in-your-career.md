@@ -2,27 +2,10 @@
 layout: post
 title: Invest A Day In Your Career
 date: 2011-01-13 10:00:52.000000000 -05:00
-type: post
-parent_id: '0'
-published: true
-password: ''
-status: publish
 categories:
 - Training
-tags:
 - events
-- Training
-meta:
-  _edit_last: '1'
-  _aioseop_title: Invest A Day In Your Career
-  _aioseop_description: Reasons why every developers so attempt Day Camp For Developers
-  _aioseop_keywords: DC4D,Day Camp For Developers, Career
-author:
-  login: EricHogue
-  email: eric@erichogue.ca
-  display_name: Eric Hogue
-  first_name: Eric
-  last_name: Hogue
+tags: []
 permalink: "/2011/01/training/invest-a-day-in-your-career/"
 ---
 Wednesday, the date and the line up for [Day Camp For Developers 2 (DC4D)](http://daycamp4developers.com/ "DC4D # 2") was announced. I immediately bought my ticket and I wish to convince you to do the same.
