@@ -2,31 +2,11 @@
 layout: post
 title: Code Retreat Quebec
 date: 2011-05-25 21:19:39.000000000 -04:00
-type: post
-parent_id: '0'
-published: true
-password: ''
-status: publish
 categories:
 - Best Practices
 - Events
 - Training
-tags:
-- events
-- Training
-meta:
-  _edit_last: '1'
-  _aioseop_description: 'This is my recap of the Code Retreat of May 21 2011 in Quebec
-    City. '
-  _aioseop_title: Code Retreat Quebec
-  _aioseop_keywords: Code Retreat, TDD, Test Driven Development, Pair Programming
-  dsq_thread_id: '4212225760'
-author:
-  login: EricHogue
-  email: eric@erichogue.ca
-  display_name: Eric Hogue
-  first_name: Eric
-  last_name: Hogue
+tags: []
 permalink: "/2011/05/training/code-retreat-quebec/"
 ---
 Last Saturday I had the privilege of attempting [a code retreat in Quebec City](http://coderetreatquebec.wordpress.com/ "Code Retreat Quebec"). I have been hoping for this for a while, so I registered as soon as I found out about it. When I learned that [Corey Haines](http://coreyhaines.com/ "Corey Haines") and [J. B. Rainsberger](http://www.jbrains.ca/ "J. B. Rainsberger") where going to be there I was really thrilled.

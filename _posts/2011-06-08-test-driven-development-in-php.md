@@ -2,33 +2,12 @@
 layout: post
 title: Test Driven Development in PHP
 date: 2011-06-08 07:16:20.000000000 -04:00
-type: post
-parent_id: '0'
-published: true
-password: ''
-status: publish
 categories:
-- Best Practices
-- PHP
-tags:
 - Best Practices
 - PHP
 - PHPUnit
 - TDD
-meta:
-  _edit_last: '1'
-  _aioseop_description: 'A brief description of Test Driven Development. Followed
-    by how to do TDD in PHP. And some resources for practices. '
-  _aioseop_title: Test Driven Development in PHP
-  _aioseop_keywords: Test Driven Development, TDD, PHP, PHPUnit, Eclipse, Code Kata,
-    PHPsrc
-  dsq_thread_id: '4212226080'
-author:
-  login: EricHogue
-  email: eric@erichogue.ca
-  display_name: Eric Hogue
-  first_name: Eric
-  last_name: Hogue
+tags: []
 permalink: "/2011/06/php/test-driven-development-in-php/"
 ---
 [Test driven development](http://en.wikipedia.org/wiki/Test-driven_development "test driven development") (TDD) is at the core of the [Agile Methodology](http://en.wikipedia.org/wiki/Agile_software_development "Agile software development") and [Extreme Programming](http://en.wikipedia.org/wiki/Extreme_Programming "Extreme Programming"). This practice has been known for a while and a lot have been written on it. However, I still meet developers that don't know what it is. I understand that many employers won't let their employees write tests, but we should at least know about the best practices of our industry.
@@ -68,10 +47,10 @@ Your test methods should be small. They should test for only one behavior, and e
 To verify the results of your test, PHPUnit has a [wide range of assertions](http://www.phpunit.de/manual/current/en/writing-tests-for-phpunit.html#writing-tests-for-phpunit.assertions "PHPUnit Assertions"). They go from the simple assertTrue to more elaborates ones like assertEqualXMLStructure and assertGreaterThanOrEqual. I counted 36 assertions types in the documentation. It even have an assertThat method to write tests in the [Behavior Driven Development](http://en.wikipedia.org/wiki/Behavior_Driven_Development "Behavior Driven Development") style.
 
 All your tests could simply use assertTrue to verify a condition, but the intent of your code is more obvious with the verbose assertions. Those 2 lines are the same:  
-`
+```php
 $this->assertStringStartsWith($prefix, $string);
 $this->assertTrue(0 === strpos($string, $prefix));
-`  
+```
 But the first one says what it is I'm testing.
 
 To run your tests, all you need to do is run phpunit, passing it the file with the tests as a parameter. If you pass it a folder, PHPUnit will run the test in every files with a name ending by 'Test.php' in that folder and any sub folders.
@@ -79,9 +58,9 @@ To run your tests, all you need to do is run phpunit, passing it the file with t
 ### Bootstrapping
 
 Sometimes, you will need to have some code run before all the test cases. You might need to alter the require path, add an autoloader or set some environment variables. PHPUnit allow us to pass it a bootstrap file. This file will be run before your tests to prepare your testing environment.  
-`
+```bash
 phpunit --bootstrap Tests/testBootstrap.php .
-`
+```
 
 ## Testing Databases
 
@@ -99,7 +78,7 @@ Connecting to a real database cause problems with the isolation of the tests. Ch
 
 I already wrote about PHPsrc in [a previous post](http://erichogue.ca/2011/05/php/php-tool-integration-phpsrc/ "PHP Tool Integration (PHPsrc)"). This tool will allow you to run your tests from inside Eclipse.
 
-[caption id="attachment\_751" align="alignnone" width="270" caption="PHPsrc PHPUnit Configuration"][![PHPsrc PHPUnit Configuration]({{ site.baseurl }}/assets/images/2011/06/PHPsrcPHPUnitConfig-270x300.png "PHPsrc PHPUnit Configuration")](http://erichogue.ca/wp-content/uploads/2011/06/PHPsrcPHPUnitConfig.png)[/caption]
+![PHPsrc PHPUnit Configuration]({{ site.baseurl }}/assets/images/2011/06/PHPsrcPHPUnitConfig-270x300.png "PHPsrc PHPUnit Configuration")
 
 The PHPUnit integration will allow you to easily run the tests. It can also jump between the tests and the class being tested. You can give it a bootstrap file in the configuration. Either in the global settings, or by project. It will underline failing tests as errors, and it can also show code that is not covered by your tests.
 

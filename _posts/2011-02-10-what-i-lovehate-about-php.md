@@ -2,29 +2,9 @@
 layout: post
 title: What I Love/Hate About PHP
 date: 2011-02-10 21:01:31.000000000 -05:00
-type: post
-parent_id: '0'
-published: true
-password: ''
-status: publish
 categories:
 - PHP
-tags:
-- PHP
-meta:
-  _edit_last: '1'
-  _aioseop_title: What I Love/Hate About PHP
-  _aioseop_description: 'My opinion about the strengths and weaknesses of the PHP
-    programming language. '
-  _wp_old_slug: ''
-  _aioseop_keywords: PHP, Programming Language, web development
-  dsq_thread_id: '4212225652'
-author:
-  login: EricHogue
-  email: eric@erichogue.ca
-  display_name: Eric Hogue
-  first_name: Eric
-  last_name: Hogue
+tags: []
 permalink: "/2011/02/php/what-i-lovehate-about-php/"
 ---
 I have been programming in PHP for 5 years now. I did not choose this language, I had to learn it to work on the code of the company my bosses bought. Since I started, I heard many rants about how bad PHP is. Some where valid, but a lot of them are just blaming the language for bad code written by bad programmers.
