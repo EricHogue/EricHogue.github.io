@@ -4,15 +4,20 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+  I am a web developer from Montreal, Quebec, Canada. I write about web development 
+  and security. 
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+  I've been programing for 20 years. I started developing desktop applications in 
+  Delphi, C# and C++. Then I moved to web, mostly in PHP and now Node. 
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+  I always liked security, with the perspective of writting secure code. But lately
+  I've started learning how to hack, and I realy enjoy it.
 
+You can reach out to me on those platforms:
 
-[jekyll-organization]: https://github.com/jekyll
+* [Twitter](http://twitter.com/ehogue)
+* [LinkedIn](http://ca.linkedin.com/in/ehogue)
+* [GitHub](https://github.com/EricHogue)
+* [Stack Overflow](http://stackoverflow.com/users/4137/eric-hogue)
+* [Stack Overflow Career](http://careers.stackoverflow.com/erichogue)
+

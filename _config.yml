@@ -21,18 +21,13 @@
 title: Eric Hogue's Blog
 email: blog@erichogue.ca
 description: >- # this means to ignore newlines until "baseurl:"
-  I am a web developer from Montreal, Quebec, Canada. I write about web development 
-  and security. 
+  Writting about web development, security and anything that interest me.¬
 
-  I've been programing for 20 years. I started developing desktop applications in 
-  Delphi, C# and C++. Then I moved to web, mostly in PHP and now Node. 
-
-  I always liked security, with the perspective of writting secure code. But lately
-  I've started learning how to hack, and I realy enjoy it.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://erichogue.ca" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: ehogue
 github_username:  EricHogue
+linkedin_username: ehogue
 
 show_excerpts: true
 permalink: /:title/

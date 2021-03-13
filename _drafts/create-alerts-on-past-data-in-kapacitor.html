@@ -1,0 +1,45 @@
+---
+layout: post
+title: Create Alerts On Past Data In Kapacitor
+date: 
+type: post
+parent_id: '0'
+published: false
+password: ''
+status: draft
+categories:
+- PHP
+tags: []
+meta:
+  _edit_last: '1'
+  _wpcom_is_markdown: '1'
+author:
+  login: EricHogue
+  email: eric@erichogue.ca
+  display_name: Eric Hogue
+  first_name: Eric
+  last_name: Hogue
+permalink: "/"
+---
+<p>When creating some alerts in Kapacitor, comparing data to previous period can be hard. The tool to build alerts is great. But when I had no luck creating alerts for changes relative to a previous period of time. The rules will not look at back data. So if I wanted to compare a day to the previous day, I had to wait for the tool alert to gather data for a day, even if I already have enough data in InfluxDB. This does not work well if you want to compare a month to the previous one. Waiting a month for the first alert is too long. And if you restart the services, you have to start over collecting data.</p>
+<p>I also wanted to have rules that will compare the current data to the average from a previous period. Compare how many pages in the last 24 hours compare to the average for the previous week. I could not do that with the Alert Rule Builder.</p>
+<div></div>
+<p>strong text<strong>strong text</strong></p>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div>
+  It will wait for the entire period to end before the first alert</div>
+<div></div>
+<div>
+  Using the correct type</div>
+<div></div>
+<div>
+  send Alerts all the Time (10 seconds, even when no changes) to debug (don't forget to turn it off when going to lunch)</div>
+<h2>Test header</h2>
+<ul>
+<li>1</li>
+<li>2</li>
+<li>3</li>
+</ul>
