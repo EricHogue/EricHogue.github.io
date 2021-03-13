@@ -1,23 +1,4 @@
-# Welcome to Jekyll!
 #
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-#
-# If you need help with YAML syntax, here are some quick references for you: 
-# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
-# https://learnxinyminutes.com/docs/yaml/
-#
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-
 title: Eric Hogue's Blog
 email: blog@erichogue.ca
 description: >- # this means to ignore newlines until "baseurl:"
@@ -25,35 +6,50 @@ description: >- # this means to ignore newlines until "baseurl:"
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://erichogue.ca" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: ehogue
-github_username:  EricHogue
-linkedin_username: ehogue
+
+# Author Settings
+author: Eric Hogue
+author-img: EricHogue.jpg
+about-author: 
+  I am a web developer from Montreal, Quebec, Canada. I write about web development 
+  , security and anything that interest me.
+
+social-twitter: ehogue
+social-github: EricHogue
+social-linkedin: ehogue
+social-email: blog@erichogue.ca
+social-stackoverflow: 4137
+#* [Stack Overflow](http://stackoverflow.com/users/4137/eric-hogue)
+#* [Stack Overflow Career](http://careers.stackoverflow.com/erichogue)
+
+
+#twitter_username: ehogue
+#github_username:  EricHogue
+#linkedin_username: ehogue
 
 show_excerpts: true
 permalink: /:title/
 
 
 # Build settings
-theme: minima
+#theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jemoji
 
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+
+# Disqus
+discus-identifier: # add your discus identifier
+
+# Tracker
+analytics: # Google Analytics
+
+# Build Settings
+#markdown: kramdown
+
+paginate: 8
+paginate_path: "/page/:num"
+
+exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]
