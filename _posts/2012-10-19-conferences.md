@@ -2,31 +2,14 @@
 layout: post
 title: Conferences
 date: 2012-10-19 20:19:40.000000000 -04:00
-type: post
-parent_id: '0'
-published: true
-password: ''
-status: publish
 categories:
 - Events
 - Training
-tags:
 - Conferences
 - Confoo
 - speaking
 - True North PHP
-meta:
-  _edit_last: '1'
-  _aioseop_description: Conferences where I will speak or attempt.
-  _aioseop_keywords: conference,True North PHP, Confoo
-  _aioseop_title: Conferences
-  dsq_thread_id: '4215984236'
-author:
-  login: EricHogue
-  email: eric@erichogue.ca
-  display_name: Eric Hogue
-  first_name: Eric
-  last_name: Hogue
+tags: []
 permalink: "/2012/10/training/conferences/"
 ---
 In the next few months, I will be a 2 conferences.

@@ -2,29 +2,10 @@
 layout: post
 title: Clean Coder
 date: 2011-07-06 20:46:37.000000000 -04:00
-type: post
-parent_id: '0'
-published: true
-password: ''
-status: publish
 categories:
 - Books
-tags:
 - Best Practices
-- Books
-meta:
-  _edit_last: '1'
-  _aioseop_description: 'A critics of the book "The Clean Coder: A Code of Conduct
-    for Professional Programmers" by Robert C. Martin'
-  _aioseop_title: Clean Coder
-  _aioseop_keywords: Clean Coder, book, professional, developer
-  dsq_thread_id: '4212225844'
-author:
-  login: EricHogue
-  email: eric@erichogue.ca
-  display_name: Eric Hogue
-  first_name: Eric
-  last_name: Hogue
+tags: []
 permalink: "/2011/07/books/clean-coder/"
 ---
 Yesterday I finished reading [The Clean Coder: A Code of Conduct for Professional Programmers](http://www.amazon.com/gp/product/0137081073/ref=as_li_ss_tl?ie=UTF8&tag=erhosbl-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=0137081073) (affiliate link) by [Robert C. Martin](http://www.objectmentor.com/omTeam/martin_r.html "Robert C. Martin"). In this book, Uncle Bob expose his view of what it is to be a professional programmer. The author have been programming for 40 years and he have very strong opinion about the subject of professionalism in programming.

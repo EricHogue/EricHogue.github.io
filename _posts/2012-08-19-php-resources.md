@@ -2,30 +2,13 @@
 layout: post
 title: PHP Resources
 date: 2012-08-19 13:47:21.000000000 -04:00
-type: post
-parent_id: '0'
-published: true
-password: ''
-status: publish
 categories:
 - PHP
-tags:
 - blogs
 - PHP
 - podcasts
 - twitter
-meta:
-  _edit_last: '1'
-  _aioseop_description: Resources for PHP developers
-  _aioseop_keywords: PHP,resources,blog,blogs,twitter
-  _aioseop_title: PHP Resources
-  dsq_thread_id: '4212225897'
-author:
-  login: EricHogue
-  email: eric@erichogue.ca
-  display_name: Eric Hogue
-  first_name: Eric
-  last_name: Hogue
+tags: []
 permalink: "/2012/08/php/php-resources/"
 ---
 A co-worker recently asked me how I stay current with new development in the PHP world. I started writing a document for him, then I though it might be a good idea to put this in a blog post. So here are a few of the resources I use. Most of them are about PHP, because that is what I was asked about, but I think it's important to look other areas also. So I will throw in a few links that are not strictly about PHP.

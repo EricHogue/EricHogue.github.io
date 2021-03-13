@@ -3,28 +3,15 @@ layout: post
 title: Installing the TICK Stack Tools to Collect Metrics
 date: 2018-03-30 16:45:45.000000000 -04:00
 type: post
-parent_id: '0'
-published: true
-password: ''
-status: publish
 categories:
 - Monitoring
 - TICK Stack
 - Ubuntu
 tags: []
-meta:
-  _edit_last: '1'
-  _aioseop_description: Quick start guide on how to install the TICK stack tools
-  _wpas_done_all: '1'
-  _wpcom_is_markdown: '1'
-author:
-  login: EricHogue
-  email: eric@erichogue.ca
-  display_name: Eric Hogue
-  first_name: Eric
-  last_name: Hogue
 permalink: "/2018/03/tick-stack/installing-tick-stack-tools-metrics/"
+img: 2018/03/TickData.jpg
 ---
+
 <p>The <a href="https://www.influxdata.com/time-series-platform/">TICK Stack</a> is a great platform if you want to gain some visibility over your applications. However, looking into how to install it can be a little overwhelming. There are four tools that you need to install to use it:</p>
 <ul>
 <li>Telegraf to collect the data</li>
@@ -58,9 +45,9 @@ sudo service kapacitor restart
 <p><img class="alignnone wp-image-1233" src="{{ site.baseurl }}/assets/images/2018/03/TickInfluxConnection.jpg" alt="" width="552" height="370" /></p>
 <p>You can leave all the default values and click on Add connection.</p>
 <p>Next, you will need to configure Kapacitor. Click on Configuration in the left toolbar.</p>
-<p><a href="https://erichogue.ca/wp-content/uploads/2018/03/TickAddKapacitor.jpg"><img class="alignnone wp-image-1235" src="{{ site.baseurl }}/assets/images/2018/03/TickAddKapacitor.jpg" alt="" width="634" height="193" /></a></p>
+<p><img class="alignnone wp-image-1235" src="{{ site.baseurl }}/assets/images/2018/03/TickAddKapacitor.jpg" alt="" width="634" height="193" /></p>
 <p>Click on Add Kapacitor Connection in the Configuration page, leave all the Kapacitor settings to their defaults and click on Connect.</p>
-<p><a href="https://erichogue.ca/wp-content/uploads/2018/03/TickConfigureKapacitor.jpg"><img class="alignnone wp-image-1236" src="{{ site.baseurl }}/assets/images/2018/03/TickConfigureKapacitor.jpg" alt="" width="647" height="317" /></a></p>
+<p><img class="alignnone wp-image-1236" src="{{ site.baseurl }}/assets/images/2018/03/TickConfigureKapacitor.jpg" alt="" width="647" height="317" /></p>
 <p>&nbsp;</p>
 <h2>Test The Applications</h2>
 <p>Log data to the template you created earlier.</p>
@@ -81,5 +68,5 @@ You should also be able to see the inserted data in Chronograf.
 
 Click on Data Explorer in the left side menu. Choose telegraf.autogen&nbsp;DB, and explore your data.
 
-[caption id="attachment\_1237" align="alignnone" width="771"][![Cronograf Data Explorer]({{ site.baseurl }}/assets/images/2018/03/TickData.jpg)](https://erichogue.ca/wp-content/uploads/2018/03/TickData.jpg) Chronograf Data Explorer[/caption]
+<p><img class="alignnone wp-image-1235" src="{{ site.baseurl }}/assets/images/2018/03/TickData.jpg" alt="Cronograf Data Explorer"  /></p>
 

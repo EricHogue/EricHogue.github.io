@@ -2,34 +2,18 @@
 layout: post
 title: Continuous Testing in PHP with Guard
 date: 2012-09-03 21:43:17.000000000 -04:00
-type: post
-parent_id: '0'
-published: true
-password: ''
-status: publish
 categories:
 - Best Practices
 - PHP
-tags:
 - Best Practices
 - Guard
 - PHP
 - PHPUnit
 - TDD
 - Testing
-meta:
-  _edit_last: '1'
-  _aioseop_description: How Continuous testing can be done in PHP with Guard
-  _aioseop_title: Continuous Testing in PHP with Guard
-  _aioseop_keywords: Continuous Testing, PHP, PHPUnit, watchr, autotest, guard, guard-phpunit
-  dsq_thread_id: '4212225905'
-author:
-  login: EricHogue
-  email: eric@erichogue.ca
-  display_name: Eric Hogue
-  first_name: Eric
-  last_name: Hogue
+tags: []
 permalink: "/2012/09/php/continuous-testing-in-php-with-guard/"
+img: 2012/09/Guard-300x161.jpeg
 ---
 A few months ago, I wrote about [continuous testing](http://erichogue.ca/2012/04/best-practices/continuous-testing/ "Continuous Testing"). When I wrote that post, I was using [watchr](https://github.com/mynyml/watchr "watchr") to run my tests. A few weeks ago, I started using [Guard](https://github.com/guard/guard "Guard") instead of watchr and I wouldn't go back.
 
@@ -78,7 +62,10 @@ guard init phpunit
 You can also generate the Guardfile manually, it's a simple Ruby file. My Guard file for PHPUnit looks like this:
 
 ```
-guard 'phpunit', :cli =\> '--colors', :tests\_path =\> 'tests', :keep\_failed =\> true, :all\_after\_pass =\> true do watch(%r{^tests/.+Test\.php$}) watch(%r{^src/(.+)\.php$}) { |m| "tests/#{m[1]}Test.php" } end
+guard 'phpunit', :cli =\> '--colors', :tests\_path =\> 'tests', :keep\_failed =\> true, :all\_after\_pass =\> true do 
+	watch(%r{^tests/.+Test\.php$}) 
+	watch(%r{^src/(.+)\.php$}) { |m| "tests/#{m[1]}Test.php" } 
+end
 ```
 
 The first line, tells guard to use the PHPUnit plugin. This plugin will execute PHPUnit and check if the tests pass or not. We give it a few options. First we tell guard to pass the colors argument to PHPUnit. keep\_failed is to make sure that when a test case fails, guard will run it on every save until it passes. all\_after\_pass, tells Guard to run all the tests once a failing tests succeed. This way you are sure you didn't break anything in the process of getting the test to pass.
@@ -95,7 +82,7 @@ In addition to the '.Guardfile', you can use a file called '.guard.rb', also in 
 
 One interesting parameter to Guard is -c or --clear. If you run it with this parameter, Guard will clear the terminal before running the tests.
 
-[caption id="attachment\_1014" align="alignnone" width="300"][![Running Guard]({{ site.baseurl }}/assets/images/2012/09/Guard-300x161.jpeg "Running Guard")](http://erichogue.ca/wp-content/uploads/2012/09/Guard.jpeg) Running Guard[/caption]
+![Running Guard]({{ site.baseurl }}/assets/images/2012/09/Guard-300x161.jpeg "Running Guard")
 
 ## Notifications
 
@@ -111,7 +98,7 @@ You can then add this line to your Guardfile
 notification :libnotify
 ```
 
-[caption id="attachment\_1022" align="alignnone" width="300"][![Notifications]({{ site.baseurl }}/assets/images/2012/09/Notifications-300x91.jpeg "Notifications")](http://erichogue.ca/wp-content/uploads/2012/09/Notifications.jpeg) Notifications[/caption]
+![Notifications]({{ site.baseurl }}/assets/images/2012/09/Notifications-300x91.jpeg "Notifications")
 
 If you want to turn them off, change the notification value to :off.
 
@@ -137,7 +124,28 @@ There are a lot of [plugins for Guard](https://github.com/guard/guard/wiki/List-
 When there are no plugin to perform a task you need, you can use guard-shell. Another alternative is to create an inline guard. Just add a class that extends Guard to your Guardfile. In the class you need to at a minimum override the method run\_on\_change. Here's what I did for running [Behat](http://behat.org/ "Behat").
 
 ```
-module ::Guard class Behat \< Guard def start run\_all end def run\_all puts 'Run all Behat tests' puts `behat` end def run\_on\_change(paths) paths.each do |file| puts `behat #{file}` end end end end guard 'behat' do watch %r{^tests/integrationTests/.+\.feature$} end
+module ::Guard 
+	class Behat < Guard 
+		def start 
+			run_all 
+		end 
+		
+		def run_all 
+			puts 'Run all Behat tests' 
+			puts `behat`
+		end 
+		
+		def run_on_change(paths) 
+			paths.each do |file| 
+				puts `behat #{file}` 
+			end 
+		end 
+	end 
+end 
+
+guard 'behat' do 
+	watch %r{^tests/integrationTests/.+\.feature$} 
+end
 ```
 
 This runs Behat every time a .feature file is changed.

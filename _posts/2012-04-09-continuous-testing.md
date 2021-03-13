@@ -2,31 +2,13 @@
 layout: post
 title: Continuous Testing in PHP
 date: 2012-04-09 07:30:01.000000000 -04:00
-type: post
-parent_id: '0'
-published: true
-password: ''
-status: publish
 categories:
 - Best Practices
-tags:
 - Best Practices
 - PHP
 - PHPUnit
 - Testing
-meta:
-  _edit_last: '1'
-  _aioseop_keywords: Continuous Testing, PHP, PHPUnit, watchr, autotest
-  _aioseop_description: Description of continuous testing and how it can be done on
-    a PHP project.
-  _aioseop_title: Continuous Testing in PHP
-  dsq_thread_id: '4212225831'
-author:
-  login: EricHogue
-  email: eric@erichogue.ca
-  display_name: Eric Hogue
-  first_name: Eric
-  last_name: Hogue
+tags: []
 permalink: "/2012/04/best-practices/continuous-testing/"
 ---
 Continuous testing is a way to automate the execution of your tests while you work. This makes the feedback loop very short. As soon as you save a file, the tests are run and you know right away if anything fails.
@@ -61,7 +43,7 @@ watch ('.*\.php$') {|phpFile| system("phpunit -c phpunit.xml")}
 
 I watch every file that ends with '.php'. When watchr detects a change, it simply runs PHPUnit for me.
 
-[caption id="attachment\_876" align="alignnone" width="300" caption="watchr running"][![watchr running]({{ site.baseurl }}/assets/images/2012/04/watchr_result-300x75.jpg "watchr running")](http://erichogue.ca/wp-content/uploads/2012/04/watchr_result.jpeg)[/caption]
+![watchr running]({{ site.baseurl }}/assets/images/2012/04/watchr_result-300x75.jpg "watchr running")
 
 ## Notifications
 
@@ -82,7 +64,7 @@ end
 
 You can add any logic you want. In the Continuous Testing book they go further. You can have it display notifications only when the tests fails and when they pass again for the first time. They also count the numbers of successful runs and display notifications every 5 consecutive successful run.
 
-[caption id="attachment\_884" align="alignnone" width="300" caption="watchr notification"][![watchr notification]({{ site.baseurl }}/assets/images/2012/04/notification-300x110.jpg "watchr notification")](http://erichogue.ca/wp-content/uploads/2012/04/notification.jpeg)[/caption]
+![watchr notification]({{ site.baseurl }}/assets/images/2012/04/notification-300x110.jpg "watchr notification")
 
 ## Beyond PHP
 
