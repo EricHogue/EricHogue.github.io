@@ -1,0 +1,70 @@
+==================================================================
+https://keybase.io/EricHogue
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://erichogue.ca
+  * I am EricHogue (https://keybase.io/EricHogue) on keybase.
+  * I have a public key with fingerprint 018D 2228 FF55 BB3A A880  9B03 CEB0 3E1D 652D 5DD9
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "018d2228ff55bb3aa8809b03ceb03e1d652d5dd9",
+            "host": "keybase.io",
+            "key_id": "CEB03E1D652D5DD9",
+            "uid": "7f494106d561f15eb28f250059058200",
+            "username": "EricHogue"
+        },
+        "service": {
+            "hostname": "erichogue.ca",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1395873759,
+    "expire_in": 157680000,
+    "prev": "5a64e9f7188bbfce7ecc00210fddf2edbdd9ebe65bd3c0fc31d567a368ae6bee",
+    "seqno": 18,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1.4.14 (GNU/Linux)
+
+owGbwMvMwMR4boOdbKpu7E3G0wc+JzEEG4ffr1ZKyk+pVLKqVspOBVNpmXnpqUUF
+RZl5JUpWSgaGFilGRkYWaWmmpklJxomJFhYGlkkGxsmpQCLVMMXM1CjFNCXFUklH
+KSO/GKQDaExSYnGqXmY+UAzIic9MAYo6uzoZGLsaugDVu5i6uIDUl4IlzNNMLE0M
+DcxSTM0M0wxNU5OAdhmZGhiYWhqYWhgZGIAUFqcW5SXmpgJVuxZlJnvkp5emKtXq
+KAGFyzKTU0GOBtkNVZIKVJIBUqKXnAjUXFCUX5KfnJ8DlMkoKSmwAmksqSwAqSxP
+TYqHmhGflJmXAvQ4UENZalFxZn6ekpUhUGVySSbIUENjS1MLc2NzU0sdpdSKgsyi
+1PhMkApTczMLAyAAWZNaBjTSNNHMJNUyzdzQwiIpKS051Tw1OdnAwMjQIC0lJc0o
+NSUJGFSpSalmpkkpxskGacnGhkB/mycam1kkppolpaYqgXxVmJcPNNsC6M7EdKCZ
+xZnpeYklpUVAP3cyybAwMDIxsLEygeKOgYtTABaj88MFGLZ728TnTOBe/SZgz1wR
+43rJkE0Fe9VV5LYb3EhN2mt6qd/2xjKLyPh5K3VPOU5qCVmufrCzqWhXC2Nq7E5P
+xtpFJ5Tjtunzl8pVn/H34r9oHpFoq1S15VwXE0vM8WX7J0gsjat1Ptdo3fnhlWvf
+7kl2B7fVuyVGHPu/Wy1GwWKS7bGk3Omzv8z53DGZJdGLR3LSi9frf8qv/ZDmP4lr
+u4a5e4j2NVHFJ7uCFlmu1nJ7Yrb6xKWkOG1Naw8pi9mvwj9sCl1XfPM7v/kPx18C
+Vrw87/5Jq/JMztpoyyzFlViy8/Qt2b27LS/NXbXu5MzbDsdOH1qbGmV4n0312OLI
+4xFdB72Kfv/wWVYc/vvB9oOuQtK7JQyjvq/Yuc27zsKmc4N8/t4Fb5cvPjFzCcfC
+GVdZjDgMPKJeaCqdXdR55siGxER5X/OZ97tMZDK7Fr2+crZvf07N3H9xi+Iuv264
+9Mx0/59ImQVF6TrBzWe8bqR1KVUGvk2blLDwUXeziUwof+6ytMg7p0WU1+you6Vz
+al7yntlneDdMvjT/zHRHW4HbS69Lts8JqX9yMbFU8PtlF4eEZoEOgeDAyk/ZwusK
+zFWeHJo18/DWZzHTDqfdN7CrW9UW7fHEwvJcVMwSlTJrbqYO48W1ps82q3ZxP1+z
+58amogN3eevPhj1NCPQrfJh/xPvWqYTptb1nOYJKHTKcGmxcY41/3N1Rk/o2GgA=
+=ByOr
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/EricHogue
+
+==================================================================
+
