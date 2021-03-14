@@ -41,7 +41,7 @@ plugins:
 
 
 # Disqus
-discus-identifier: # add your discus identifier
+discus-identifier: erichogue
 
 # Tracker
 analytics: # Google Analytics
