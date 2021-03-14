@@ -2,12 +2,12 @@
 layout: post
 title: Continuous Integration In PHP
 date: 2011-05-03 20:43:25.000000000 -04:00
-categories:
+tags:
 - Best Practices
 - PHP
 - Web Development
-- Jenkins
-- PHPUnit
+- Continuous Integration
+- Testing
 tags: []
 permalink: "/2011/05/php/continuous-integration-in-php/"
 img: 2011/05/JenkinsBuildResult-300x182.png

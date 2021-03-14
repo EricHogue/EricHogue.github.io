@@ -2,9 +2,8 @@
 layout: post
 title: My First Blog Post
 date: 2011-01-05 22:13:36.000000000 -05:00
-categories:
+tags:
 - Meta
-tags: []
 permalink: "/2011/01/meta/my-first-blog-post/"
 ---
 Welcome to my new blog. I intend on using this blog to write about various subjects that should be of interest for developers. I should blog about things I learn while developing at work or on my personal projects. I might also write about the life and career of a developer.

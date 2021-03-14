@@ -2,10 +2,8 @@
 layout: post
 title: Late Static Binding
 date: 2011-04-14 20:41:17.000000000 -04:00
-categories:
+tags:
 - PHP
-- static
-tags: []
 permalink: "/2011/04/php/late-static-binding/"
 ---
 [Late static binding](http://www.php.net/manual/en/language.oop5.late-static-bindings.php "Late static binding") is one of the new features of PHP 5.3. It came out almost 2 years ago, but it to me that many programmers around me have no idea about it. Myself, I have learned about it around 6 months ago.

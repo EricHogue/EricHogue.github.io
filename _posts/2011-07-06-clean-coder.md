@@ -2,10 +2,9 @@
 layout: post
 title: Clean Coder
 date: 2011-07-06 20:46:37.000000000 -04:00
-categories:
+tags:
 - Books
 - Best Practices
-tags: []
 permalink: "/2011/07/books/clean-coder/"
 ---
 Yesterday I finished reading [The Clean Coder: A Code of Conduct for Professional Programmers](http://www.amazon.com/gp/product/0137081073/ref=as_li_ss_tl?ie=UTF8&tag=erhosbl-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=0137081073) (affiliate link) by [Robert C. Martin](http://www.objectmentor.com/omTeam/martin_r.html "Robert C. Martin"). In this book, Uncle Bob expose his view of what it is to be a professional programmer. The author have been programming for 40 years and he have very strong opinion about the subject of professionalism in programming.

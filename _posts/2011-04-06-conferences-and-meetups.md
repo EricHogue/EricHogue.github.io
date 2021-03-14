@@ -2,11 +2,10 @@
 layout: post
 title: Conferences And Meetups
 date: 2011-04-06 07:34:23.000000000 -04:00
-categories:
-- Events
+tags:
+- Conferences
 - Training
 - Montreal
-tags: []
 permalink: "/2011/04/training/conferences-and-meetups/"
 ---
 Many developers I know never attempt any tech event. I am lucky to live in Montréal where we have plenty of them. The [Montreal NewTech calendar](https://www.google.com/calendar/embed?src=4b3vms6i8vm26lvg69d7ncobec@group.calendar.google.com&ctz=America/New_York&gsessionid=OK "Montreal NewTech calendar") shows that we have activities for everyone. And it does not have everything. Some meetings cover programming languages, others are targeted at startups, or tools like Wordpress. Even with all those choices, most of the developers around me never go to any of those events.

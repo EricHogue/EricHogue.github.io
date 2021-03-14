@@ -2,14 +2,10 @@
 layout: post
 title: Conferences
 date: 2012-10-19 20:19:40.000000000 -04:00
-categories:
-- Events
+tags:
 - Training
 - Conferences
-- Confoo
-- speaking
-- True North PHP
-tags: []
+- Speaking
 permalink: "/2012/10/training/conferences/"
 ---
 In the next few months, I will be a 2 conferences.

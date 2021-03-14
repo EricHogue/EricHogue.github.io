@@ -2,13 +2,10 @@
 layout: post
 title: Continuous Testing in PHP
 date: 2012-04-09 07:30:01.000000000 -04:00
-categories:
-- Best Practices
+tags:
 - Best Practices
 - PHP
-- PHPUnit
 - Testing
-tags: []
 permalink: "/2012/04/best-practices/continuous-testing/"
 ---
 Continuous testing is a way to automate the execution of your tests while you work. This makes the feedback loop very short. As soon as you save a file, the tests are run and you know right away if anything fails.

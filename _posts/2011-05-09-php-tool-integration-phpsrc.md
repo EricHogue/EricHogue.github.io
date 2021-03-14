@@ -2,11 +2,10 @@
 layout: post
 title: PHP Tool Integration (PHPsrc)
 date: 2011-05-09 11:22:33.000000000 -04:00
-categories:
+tags:
 - Best Practices
 - PHP
-- PHPUnit
-tags: []
+- Testing
 permalink: "/2011/05/php/php-tool-integration-phpsrc/"
 ---
 In a [previous post](http://erichogue.ca/2011/05/php/continuous-integration-in-php/ "Continuous Integration In PHP"), I talked about [Continuous Integration](http://en.wikipedia.org/wiki/Continuous_integration "Continuous Integration"). If your Continuous Integration server runs on every commits, it will help you keep your code quality high. It will also make integration a non issue.

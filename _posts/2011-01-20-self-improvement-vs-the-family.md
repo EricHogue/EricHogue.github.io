@@ -2,9 +2,8 @@
 layout: post
 title: Self Improvement Vs The Family
 date: 2011-01-20 21:38:30.000000000 -05:00
-categories:
+tags:
 - Training
-tags: []
 permalink: "/2011/01/training/self-improvement-vs-the-family/"
 ---
 About a month ago, a very [animated discussion](http://groups.google.com/group/software_craftsmanship/browse_thread/thread/a8ebf102445b1409 "About learning and self-improvement") took place on the [Software Craftsmanship Google Group](http://groups.google.com/group/software_craftsmanship "Software Craftsmanship Google Group"). The debate was about studying at home vs spending time with the family.

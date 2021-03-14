@@ -2,16 +2,11 @@
 layout: post
 title: Continuous Testing in PHP with Guard
 date: 2012-09-03 21:43:17.000000000 -04:00
-categories:
-- Best Practices
+tags:
 - PHP
 - Best Practices
-- Guard
-- PHP
-- PHPUnit
 - TDD
 - Testing
-tags: []
 permalink: "/2012/09/php/continuous-testing-in-php-with-guard/"
 img: 2012/09/Guard-300x161.jpeg
 ---

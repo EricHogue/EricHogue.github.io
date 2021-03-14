@@ -2,12 +2,10 @@
 layout: post
 title: Test Driven Development in PHP
 date: 2011-06-08 07:16:20.000000000 -04:00
-categories:
+tags:
 - Best Practices
 - PHP
-- PHPUnit
 - TDD
-tags: []
 permalink: "/2011/06/php/test-driven-development-in-php/"
 ---
 [Test driven development](http://en.wikipedia.org/wiki/Test-driven_development "test driven development") (TDD) is at the core of the [Agile Methodology](http://en.wikipedia.org/wiki/Agile_software_development "Agile software development") and [Extreme Programming](http://en.wikipedia.org/wiki/Extreme_Programming "Extreme Programming"). This practice has been known for a while and a lot have been written on it. However, I still meet developers that don't know what it is. I understand that many employers won't let their employees write tests, but we should at least know about the best practices of our industry.

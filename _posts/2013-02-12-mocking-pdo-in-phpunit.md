@@ -2,12 +2,9 @@
 layout: post
 title: Mocking PDO in PHPUnit
 date: 2013-02-12 21:30:10.000000000 -05:00
-categories:
+tags:
 - Best Practices
-- Mock
-- PDO
-- PHPUnit
-tags: []
+- Testing
 permalink: "/2013/02/best-practices/mocking-pdo-in-phpunit/"
 ---
 The subject of mocking a PDO object in PHPUnit has come around a few times lately. It cannot be done like normal classes because a PDO object cannot be serialized.

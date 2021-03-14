@@ -2,17 +2,11 @@
 layout: post
 title: Profiling a PHP Application
 date: 2011-03-30 19:44:22.000000000 -04:00
-categories:
+tags:
 - Linux
 - PHP
 - Web Development
 - performance
-- profiling
-- seige
-- Xdebug
-- xhgui
-- xhprof
-tags: []
 permalink: "/2011/03/linux/profiling-a-php-application/"
 img: 2011/03/XHGuiRun-300x161.png
 ---

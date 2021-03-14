@@ -2,9 +2,8 @@
 layout: post
 title: Asking For Help
 date: 2018-03-26 20:41:05.000000000 -04:00
-categories:
+tags:
 - Web Development
-tags: []
 permalink: "/2018/03/web-development/asking-for-help/"
 ---
 I think one of my biggest weakness as a developer is that I rarely ask for help. Many times, I have spent hours trying to figure out a problem when all I needed to do was ask someone.

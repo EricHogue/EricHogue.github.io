@@ -2,14 +2,8 @@
 layout: post
 title: Search And Replace Across Multiple Files In Bash
 date: 2011-01-11 16:21:34.000000000 -05:00
-categories:
+tags:
 - Linux
-- bash
-- grep
-- replace
-- search
-- sed
-tags: []
 permalink: "/2011/01/linux/search-and-replace-across-multiple-files-in-bash/"
 ---
 When I need to do something like a search and replace across multiple files, I usually write a PHP script. I always knew I could do it faster with grep and sed, but I was too lazy to research how to do it. Last week I finally decided to find a better way. I'm entering it here so I can easily find it back.

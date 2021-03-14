@@ -2,9 +2,8 @@
 layout: post
 title: What I Love/Hate About PHP
 date: 2011-02-10 21:01:31.000000000 -05:00
-categories:
+tags:
 - PHP
-tags: []
 permalink: "/2011/02/php/what-i-lovehate-about-php/"
 ---
 I have been programming in PHP for 5 years now. I did not choose this language, I had to learn it to work on the code of the company my bosses bought. Since I started, I heard many rants about how bad PHP is. Some where valid, but a lot of them are just blaming the language for bad code written by bad programmers.

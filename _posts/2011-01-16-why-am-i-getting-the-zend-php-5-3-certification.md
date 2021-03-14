@@ -2,13 +2,9 @@
 layout: post
 title: Why Am I Getting The Zend PHP 5.3 Certification
 date: 2011-01-16 20:03:20.000000000 -05:00
-categories:
+tags:
 - Training
-- Goals
 - PHP
-- ZCE
-- Zend
-tags: []
 permalink: "/2011/01/training/why-am-i-getting-the-zend-php-5-3-certification/"
 ---
 I have been programming in PHP for 5 years. PHP was not a choice I made, I had to learn it when my bosses acquired a company that was using Perl and PHP. At this time, I had to switch from doing desktop applications in C# to doing web applications with PHP. This was a major change in philosophy, and at the time I didn't know much about web development.

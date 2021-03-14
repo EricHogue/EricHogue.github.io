@@ -3,11 +3,9 @@ layout: post
 title: Installing the TICK Stack Tools to Collect Metrics
 date: 2018-03-30 16:45:45.000000000 -04:00
 type: post
-categories:
+tags:
 - Monitoring
 - TICK Stack
-- Ubuntu
-tags: []
 permalink: "/2018/03/tick-stack/installing-tick-stack-tools-metrics/"
 img: 2018/03/TickData.jpg
 ---

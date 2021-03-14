@@ -2,13 +2,9 @@
 layout: post
 title: Debugging PHP In Eclipse
 date: 2011-02-02 20:39:54.000000000 -05:00
-categories:
+tags:
 - PHP
 - Debugging
-- Eclipse
-- PHP
-- Xdebug
-tags: []
 permalink: "/2011/02/php/debugging-php-in-eclipse/"
 ---
 Debugging a PHP application can be painful. When I have a bug in my code I tend to use echo and error\_log to pinpoint the source of the problem. Then I can usually look at the code and figure out what my mistake is.

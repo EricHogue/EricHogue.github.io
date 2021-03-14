@@ -2,12 +2,9 @@
 layout: post
 title: My Impressions Of devLAB Montreal
 date: 2011-01-27 21:16:53.000000000 -05:00
-categories:
-- Events
+tags:
 - Montreal
-- PHP
 - Training
-tags: []
 permalink: "/2011/01/events/my-impressions-of-devlab-montreal/"
 ---
 Wednesday I went to an event called [devLAB Montréal](http://devlabmtl.org/ "devLAB Montréal"). This is a weekly event that is held in [Evocatio](http://evo.cat.io/ "Evocatio") offices in the old Montréal. It was my first time there, but it was the third time they held it.

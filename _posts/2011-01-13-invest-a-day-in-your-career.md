@@ -2,10 +2,8 @@
 layout: post
 title: Invest A Day In Your Career
 date: 2011-01-13 10:00:52.000000000 -05:00
-categories:
+tags:
 - Training
-- events
-tags: []
 permalink: "/2011/01/training/invest-a-day-in-your-career/"
 ---
 Wednesday, the date and the line up for [Day Camp For Developers 2 (DC4D)](http://daycamp4developers.com/ "DC4D # 2") was announced. I immediately bought my ticket and I wish to convince you to do the same.

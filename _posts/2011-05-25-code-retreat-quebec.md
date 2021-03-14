@@ -2,11 +2,9 @@
 layout: post
 title: Code Retreat Quebec
 date: 2011-05-25 21:19:39.000000000 -04:00
-categories:
+tags:
 - Best Practices
-- Events
 - Training
-tags: []
 permalink: "/2011/05/training/code-retreat-quebec/"
 ---
 Last Saturday I had the privilege of attempting [a code retreat in Quebec City](http://coderetreatquebec.wordpress.com/ "Code Retreat Quebec"). I have been hoping for this for a while, so I registered as soon as I found out about it. When I learned that [Corey Haines](http://coreyhaines.com/ "Corey Haines") and [J. B. Rainsberger](http://www.jbrains.ca/ "J. B. Rainsberger") where going to be there I was really thrilled.

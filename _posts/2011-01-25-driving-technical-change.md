@@ -2,9 +2,8 @@
 layout: post
 title: Driving Technical Change
 date: 2011-01-25 22:00:46.000000000 -05:00
-categories:
+tags:
 - Books
-tags: []
 permalink: "/2011/01/books/driving-technical-change/"
 ---
 Last week I read the book [Driving Technical Change](http://www.terrenceryan.com/blog/post.cfm/i-m-an-author-driving-technical-change "Driving Technical Change") by [Terrence Ryan](http://www.terrenceryan.com/ "Terrence Ryan"). This is a small book. I took me only 4 days to read it. Here's what I thought of it.
