@@ -39,8 +39,8 @@ layout: default
         {% else %}
           <li class="email"><a href="mailto:example.david@blog.com"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
         {% endif %}
-        {% if site.social-stackoverflow %}
-            <!-- <li class="iflsakj">{{site.social-stackoverflow}}</li> -->
+        {% if site.social-stackexchange %}
+            <a href="https://stackexchange.com/users/{{site.social-stackexchange}}"><img src="https://stackexchange.com/users/flair/{{site.social-stackexchange}}.png" width="208" height="58" alt="profile for {{ site.author }} on Stack Exchange, a network of free, community-driven Q&A sites" title="profile for {{ site.author }} on Stack Exchange, a network of free, community-driven Q&A sites"></a>
         {% endif %}
       </ul>
     </section> <!-- End Section Contact -->
