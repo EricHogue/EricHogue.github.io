@@ -27,7 +27,7 @@ social-stackexchange: 2919
 #linkedin_username: ehogue
 
 show_excerpts: true
-permalink: /:title/
+permalink: /:year/:month/:title/
 
 
 # Build settings
