@@ -8,7 +8,6 @@ tags:
 - Web Development
 - Continuous Integration
 - Testing
-tags: []
 permalink: "/2011/05/php/continuous-integration-in-php/"
 img: 2011/05/JenkinsBuildResult-300x182.png
 ---
