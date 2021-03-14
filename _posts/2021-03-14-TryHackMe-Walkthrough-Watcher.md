@@ -14,7 +14,7 @@ img: 2021/03/Watcher.png
 
 This is my walkthrough of the [Watcher room on TryHackMe](https://tryhackme.com/room/watcher). There are seven flags to find, without any additional description.
 
-* Room: Walkthrough 
+* Room: Watcher
 * Difficulty: Medium
 * URL: https://tryhackme.com/room/watcher
 
