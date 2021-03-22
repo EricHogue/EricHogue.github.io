@@ -416,3 +416,4 @@ That was our last flag.
 
 This is a fun box to root. With many steps. I'm not sure it should be classified as medium difficulty. All the steps where pretty easy to do. Especially with the note.txt files giving huge hints. 
 
+Text also published on : https://blog.hackfest.ca/blog/TryHackMe-Walkthrough-Watcher
