@@ -1,21 +1,21 @@
 ---
 layout: post
-title: Northsec 2021 Writeup - Wizard Hackademy - Mentalism
+title: NorthSec 2021 Writeup - Wizard Hackademy - Mentalism
 date: 2021-05-24
 type: post
 tags:
 - Writeup
 - Hacking
-- Northsec
+- NorthSec
 - CTF
-permalink: /2021/05/Northsec2021WriteupMentalism/
+permalink: /2021/05/NorthSec2021WriteupMentalism/
 ---
 
-The Wizard Hackademy challenges where challenges aimed at beginners. The Mentalism track had three flags. I did the first and the third flags. 
+The Wizard Hackademy challenges where challenges aimed at beginners in the 2021 [NorthSec CTF](https://nsec.io/competition/). The Mentalism track had three flags. I did the first and the third flags. 
 
 On each level, we are presented with a conversation between an apprentice and a trainer. We need to find the name of the trainer. 
 
-![Mentalism Site](/assets/images/2021/05/Northsec/WizardHackademy/Mentalism/site.png "Mentalism Site")
+![Mentalism Site](/assets/images/2021/05/NorthSec/WizardHackademy/Mentalism/site.png "Mentalism Site")
 
 ## Mentalism 101
 
@@ -25,7 +25,7 @@ But the URL was interesting: `http://chal2.wizard-hackademy.ctf/?page=hackademy.
 
 Once I saw that, I immediately tried to include `/etc/passwd` as a proof of concept. I loaded `http://chal2.wizard-hackademy.ctf/?page=/etc/passwd` in my browser and the content of the file was displayed in my browser. The browser show it all on one line, so I looked a the page source to make it easier to read.
 
-![/etc/passwd](/assets/images/2021/05/Northsec/WizardHackademy/Mentalism/flag1.png "/etc/passwd")
+![/etc/passwd](/assets/images/2021/05/NorthSec/WizardHackademy/Mentalism/flag1.png "/etc/passwd")
 
 The first flag was in the information about the trainer user on the last line of the file.
 
@@ -43,7 +43,7 @@ I used this method to read the code of `hackademy.php`. I loaded `http://chal2.w
 
 I then tried to load the `index.php` file. Loading `http://chal2.wizard-hackademy.ctf/?page=php://filter/convert.base64-encode/resource=index.php` gave me the content of the file as base64. 
 
-![index.php](/assets/images/2021/05/Northsec/WizardHackademy/Mentalism/flag2.png "index.php")
+![index.php](/assets/images/2021/05/NorthSec/WizardHackademy/Mentalism/flag2.png "index.php")
 
 I took that base64 string copied it in [CyberChef](https://gchq.github.io/CyberChef/) using the 'From Base64' recipe and it gave me the PHP code. 
 
