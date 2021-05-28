@@ -6,7 +6,7 @@ type: post
 tags:
 - Writeup
 - Hacking
-- Northsec
+- NorthSec
 - CTF
 permalink: /2021/05/NorthSec2021WriteupTheCabal/
 ---
