@@ -24,7 +24,7 @@ They made it clear that the badge would not give us any advantages in their [CTF
 
 I need to thank [Padraignix](https://twitter.com/_PatrickDowning) and Vicious. I would never have completed the badge without their help. 
 
-## Flag 1
+## Flag 1 / Badge 1
 
 When I started the badge by connecting it to a computer through it's USB port, I was first greeted by a warning message to make sure we are aware that it does not give points in the CTF.
 
@@ -48,7 +48,7 @@ I took that flag and submitted it to FLAGBOT.
 ![Badge 1](/assets/images/2021/05/NorthSecBadge/Badge1.png "Badge 1")
 
 
-## Flag 2
+## Flag 2 / Badge 4
 
 I started walking around the map and talking to all the characters. Some of the dialog are pretty funny. If you have a badge, make you sure you talk to every one, and read everything they have to say. It's worth it. 
 
@@ -71,7 +71,7 @@ Flag 2: FLAG-UuDdLrLrBA0000
 
 One thing I noted here, the order of the flags in the badge don't match the order of the flag awarded on Discord. I guess they were trying to confuse more than I already was.
 
-## Flag 5
+## Flag 5 / Badge 7
 
 I got this flag by walking around and talking to everyone I saw. There is a Punk character that only asked me 'Are you really CYBER!? PROVE IT'.  
 
@@ -85,7 +85,7 @@ Flag 5: FLAG-KLJV490uhkEJF28
 
 ![Badge 7](/assets/images/2021/05/NorthSecBadge/Badge7.png "Badge 7")
 
-## Flag 4
+## Flag 4 / Badge 6
 
 This one was weird. I was exploring the map, and eventually I saw that I had the 4th flag. But I never saw it. And I had no idea when it appeared. I kept walking around the map, and not seeing it anywhere. 
 
@@ -124,7 +124,7 @@ Flag: FLAGBNVZKAWMSYS
 
 ![Badge 6](/assets/images/2021/05/NorthSecBadge/Badge6.png "Badge 6")
 
-## Flag 7
+## Flag 7 / Badge 8
 
 This flag is not located on the map. I had seen hints that there is a CLI that could be used by connecting to the serial port. I had never played with something similar, so I had no idea how to connect to it. I was afraid I need to use the strange black port near the tail of the horse. 
 
@@ -154,3 +154,7 @@ nsec-badge>
 Flag: FLAG-Cl1F0rFun&Pr0f1t
 
 ![Badge 8](/assets/images/2021/05/NorthSecBadge/Badge8.png "Badge 8")
+
+## Other Posts
+
+This post shows how I got the five easier flags of the NorthSec badge. I will write other posts for the rest of the flags.
