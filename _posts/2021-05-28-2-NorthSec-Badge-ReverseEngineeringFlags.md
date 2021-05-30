@@ -17,11 +17,11 @@ While exploring the maps to look for flags, I can across a house with a question
 
 ![Reverse Engineering House](/assets/images/2021/05/NorthSecBadge/REHouse.jpg "Reverse Engineering House")
 
-When I pressed on the ENTER button, I received a message saying that I needed to connect to the wifi first. 
+When I pressed on the ENTER button, I received a message saying that I needed to connect to the Wi-Fi first. 
 
-![Connect to the Wifi First](/assets/images/2021/05/NorthSecBadge/ConnectToWifi.jpg "Connect to the Wifi First")
+![Connect to the Wi-Fi First](/assets/images/2021/05/NorthSecBadge/ConnectToWifi.jpg "Connect to the Wi-Fi First")
 
-I had already come across the house where I could turn wifi on and off. But it didn't work. I needed to configure it first. 
+I had already come across the house where I could turn Wi-Fi on and off. But it didn't work. I needed to configure it first. 
 
 I connected to the badge [CLI](https://en.wikipedia.org/wiki/Command-line_interface) using screen.
 

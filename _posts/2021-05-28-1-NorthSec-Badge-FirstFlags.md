@@ -22,7 +22,7 @@ They made it clear that the badge would not give us any advantages in their [CTF
 
 ![Discord Roles](/assets/images/2021/05/NorthSecBadge/DiscordRoles.png "Discord Roles")
 
-I need to thank [Padraignix](https://twitter.com/_PatrickDowning) and Vicious. I would never have completed the badge without their help. 
+I need to thank [Padraignix](https://padraignix.github.io/) and Vicious. I would never have completed the badge without their help. 
 
 ## Flag 1 / Badge 1
 
@@ -91,7 +91,7 @@ Flag 5: FLAG-KLJV490uhkEJF28
 
 This one was weird. I was exploring the map, and eventually I saw that I had the 4th flag. But I never saw it. And I had no idea when it appeared. I kept walking around the map, and not seeing it anywhere. 
 
-I left it aside for a while and worked on other flags. For the Reverse Engineering flags, I had to connect to the badge [CLI](https://en.wikipedia.org/wiki/Command-line_interface) to configure the wifi. I kept it opened after that, not paying too much attention to it. 
+I left it aside for a while and worked on other flags. For the Reverse Engineering flags, I had to connect to the badge [CLI](https://en.wikipedia.org/wiki/Command-line_interface) to configure the Wi-Fi. I kept it opened after that, not paying too much attention to it. 
 
 At one point, I realized that the screen had been erased. I first tough it was a fluke. But it turned out that every time I spoke to the duck, the screen go cleared. 
 
