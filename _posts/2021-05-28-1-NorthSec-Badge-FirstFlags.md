@@ -43,6 +43,8 @@ The first flag is easy, the chest was visible when I first opened the game. I ju
 
 Flag 1: FLAG-W3lc0m2NSECxx
 
+The chest also has a QR code that take you to [a page on the NorthSec site](https://nsec.io/badge2021/) with information about the badge and how to submit the flags.
+
 I took that flag and submitted it to FLAGBOT. 
 
 ![Badge 1](/assets/images/2021/05/NorthSecBadge/Badge1.png "Badge 1")

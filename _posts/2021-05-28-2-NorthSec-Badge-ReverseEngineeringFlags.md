@@ -10,7 +10,7 @@ tags:
 - BadgeLife
 - ReverseEngineering
 permalink: /2021/05/NorthSec2021BadgeReverseEngineeringFlags/
-img: 2021/05/NorthSecBadge/Badge.jpg
+img: 2021/05/NorthSecBadge/REDownload.jpg
 ---
 
 While exploring the maps to look for flags, I can across a house with a question mark on it. 
