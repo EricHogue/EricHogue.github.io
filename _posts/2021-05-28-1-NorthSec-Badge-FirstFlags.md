@@ -1,6 +1,6 @@
 ---
 layout: post
-title: NorthSec 2021 Badge Writeup - First Flags
+title: NorthSec 2021 Badge Writeup - Part 1 - First Flags
 date: 2021-05-28
 type: post
 tags:
@@ -12,17 +12,17 @@ permalink: /2021/05/NorthSec2021BadgeFirstFlags/
 img: 2021/05/NorthSecBadge/Badge.jpg
 ---
 
-The 2021 edition of [NorthSec](https://nsec.io/) was held remotely. They produced a badge anyway. It was possible to buy it in [their online shop](https://shop.nsec.io/collections/badge/products/northsec-2021-badge) for $60. 
+The 2021 edition of [NorthSec](https://nsec.io/) was held remotely in May. They decided  to create a badge anyway. It was possible to buy it in [their online shop](https://shop.nsec.io/collections/badge/products/northsec-2021-badge) for $60. 
 
 I bought one. It was absolutely beautiful. I cannot imagine the time they put on it to build it, and to write the software and challenges that were in the badge.
 
 ![The Badge](/assets/images/2021/05/NorthSecBadge/Badge.jpg "The Badge")
 
-They made it clear that the badge would not give us any advantages in their [CTF](https://nsec.io/competition/) (Capture The Flag) competition. But it contains then flag that we could discover and submit to a bot on Discord. For fun and to get a few fun roles on their Discord server.
+They made it clear that the badge would not give us any advantages in their [CTF](https://nsec.io/competition/) (Capture The Flag) competition. But it contains ten flags that we could discover and submit to a bot on Discord. For fun and to get a few fun roles on their Discord server.
 
 ![Discord Roles](/assets/images/2021/05/NorthSecBadge/DiscordRoles.png "Discord Roles")
 
-I need to thank [Padraignix](https://padraignix.github.io/) and Vicious. I would never have completed the badge without their help. 
+I need to thank [Padraignix](https://padraignix.github.io/) and vicious. I would never have completed the badge without their help. 
 
 ## Flag 1 / Badge 1
 
@@ -35,9 +35,9 @@ I clicked the Enter button twice and it took me inside of a little RPG game.
 
 ![The RPG Game](/assets/images/2021/05/NorthSecBadge/TheGame.jpg "The RPG Game")
 
-Right away, I saw the 10 flags on the bottom of the screen. It looks that this will be my objective 
+Right away, I saw the 10 flags on the bottom of the screen. It looks that this will be my objective and my obsession for a little while.
 
-The first flag is easy, the chest was visible when I first opened the game. I just walk to it and hit enter. 
+The first flag was easy, the chest was visible when I first opened the game. I just walk to it and hit enter. 
 
 ![Flag 1](/assets/images/2021/05/NorthSecBadge/Flag1.jpg "Flag 1")
 
@@ -52,7 +52,7 @@ I took that flag and submitted it to FLAGBOT.
 
 ## Flag 2 / Badge 4
 
-I started walking around the map and talking to all the characters. Some of the dialog are pretty funny. If you have a badge, make you sure you talk to every one, and read everything they have to say. It's worth it. 
+I started walking around the map and talking to all the characters. Some of the dialog are pretty funny. If you have a badge, make you sure you talk to everyone, and read everything they have to say. It's worth it. 
 
 When I got to the top left corner of the map. I saw a chess that I couldn't reach. 
 
@@ -71,15 +71,15 @@ Flag 2: FLAG-UuDdLrLrBA0000
 
 ![Badge 4](/assets/images/2021/05/NorthSecBadge/Badge4.png "Badge 4")
 
-One thing I noted here, the order of the flags in the badge don't match the order of the flag awarded on Discord. I guess they were trying to confuse more than I already was.
+One thing I noted here, the order of the flags in the badge don't match the order of the flag awarded on Discord. I guess they were trying to confuse me more than I already was.
 
 ## Flag 5 / Badge 7
 
-I got this flag by walking around and talking to everyone I saw. There is a Punk character that only asked me 'Are you really CYBER!? PROVE IT'.  
+I got this flag by walking around and talking to everyone I saw. There is a Punk_ character that only asked me 'Are you really CYBER!? PROVE IT'.  
 
 ![Are You CYBER](/assets/images/2021/05/NorthSecBadge/AreYouCyber.jpg "Are You CYBER")
 
-I missed it at first, because the text was not too long to fit the screen. But if I scrolled down on the Punk text, the flag was displayed. 
+I missed it at first, because the text was not too long to fit the screen. But if I scrolled down on the Punk_ text, the flag was displayed. 
 
 ![Flag 5](/assets/images/2021/05/NorthSecBadge/Flag5.jpg "Flag 5")
 
@@ -91,7 +91,7 @@ Flag 5: FLAG-KLJV490uhkEJF28
 
 This one was weird. I was exploring the map, and eventually I saw that I had the 4th flag. But I never saw it. And I had no idea when it appeared. I kept walking around the map, and not seeing it anywhere. 
 
-I left it aside for a while and worked on other flags. For the Reverse Engineering flags, I had to connect to the badge [CLI](https://en.wikipedia.org/wiki/Command-line_interface) to configure the Wi-Fi. I kept it opened after that, not paying too much attention to it. 
+I left it aside for a while and worked on other flags. For the [Reverse Engineering flags](/2021/05/NorthSec2021BadgeReverseEngineeringFlags/), I had to connect to the badge [CLI](https://en.wikipedia.org/wiki/Command-line_interface) to configure the Wi-Fi. I kept it opened after that, not paying too much attention to it. 
 
 At one point, I realized that the screen had been erased. I first tough it was a fluke. But it turned out that every time I spoke to the duck, the screen go cleared. 
 
@@ -157,6 +157,8 @@ Flag: FLAG-Cl1F0rFun&Pr0f1t
 
 ![Badge 8](/assets/images/2021/05/NorthSecBadge/Badge8.png "Badge 8")
 
-## Other Posts
-
-This post shows how I got the five easier flags of the NorthSec badge. I will write other posts for the rest of the flags.
+## Other Posts In The NorthSec 2021 Badge Series 
+* [Part 2 - Reverse Engineering Flags](/2021/05/NorthSec2021BadgeReverseEngineeringFlags/)
+* [Part 3 - The Map](/2021/05/NorthSec2021BadgeTheMap/)
+* [Part 4 - Networking](/2021/05/NorthSec2021BadgeNetworking/)
+* Part 5 - Flag 10 - Coming soon

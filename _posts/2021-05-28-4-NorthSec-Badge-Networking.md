@@ -1,6 +1,6 @@
 ---
 layout: post
-title: NorthSec 2021 Badge Writeup - Networking
+title: NorthSec 2021 Badge Writeup - Part 4 - Networking
 date: 2021-05-28
 type: post
 tags:
@@ -9,7 +9,7 @@ tags:
 - NorthSec
 - BadgeLife
 permalink: /2021/05/NorthSec2021BadgeNetworking/
-img: 2021/05/NorthSecBadge/MapPost.png
+img: 2021/05/NorthSecBadge/pcap.png
 ---
 
 After having the [NorthSec 2021 badge](https://shop.nsec.io/collections/badge/products/northsec-2021-badge) for a while, I had found eight flags. I knew from extracting the firmware that for the 10th flag I would need to flip a bit in the firmware and push it to the badge so I kept that one for last. 
@@ -24,7 +24,7 @@ After a few days of banging my heads on this and dreaming about it, I got a clue
 
 The first clue vicious gave me was to check the microcontroller features, check the capability that had the biggest attack surface and work on it. So I opened the [ESP32 specs](https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf) and started reading. 
 
-The first thing that hit me was that the chip had a radio transmitter. That made me laugh. I imagined my neighbors trying to figure out why something was spelling 'F-L-A-G-...' on a random frequency. 
+The first thing that hit me was that the chip had a radio transmitter. That made me laugh. I imagined my neighbors trying to figure out why something was spelling 'F-L-A-G-...' on a random radio frequency. 
 
 But I ruled this out quickly since vicious had said many time that we didn't need anything else that a laptop to get the flags. And [Padraignix](https://padraignix.github.io/) and told me I had already used the feature I needed.   I also ruled out the [JTAG](https://en.wikipedia.org/wiki/JTAG) for the same reasons. 
 
@@ -50,7 +50,9 @@ I also redid all of the same tests, with the glitch active to see if it changed 
 
 After a few more days of looking around, vicious gave me another hint: 
 
-"if the badge tried to do curl https://nsec.io/flag.txt for example, do you think you would be able to detect this with your current setup?"
+```
+If the badge tried to do curl https://nsec.io/flag.txt for example, do you think you would be able to detect this with your current setup?
+```
 
 This one made the solution pretty clear. I needed to listen to all the traffic on my network and check what call the badge was making. I had tried that only once, so this is not something I could do quickly. But I had a vague idea. I searched for how to do it, and found a [blog post](https://null-byte.wonderhowto.com/how-to/stealthfully-sniff-wi-fi-activity-without-connecting-target-router-0183444/) that explained it well. 
 
@@ -78,3 +80,9 @@ Are u listening? FLAG-spOkeTh3Hors
 Flag: FLAG-spOkeTh3Hors
 
 ![Badge 9](/assets/images/2021/05/NorthSecBadge/Badge9.png "Badge 9")
+
+## Other Posts In The NorthSec 2021 Badge Series 
+* [Part 1 - First Flags](/2021/05/NorthSec2021BadgeFirstFlags/)
+* [Part 2 - Reverse Engineering Flags](/2021/05/NorthSec2021BadgeReverseEngineeringFlags/)
+* [Part 3 - The Map](/2021/05/NorthSec2021BadgeTheMap/)
+* Part 5 - Flag 10 - Coming soon

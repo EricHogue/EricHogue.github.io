@@ -1,6 +1,6 @@
 ---
 layout: post
-title: NorthSec 2021 Badge Writeup - Reverse Engineering Flags
+title: NorthSec 2021 Badge Writeup - Part 2 - Reverse Engineering Flags
 date: 2021-05-28
 type: post
 tags:
@@ -13,7 +13,7 @@ permalink: /2021/05/NorthSec2021BadgeReverseEngineeringFlags/
 img: 2021/05/NorthSecBadge/REDownload.jpg
 ---
 
-While exploring the maps to look for flags, I can across a house with a question mark on it. 
+While exploring the map of the [NorthSec 2021 badge](https://shop.nsec.io/collections/badge/products/northsec-2021-badge) to look for flags, I came across a house with a question mark on it. 
 
 ![Reverse Engineering House](/assets/images/2021/05/NorthSecBadge/REHouse.jpg "Reverse Engineering House")
 
@@ -59,7 +59,7 @@ I then got back to the house with the question mark. This time when I entered it
 ![Download RE Challenges](/assets/images/2021/05/NorthSecBadge/REDownload.jpg "Download RE Challenges")
 
 ## Flag 8 / Badge 2
-I followed the instructions to download the first binary, and the un-compress it. 
+I followed the instructions to download the first binary, and then uncompress it. 
 
 ```bash
 $ nc 192.168.185.113 1101 > rc101.zip
@@ -73,7 +73,7 @@ $ file re101.elf
 re101.elf: ELF 32-bit LSB executable, Tensilica Xtensa, version 1 (SYSV), statically linked, with debug_info, not stripped
 ```
 
-I tried to open the file in [Ghidra](https://ghidra-sre.org/), but it failed to detect the language of the program. I looked for [Xtensa](https://en.wikipedia.org/wiki/Tensilica) in the list, but it wasn't there. I search for how to read XTensa in Ghidra and quickly came across [a module that could read it](https://github.com/yath/ghidra-xtensa). I installed the module and tried to reload the binary. This time it worked. 
+I tried to open the file in [Ghidra](https://ghidra-sre.org/), but it failed to detect the language of the program. I looked for [Xtensa](https://en.wikipedia.org/wiki/Tensilica) in the list, but it wasn't there. I search for how to read Xtensa in Ghidra and quickly came across [a module that could read it](https://github.com/yath/ghidra-xtensa). I installed the module and tried to reload the binary. This time it worked. 
 
 I found `app_main` function and started to read it. 
 
@@ -217,21 +217,21 @@ So I pulled those out of the function and reorder them.
 
 ```
 0x00	0x66
-0x1		0x32
-0x2		0x31
-0x3		0x39
-0x4		0x65
-0x5		0x36
-0x6		0x63
-0x7		0x64
-0x8		0x62
-0x9		0x31
-0xa		0x66
-0xb		0x61
-0xc		0x34
-0xd		0x61
-0xe		0x34
-0xf		0x38
+0x1	0x32
+0x2	0x31
+0x3	0x39
+0x4	0x65
+0x5	0x36
+0x6	0x63
+0x7	0x64
+0x8	0x62
+0x9	0x31
+0xa	0x66
+0xb	0x61
+0xc	0x34
+0xd	0x61
+0xe	0x34
+0xf	0x38
 0x10	0x62
 0x11	0x31
 0x12	0x36
@@ -262,3 +262,9 @@ Code: f219e6cdb1fa4a48b160d00d61118f93
 Flag: flag-this_is_a_big_huge_enormous_condition
 
 ![Badge 3](/assets/images/2021/05/NorthSecBadge/Badge3.png "Badge 3")
+
+## Other Posts In The NorthSec 2021 Badge Series 
+* [Part 1 - First Flags](/2021/05/NorthSec2021BadgeFirstFlags/)
+* [Part 3 - The Map](/2021/05/NorthSec2021BadgeTheMap/)
+* [Part 4 - Networking](/2021/05/NorthSec2021BadgeNetworking/)
+* Part 5 - Flag 10 - Coming soon

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: NorthSec 2021 Badge Writeup - The Map
+title: NorthSec 2021 Badge Writeup - Part 3 - The Map
 date: 2021-05-28
 type: post
 tags:
@@ -12,17 +12,17 @@ permalink: /2021/05/NorthSec2021BadgeTheMap/
 img: 2021/05/NorthSecBadge/MapPost.png
 ---
 
-After playing with the [NorthSec badge](https://shop.nsec.io/collections/badge/products/northsec-2021-badge) for a while, I had found flags out of ten. But things where getting harder.
+After playing with the [NorthSec badge](https://shop.nsec.io/collections/badge/products/northsec-2021-badge) for a while, I had found seven flags out of ten. But things where getting harder.
 
-Looking around the map. I saw an island on the far right, near where the fisherman is. I though it might contain a flag, but I had not idea how to get there. I could have poke at every pixels near the water to try and get to it. But I don't have that kind of patience. 
+Looking around the map. I saw an island on the far right, near where the Fisher_ is. I though it might contain a flag, but I had not idea how to get there. I could have poke at every pixels near the water to try and get to it. But I don't have that kind of patience. 
 
 ![The Island](/assets/images/2021/05/NorthSecBadge/Island.jpg "The Island")
 
-At that point, I had extracted the badge firmware. And talking with [Padraignix](https://padraignix.github.io/), I knew it was possible to extract the map out of it. So I decided that the easiest way to get there, was to extract the map out of the badge firmware and look for the way on it. 
+At that point, I had already extracted the badge firmware. And talking with [Padraignix](https://padraignix.github.io/), I knew it was possible to extract the map out of it. So I decided that the easiest way to get there, was to extract the map out of the badge firmware and look for the way to the island in the map.
 
 ## Extracting the Firmware / Bonus Flag
 
-Dumping the firmware out of the badge is not difficult. Espressif provides [a tool](https://github.com/espressif/esptool) to do it. You install it with pip, then you are ready to use it to extract the firmware out of the chip. Then you can use it to dump the firmware. 
+Dumping the firmware out of the badge is not difficult. Espressif provides [a tool](https://github.com/espressif/esptool) to do it. You install it with pip, then you are ready to use it to extract the firmware out of the chip. Then you can use it to dump the firmware. For some reason, the extraction often fail. When it did, I just restarted the badge and tried again.
 
 ```bash
 $ sudo esptool.py --chip esp32 --port /dev/ttyUSB0 -b 460800 read_flash 0x0 0x1000000 badge.bin             
@@ -183,7 +183,7 @@ storage/rpg/main.blocked
 storage/rpg/main.scene
 ```
 
-I was told to focus on the small one of those. So I started investigating `storage/rpg/main.blocked`. It contains binary data. And looking at it in vim did not make any sense. 
+I was told to focus on the smaller one of those. So I started investigating `storage/rpg/main.blocked`. It contains binary data, and looking at it in vim did not make any sense. 
 
 I started dumping it in hexadecimal and though I could see some pattern in there. But nothing that really helped me. So I kept trying to dump it in different ways. And with different number of columns. I also tried the `-e` option of `xxd` to switch to little-endian, but again it did not get anywhere. 
 
@@ -230,7 +230,7 @@ I finally had the map. The castle was showing correctly with the way in where I 
 
 ## Flag 3 / Badge 5
 
-Getting the flag was now easy. On the previous screenshot, there is small path that goes all the way to a small island on the bottom right corner of the map. It's not the island I was trying to get to, there is no way to get there, but another island that is not visible on the map. 
+Getting the flag was now easy. On the previous screenshot, there is small path that goes all the way to a small island on the bottom right corner of the map. It's not the island I was trying to get to, there is no way to get to this one. But the path leads to another island that is not visible on the map. 
 
 I followed the path up to see where it started. 
 
@@ -247,3 +247,9 @@ From there, I walked down until I reach a small island, clicked on ENTER and got
 Flag: FLAG-MfoAkJu0TtD36
 
 ![Badge 5](/assets/images/2021/05/NorthSecBadge/Badge5.png "Badge 5")
+
+## Other Posts In The NorthSec 2021 Badge Series 
+* [Part 1 - First Flags](/2021/05/NorthSec2021BadgeFirstFlags/)
+* [Part 2 - Reverse Engineering Flags](/2021/05/NorthSec2021BadgeReverseEngineeringFlags/)
+* [Part 4 - Networking](/2021/05/NorthSec2021BadgeNetworking/)
+* Part 5 - Flag 10 - Coming soon
