@@ -267,4 +267,4 @@ Flag: flag-this_is_a_big_huge_enormous_condition
 * [Part 1 - First Flags](/2021/05/NorthSec2021BadgeFirstFlags/)
 * [Part 3 - The Map](/2021/05/NorthSec2021BadgeTheMap/)
 * [Part 4 - Networking](/2021/05/NorthSec2021BadgeNetworking/)
-* [Part 5 -Last Flag](/2021/05/NorthSec2021BadgeLastFlag/)
+* [Part 5 - Last Flag](/2021/05/NorthSec2021BadgeLastFlag/)

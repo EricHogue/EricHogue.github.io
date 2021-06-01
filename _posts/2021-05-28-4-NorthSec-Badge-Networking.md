@@ -85,4 +85,4 @@ Flag: FLAG-spOkeTh3Hors
 * [Part 1 - First Flags](/2021/05/NorthSec2021BadgeFirstFlags/)
 * [Part 2 - Reverse Engineering Flags](/2021/05/NorthSec2021BadgeReverseEngineeringFlags/)
 * [Part 3 - The Map](/2021/05/NorthSec2021BadgeTheMap/)
-* [Part 5 -Last Flag](/2021/05/NorthSec2021BadgeLastFlag/)
+* [Part 5 - Last Flag](/2021/05/NorthSec2021BadgeLastFlag/)

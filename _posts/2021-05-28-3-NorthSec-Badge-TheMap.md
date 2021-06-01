@@ -252,4 +252,4 @@ Flag: FLAG-MfoAkJu0TtD36
 * [Part 1 - First Flags](/2021/05/NorthSec2021BadgeFirstFlags/)
 * [Part 2 - Reverse Engineering Flags](/2021/05/NorthSec2021BadgeReverseEngineeringFlags/)
 * [Part 4 - Networking](/2021/05/NorthSec2021BadgeNetworking/)
-* [Part 5 -Last Flag](/2021/05/NorthSec2021BadgeLastFlag/)
+* [Part 5 - Last Flag](/2021/05/NorthSec2021BadgeLastFlag/)
