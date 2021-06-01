@@ -1,7 +1,7 @@
 ---
 layout: post
 title: NorthSec 2021 Badge Writeup - Part 4 - Networking
-date: 2021-05-28
+date: 2021-05-31
 type: post
 tags:
 - Writeup
@@ -85,4 +85,4 @@ Flag: FLAG-spOkeTh3Hors
 * [Part 1 - First Flags](/2021/05/NorthSec2021BadgeFirstFlags/)
 * [Part 2 - Reverse Engineering Flags](/2021/05/NorthSec2021BadgeReverseEngineeringFlags/)
 * [Part 3 - The Map](/2021/05/NorthSec2021BadgeTheMap/)
-* Part 5 - Flag 10 - Coming soon
+* [Part 5 -Last Flag](/2021/05/NorthSec2021BadgeLastFlag/)
