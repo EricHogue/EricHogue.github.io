@@ -140,9 +140,9 @@ The spreadsheet contains customer names, usernames, passwords, and credit cards 
 
 | Customer Name | Username | Password | Credit card number | CVC |
 | :--- | :--- | :--- |  :--- | :--- |
-Par. A. Doxx  |  paradox |  ShibesAreGreat123 |  4111 1111 4555 1142 |  432 | 
-0day Montgomery |  0day |  OllieIsTheBestDog |  5555 3412 4444 1115 |  642 | 
-Muir Land |  muirlandoracle |  A11D0gsAreAw3s0me |  5103 2219 1119 9245 |  737 | 
+Par. A. Doxx  |  paradox |  PASSWORD |  4111 1111 4555 1142 |  432 | 
+0day Montgomery |  0day |  PASSWORD |  5555 3412 4444 1115 |  642 | 
+Muir Land |  muirlandoracle |  PASSWORD |  5103 2219 1119 9245 |  737 | 
 
 The `/icons` folder contained some icons and some text explaining their use. I seems to be an old default Apache page (Nmap identified version 2.4.37). 
 
