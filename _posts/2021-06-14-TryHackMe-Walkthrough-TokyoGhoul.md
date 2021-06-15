@@ -17,7 +17,7 @@ This room was inspired by the room [Psycho Break](https://tryhackme.com/room/psy
 
 * Room: Tokyo Ghoul
 * Difficulty: Medium
-* URL: https://tryhackme.com/room/tokyoghoul666
+* URL: [https://tryhackme.com/room/tokyoghoul666](https://tryhackme.com/room/tokyoghoul666)
 * Authors:
 	* [devalfo](https://tryhackme.com/p/devalfo)
 	* [rockyou.txt](https://tryhackme.com/p/rockyou.txt)
