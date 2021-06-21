@@ -9,10 +9,10 @@ tags:
 - iHack
 - CTF
 permalink: /2021/06/iHackWriteupTheOnionThings
-img: 2021/06/CTFCollectionVol2/CTFCollectionVol2.png
+img: 2021/06/iHack/TheOnionThings.png
 ---
 
-As part of the [iHack 2021 CTF](https://ihack.computer/#ctf), Miu built an IOT track that was a nice continuation to her [workshop of the conference](https://www.youtube.com/watch?v=8Bg7CfZrZkU). 
+As part of the [iHack 2021 CTF](https://ihack.computer/#ctf), Miu built an IOT track that was a nice continuation to her [workshop during the conference](https://www.youtube.com/watch?v=8Bg7CfZrZkU). 
 
 ```
 The Onion Things (@Miu)
@@ -59,7 +59,7 @@ bin  dev  etc  lib  mnt  overlay  proc  rom  root  sbin  sys  tmp  usr  var  wel
 It gave me some warnings, but the file system was extracted. I started looking around, and I found a program called flag in the `/bin` folder. 
 
 ```bash
-file bin/flag 
+$ file bin/flag 
 bin/flag: ELF 32-bit LSB executable, MIPS, MIPS32 rel2 version 1 (SYSV), dynamically linked, interpreter /lib/ld-musl-mipsel-sf.so.1, with debug_info, not stripped
 ```
 
