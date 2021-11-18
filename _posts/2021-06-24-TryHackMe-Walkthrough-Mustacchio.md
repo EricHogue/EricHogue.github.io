@@ -312,7 +312,7 @@ barry@mustacchio:~$
 
 I already had the user flag, so I tried to escalate to root. 
 
-I looked for files with [SUID](https://blog.tryhackme.com/linux-privilege-escalation-suid/) set. 
+I looked for files with [SUID](https://tryhackme.com/resources/blog/linux-privilege-escalation-suid) set. 
 
 ```bash
 barry@mustacchio:~$ find / -perm /u=s 2>/dev/null 
