@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Metasploit Community CTF
-date: 2021-12-04
+date: 2021-12-06
 type: post
 tags:
 - Writeup
@@ -61,27 +61,28 @@ Last login: Sat Dec  4 16:47:55 2021 from 24.48.3.104
 ┃ ⇒ https://www.kali.org/docs/general-use/python3-transition/
 ┃
 ┗━(Run: “touch ~/.hushlogin” to hide this message)
-┌──(kali㉿kali)-[~]
-└─$ nmap 172.17.26.149 -A -oN nmap.txt                        
-Starting Nmap 7.92 ( https://nmap.org ) at 2021-12-04 17:15 UTC
 
-# Nmap 7.92 scan initiated Sat Dec  4 17:15:31 2021 as: nmap -A -oN nmap.txt 172.17.26.149
+
+┌──(kali㉿kali)-[~]
+└─$ nmap 172.17.26.149 -A -p- -oN nmapFull.txt                        
+
+# Nmap 7.92 scan initiated Sat Dec  4 02:40:19 2021 as: nmap -A -p- -oN nmapFull.txt 172.17.26.149
 Nmap scan report for 172.17.26.149
-Host is up (0.00100s latency).
-Not shown: 993 closed tcp ports (conn-refused)
-PORT      STATE SERVICE VERSION
-80/tcp    open  http    Werkzeug httpd 2.0.1 (Python 3.9.7)
-|_http-title: Metasploit CTF
+Host is up (0.0048s latency).
+Not shown: 65516 closed tcp ports (conn-refused)
+PORT      STATE SERVICE    VERSION
+80/tcp    open  http       Werkzeug httpd 2.0.1 (Python 3.9.7)
 |_http-server-header: Werkzeug/2.0.1 Python/3.9.7
-443/tcp   open  http    Apache httpd 2.4.51
+|_http-title: Metasploit CTF
+443/tcp   open  http       Apache httpd 2.4.51
 |_http-title: Site doesn't have a title (text/html).
+|_http-server-header: Apache/2.4.51 (Debian)
 | http-git: 
 |   172.17.26.149:443/.git/
 |     Git repository found!
 |     Repository description: Unnamed repository; edit this file 'description' to name the...
 |_    Last commit message: More enthusiasm 
-|_http-server-header: Apache/2.4.51 (Debian)
-8080/tcp  open  http    WSGIServer 0.2 (Python 3.8.10)
+8080/tcp  open  http       WSGIServer 0.2 (Python 3.8.10)
 |_http-server-header: WSGIServer/0.2 CPython/3.8.10
 |_http-title: Cookies Galore
 10010/tcp open  rxapi?
@@ -98,14 +99,14 @@ PORT      STATE SERVICE VERSION
 |     Referrer-Policy: strict-origin-when-cross-origin
 |     Link: </assets/application-b8c697e38f5ecf278f5ea80d758553eae08a5635194a002f5b5dc51db0ef1145.css>; rel=preload; as=style; nopush,</packs/js/application-e39138e5c24b0104f8e3.js>; rel=preload; as=script; nopush
 |     Content-Type: text/html; charset=utf-8
-|     ETag: W/"dcb9434a26f0c0cd3b35727278027ef0"
+|     ETag: W/"ddcfa692272d0ab325bec517183d8e60"
 |     Cache-Control: max-age=0, private, must-revalidate
-|     Set-Cookie: 321dece65c1d444b49c690630b2faca0d6e2f6e41cc5dacb19f2242ea6f745a44437e0f524427181e28f71d651f5982d9e36ba9542824f09cb103c7515d50a21ad2e4edd30573074c2d62296e6fb6ac5a4460060a646d108ede4a1793038eb061e8b27194ce54b5fbd3804f7ec76182fda465e6c51fc822eacc230b2f1721294=0n8IpiK%2BBmgDvdB4mCYBYvw%2Bgm3lkrJuMrKuvquMAlNdF9LjJ2H
+|     Set-Cookie: 321dece65c1d444b49c690630b2faca0d6e2f6e41cc5dacb19f2242ea6f745a44437e0f524427181e28f71d651f5982d9e36ba9542824f09cb103c7515d50a21ad2e4edd30573074c2d62296e6fb6ac5a4460060a646d108ede4a1793038eb061e8b27194ce54b5fbd3804f7ec76182fda465e6c51fc822eacc230b2f1721294=cM8s2cs90tvU4LEXjhMSoUfGkoiVKKQusdIWpbGhIvNkjVLRHSVB017
 |   HTTPOptions: 
 |     HTTP/1.0 404 Not Found
 |     Content-Type: text/html; charset=UTF-8
-|     X-Request-Id: bde53bb9-1e9f-4282-9f0a-e20a082fbf98
-|     X-Runtime: 0.001649
+|     X-Request-Id: f6ff0af5-6cc9-48e6-bf16-b9dbc6da1244
+|     X-Runtime: 0.002915
 |     Content-Length: 1722
 |     <!DOCTYPE html>
 |     <html>
@@ -132,15 +133,18 @@ PORT      STATE SERVICE VERSION
 |     border-top-left-radius: 9px;
 |     border-top-right-radius: 9px;
 |_    background-color: white
-11111/tcp open  http    Thin httpd
+11111/tcp open  http       Thin httpd
+|_http-server-header: thin
 | http-title: Web App
 |_Requested resource was http://172.17.26.149:11111/index
-|_http-server-header: thin
+12380/tcp open  http       Apache httpd 2.4.49 ((Debian))
+|_http-server-header: Apache/2.4.49 (Debian)
+|_http-title: Site doesn't have a title (text/html).
 15000/tcp open  hydap?
 | fingerprint-strings: 
 |   GenericLines: 
 |     Welcome to the Student Database Management System!
-|     Time is 2021-12-04 17:15:30 +0000.
+|     Time is 2021-12-04 02:40:22 +0000.
 |     Pick one of the following options:
 |     Create new student record
 |     Show student records
@@ -166,7 +170,7 @@ PORT      STATE SERVICE VERSION
 |     Input:
 |   GetRequest: 
 |     Welcome to the Student Database Management System!
-|     Time is 2021-12-04 17:15:41 +0000.
+|     Time is 2021-12-04 02:40:33 +0000.
 |     Pick one of the following options:
 |     Create new student record
 |     Show student records
@@ -192,7 +196,7 @@ PORT      STATE SERVICE VERSION
 |     Input:
 |   NULL: 
 |     Welcome to the Student Database Management System!
-|     Time is 2021-12-04 17:15:30 +0000.
+|     Time is 2021-12-04 02:40:22 +0000.
 |     Pick one of the following options:
 |     Create new student record
 |     Show student records
@@ -200,14 +204,99 @@ PORT      STATE SERVICE VERSION
 |     Delete student record
 |     Exit
 |_    Input:
-20000/tcp open  http    SimpleHTTPServer 0.6 (Python 3.7.3)
+15010/tcp open  http       Thin httpd
+| http-title: Site doesn't have a title (text/html;charset=utf-8).
+|_Requested resource was http://172.17.26.149:15010/index
+|_http-server-header: thin
+15122/tcp open  ssh        OpenSSH 8.6 (protocol 2.0)
+| ssh-hostkey: 
+|   3072 30:06:8b:5a:9b:7c:1c:1c:93:7a:bb:57:0a:1a:e4:e0 (RSA)
+|   256 49:c0:84:75:38:b1:6b:50:4c:bd:37:77:c5:64:78:67 (ECDSA)
+|_  256 f6:07:cf:3a:4a:49:db:2e:3b:a8:84:4e:c4:19:12:0a (ED25519)
+20000/tcp open  http       SimpleHTTPServer 0.6 (Python 3.7.3)
 |_http-title: Site doesn't have a title (text/html).
 |_http-server-header: SimpleHTTP/0.6 Python/3.7.3
-2 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+20001/tcp open  microsan?
+| fingerprint-strings: 
+|   DNSStatusRequestTCP, DNSVersionBindReqTCP, FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, Help, RPCCheck, RTSPRequest, SSLSessionReq, TLSSessionReq, TerminalServerCookie, X11Probe: 
+|_    PyMissing game mode
+20011/tcp open  unknown
+| fingerprint-strings: 
+|   GenericLines: 
+|     HTTP/1.1 400 Bad Request
+|     Connection: close
+|     Content-Type: text/html
+|     Content-Length: 193
+|     <html>
+|     <head>
+|     <title>Bad Request</title>
+|     </head>
+|     <body>
+|     <h1><p>Bad Request</p></h1>
+|     Invalid Request Line &#x27;Invalid HTTP request line: &#x27;&#x27;&#x27;
+|     </body>
+|     </html>
+|   GetRequest: 
+|     HTTP/1.0 200 OK
+|     Server: gunicorn
+|     Date: Sat, 04 Dec 2021 02:40:28 GMT
+|     Connection: close
+|     Content-Type: text/html; charset=utf-8
+|     Content-Length: 947
+|     <!doctype html>
+|     <html>
+|     <link rel="stylesheet" href="/static/style.css">
+|     <head>
+|     <title>CTF Gallery</title>
+|     </head>
+|     <body>
+|     <h1>CTF Gallery</h1>
+|     <div class="panel">
+|     class="pan_item" href="/admin">admin</a>
+|     </div>
+|     <div class="gal_links"><p><a href="/gallery/Sarah">Sarah's gallery</a></p></div>
+|     <div class="gal_links"><p><a href="/gallery/John">John's gallery</a></p></div>
+|     <div class="gal_links"><p><a href="/gallery/Ripley">Ripley's gallery</a></p></div>
+|     <div class="gal_links"><p><a href="/gallery/Ash">Ash's gallery</a></p></div>
+|     <p>Some galleries have not yet been added to the main page.<br>For those cases, the form below can be used to access them.</p>
+|     <div id
+|   HTTPOptions: 
+|     HTTP/1.0 200 OK
+|     Server: gunicorn
+|     Date: Sat, 04 Dec 2021 02:40:28 GMT
+|     Connection: close
+|     Content-Type: text/html; charset=utf-8
+|     Allow: OPTIONS, HEAD, GET
+|_    Content-Length: 0
+20022/tcp open  http       Apache httpd 2.4.51 ((Debian))
+|_http-title: Site doesn't have a title (text/html).
+|_http-server-header: Apache/2.4.51 (Debian)
+20055/tcp open  http       Apache httpd 2.4.51 ((Debian))
+|_http-server-header: Apache/2.4.51 (Debian)
+|_http-title: Site doesn't have a title (text/html).
+20123/tcp open  ssh        OpenSSH 8.6 (protocol 2.0)
+| ssh-hostkey: 
+|   3072 83:a3:ad:9e:e5:d3:4c:c3:27:4f:22:47:3e:d4:4b:07 (RSA)
+|   256 83:33:6e:4a:04:b1:58:39:0f:fd:e4:1d:5e:53:46:2c (ECDSA)
+|_  256 2a:a5:66:1a:af:d6:e5:78:8a:51:91:17:e3:57:91:9a (ED25519)
+30033/tcp open  unknown
+| fingerprint-strings: 
+|   DNSStatusRequestTCP, DNSVersionBindReqTCP, FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, Help, JavaRMI, Kerberos, LANDesk-RC, LDAPBindReq, LDAPSearchReq, LPDString, NCP, NotesRPC, RPCCheck, RTSPRequest, SIPOptions, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServer, TerminalServerCookie, WMSRequest, X11Probe, afp, giop, ms-sql-s, oracle-tns: 
+|_    [error] invalid input key
+30034/tcp open  http       SimpleHTTPServer 0.6 (Python 3.8.10)
+|_http-title: Directory listing for /
+|_http-server-header: SimpleHTTP/0.6 Python/3.8.10
+33337/tcp open  http-proxy Apache Traffic Server 7.1.1
+|_http-server-header: ATS/7.1.1
+|_http-title: Did not follow redirect to http://threeofhearts.ctf.net/
+35000/tcp open  http       Apache httpd 2.4.38 ((Debian))
+|_http-server-header: Apache/2.4.38 (Debian)
+|_http-title: Ace of Diamonds
+5 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
 ==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
-SF-Port10010-TCP:V=7.92%I=7%D=12/4%Time=61ABA239%P=x86_64-pc-linux-gnu%r(G
+SF-Port10010-TCP:V=7.92%I=7%D=12/4%Time=61AAD51C%P=x86_64-pc-linux-gnu%r(G
 SF:enericLines,1C,"HTTP/1\.1\x20400\x20Bad\x20Request\r\n\r\n")%r(GetReque
-SF:st,AF3,"HTTP/1\.0\x20200\x20OK\r\nX-Frame-Options:\x20SAMEORIGIN\r\nX-X
+SF:st,AEB,"HTTP/1\.0\x20200\x20OK\r\nX-Frame-Options:\x20SAMEORIGIN\r\nX-X
 SF:SS-Protection:\x201;\x20mode=block\r\nX-Content-Type-Options:\x20nosnif
 SF:f\r\nX-Download-Options:\x20noopen\r\nX-Permitted-Cross-Domain-Policies
 SF::\x20none\r\nReferrer-Policy:\x20strict-origin-when-cross-origin\r\nLin
@@ -215,15 +304,15 @@ SF:k:\x20</assets/application-b8c697e38f5ecf278f5ea80d758553eae08a5635194a
 SF:002f5b5dc51db0ef1145\.css>;\x20rel=preload;\x20as=style;\x20nopush,</pa
 SF:cks/js/application-e39138e5c24b0104f8e3\.js>;\x20rel=preload;\x20as=scr
 SF:ipt;\x20nopush\r\nContent-Type:\x20text/html;\x20charset=utf-8\r\nETag:
-SF:\x20W/\"dcb9434a26f0c0cd3b35727278027ef0\"\r\nCache-Control:\x20max-age
+SF:\x20W/\"ddcfa692272d0ab325bec517183d8e60\"\r\nCache-Control:\x20max-age
 SF:=0,\x20private,\x20must-revalidate\r\nSet-Cookie:\x20321dece65c1d444b49
 SF:c690630b2faca0d6e2f6e41cc5dacb19f2242ea6f745a44437e0f524427181e28f71d65
 SF:1f5982d9e36ba9542824f09cb103c7515d50a21ad2e4edd30573074c2d62296e6fb6ac5
 SF:a4460060a646d108ede4a1793038eb061e8b27194ce54b5fbd3804f7ec76182fda465e6
-SF:c51fc822eacc230b2f1721294=0n8IpiK%2BBmgDvdB4mCYBYvw%2Bgm3lkrJuMrKuvquMA
-SF:lNdF9LjJ2H")%r(HTTPOptions,75B,"HTTP/1\.0\x20404\x20Not\x20Found\r\nCon
-SF:tent-Type:\x20text/html;\x20charset=UTF-8\r\nX-Request-Id:\x20bde53bb9-
-SF:1e9f-4282-9f0a-e20a082fbf98\r\nX-Runtime:\x200\.001649\r\nContent-Lengt
+SF:c51fc822eacc230b2f1721294=cM8s2cs90tvU4LEXjhMSoUfGkoiVKKQusdIWpbGhIvNkj
+SF:VLRHSVB017")%r(HTTPOptions,75B,"HTTP/1\.0\x20404\x20Not\x20Found\r\nCon
+SF:tent-Type:\x20text/html;\x20charset=UTF-8\r\nX-Request-Id:\x20f6ff0af5-
+SF:6cc9-48e6-bf16-b9dbc6da1244\r\nX-Runtime:\x200\.002915\r\nContent-Lengt
 SF:h:\x201722\r\n\r\n<!DOCTYPE\x20html>\n<html>\n<head>\n\x20\x20<title>Th
 SF:e\x20page\x20you\x20were\x20looking\x20for\x20doesn't\x20exist\x20\(404
 SF:\)</title>\n\x20\x20<meta\x20name=\"viewport\"\x20content=\"width=devic
@@ -242,14 +331,14 @@ SF:00100\x20solid\x204px;\n\x20\x20\x20\x20border-top-left-radius:\x209px;
 SF:\n\x20\x20\x20\x20border-top-right-radius:\x209px;\n\x20\x20\x20\x20bac
 SF:kground-color:\x20white");
 ==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
-SF-Port15000-TCP:V=7.92%I=7%D=12/4%Time=61ABA239%P=x86_64-pc-linux-gnu%r(N
+SF-Port15000-TCP:V=7.92%I=7%D=12/4%Time=61AAD51C%P=x86_64-pc-linux-gnu%r(N
 SF:ULL,F6,"\nWelcome\x20to\x20the\x20Student\x20Database\x20Management\x20
-SF:System!\nTime\x20is\x202021-12-04\x2017:15:30\x20\+0000\.\n\nPick\x20on
+SF:System!\nTime\x20is\x202021-12-04\x2002:40:22\x20\+0000\.\n\nPick\x20on
 SF:e\x20of\x20the\x20following\x20options:\n1\.\x20Create\x20new\x20studen
 SF:t\x20record\n2\.\x20Show\x20student\x20records\n3\.\x20Update\x20an\x20
 SF:existing\x20record\n4\.\x20Delete\x20student\x20record\n5\.\x20Exit\n\n
 SF:Input:\x20")%r(GenericLines,272,"\nWelcome\x20to\x20the\x20Student\x20D
-SF:atabase\x20Management\x20System!\nTime\x20is\x202021-12-04\x2017:15:30\
+SF:atabase\x20Management\x20System!\nTime\x20is\x202021-12-04\x2002:40:22\
 SF:x20\+0000\.\n\nPick\x20one\x20of\x20the\x20following\x20options:\n1\.\x
 SF:20Create\x20new\x20student\x20record\n2\.\x20Show\x20student\x20records
 SF:\n3\.\x20Update\x20an\x20existing\x20record\n4\.\x20Delete\x20student\x
@@ -263,7 +352,7 @@ SF:new\x20student\x20record\n2\.\x20Show\x20student\x20records\n3\.\x20Upd
 SF:ate\x20an\x20existing\x20record\n4\.\x20Delete\x20student\x20record\n5\
 SF:.\x20Exit\n\nInput:\x20")%r(GetRequest,272,"\nWelcome\x20to\x20the\x20S
 SF:tudent\x20Database\x20Management\x20System!\nTime\x20is\x202021-12-04\x
-SF:2017:15:41\x20\+0000\.\n\nPick\x20one\x20of\x20the\x20following\x20opti
+SF:2002:40:33\x20\+0000\.\n\nPick\x20one\x20of\x20the\x20following\x20opti
 SF:ons:\n1\.\x20Create\x20new\x20student\x20record\n2\.\x20Show\x20student
 SF:\x20records\n3\.\x20Update\x20an\x20existing\x20record\n4\.\x20Delete\x
 SF:20student\x20record\n5\.\x20Exit\n\nInput:\x20\nError\.\x20Unrecognised
@@ -275,18 +364,106 @@ SF:oice:\x200\n\nPick\x20one\x20of\x20the\x20following\x20options:\n1\.\x2
 SF:0Create\x20new\x20student\x20record\n2\.\x20Show\x20student\x20records\
 SF:n3\.\x20Update\x20an\x20existing\x20record\n4\.\x20Delete\x20student\x2
 SF:0record\n5\.\x20Exit\n\nInput:\x20");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port20001-TCP:V=7.92%I=7%D=12/4%Time=61AAD51C%P=x86_64-pc-linux-gnu%r(G
+SF:enericLines,46,"\0\0\0F\0\0\0\0\0\0\0\x0c\0\x02\0\x01\0\0\0\x06\0\0\0\x
+SF:0c\0\x02Px\0\0\0\0\0\0\0\x1a\0\x01PyMissing\x20game\x20mode\0\0\0\0\x0c
+SF:\0\x02Pz\0\0\0\x04")%r(GetRequest,46,"\0\0\0F\0\0\0\0\0\0\0\x0c\0\x02\0
+SF:\x01\0\0\0\x06\0\0\0\x0c\0\x02Px\0\0\0\0\0\0\0\x1a\0\x01PyMissing\x20ga
+SF:me\x20mode\0\0\0\0\x0c\0\x02Pz\0\0\0\x04")%r(HTTPOptions,46,"\0\0\0F\0\
+SF:0\0\0\0\0\0\x0c\0\x02\0\x01\0\0\0\x06\0\0\0\x0c\0\x02Px\0\0\0\0\0\0\0\x
+SF:1a\0\x01PyMissing\x20game\x20mode\0\0\0\0\x0c\0\x02Pz\0\0\0\x04")%r(RTS
+SF:PRequest,46,"\0\0\0F\0\0\0\0\0\0\0\x0c\0\x02\0\x01\0\0\0\x06\0\0\0\x0c\
+SF:0\x02Px\0\0\0\0\0\0\0\x1a\0\x01PyMissing\x20game\x20mode\0\0\0\0\x0c\0\
+SF:x02Pz\0\0\0\x04")%r(RPCCheck,46,"\0\0\0F\0\0\0\0\0\0\0\x0c\0\x02\0\x01\
+SF:0\0\0\x06\0\0\0\x0c\0\x02Px\0\0\0\0\0\0\0\x1a\0\x01PyMissing\x20game\x2
+SF:0mode\0\0\0\0\x0c\0\x02Pz\0\0\0\x04")%r(DNSVersionBindReqTCP,46,"\0\0\0
+SF:F\0\0\0\0\0\0\0\x0c\0\x02\0\x01\0\0\0\x06\0\0\0\x0c\0\x02Px\0\0\0\0\0\0
+SF:\0\x1a\0\x01PyMissing\x20game\x20mode\0\0\0\0\x0c\0\x02Pz\0\0\0\x04")%r
+SF:(DNSStatusRequestTCP,46,"\0\0\0F\0\0\0\0\0\0\0\x0c\0\x02\0\x01\0\0\0\x0
+SF:6\0\0\0\x0c\0\x02Px\0\0\0\0\0\0\0\x1a\0\x01PyMissing\x20game\x20mode\0\
+SF:0\0\0\x0c\0\x02Pz\0\0\0\x04")%r(Help,46,"\0\0\0F\0\0\0\0\0\0\0\x0c\0\x0
+SF:2\0\x01\0\0\0\x06\0\0\0\x0c\0\x02Px\0\0\0\0\0\0\0\x1a\0\x01PyMissing\x2
+SF:0game\x20mode\0\0\0\0\x0c\0\x02Pz\0\0\0\x04")%r(SSLSessionReq,46,"\0\0\
+SF:0F\0\0\0\0\0\0\0\x0c\0\x02\0\x01\0\0\0\x06\0\0\0\x0c\0\x02Px\0\0\0\0\0\
+SF:0\0\x1a\0\x01PyMissing\x20game\x20mode\0\0\0\0\x0c\0\x02Pz\0\0\0\x04")%
+SF:r(TerminalServerCookie,46,"\0\0\0F\0\0\0\0\0\0\0\x0c\0\x02\0\x01\0\0\0\
+SF:x06\0\0\0\x0c\0\x02Px\0\0\0\0\0\0\0\x1a\0\x01PyMissing\x20game\x20mode\
+SF:0\0\0\0\x0c\0\x02Pz\0\0\0\x04")%r(TLSSessionReq,46,"\0\0\0F\0\0\0\0\0\0
+SF:\0\x0c\0\x02\0\x01\0\0\0\x06\0\0\0\x0c\0\x02Px\0\0\0\0\0\0\0\x1a\0\x01P
+SF:yMissing\x20game\x20mode\0\0\0\0\x0c\0\x02Pz\0\0\0\x04")%r(X11Probe,46,
+SF:"\0\0\0F\0\0\0\0\0\0\0\x0c\0\x02\0\x01\0\0\0\x06\0\0\0\x0c\0\x02Px\0\0\
+SF:0\0\0\0\0\x1a\0\x01PyMissing\x20game\x20mode\0\0\0\0\x0c\0\x02Pz\0\0\0\
+SF:x04")%r(FourOhFourRequest,46,"\0\0\0F\0\0\0\0\0\0\0\x0c\0\x02\0\x01\0\0
+SF:\0\x06\0\0\0\x0c\0\x02Px\0\0\0\0\0\0\0\x1a\0\x01PyMissing\x20game\x20mo
+SF:de\0\0\0\0\x0c\0\x02Pz\0\0\0\x04");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port20011-TCP:V=7.92%I=7%D=12/4%Time=61AAD51C%P=x86_64-pc-linux-gnu%r(G
+SF:enericLines,11E,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20c
+SF:lose\r\nContent-Type:\x20text/html\r\nContent-Length:\x20193\r\n\r\n<ht
+SF:ml>\n\x20\x20<head>\n\x20\x20\x20\x20<title>Bad\x20Request</title>\n\x2
+SF:0\x20</head>\n\x20\x20<body>\n\x20\x20\x20\x20<h1><p>Bad\x20Request</p>
+SF:</h1>\n\x20\x20\x20\x20Invalid\x20Request\x20Line\x20&#x27;Invalid\x20H
+SF:TTP\x20request\x20line:\x20&#x27;&#x27;&#x27;\n\x20\x20</body>\n</html>
+SF:\n")%r(GetRequest,44D,"HTTP/1\.0\x20200\x20OK\r\nServer:\x20gunicorn\r\
+SF:nDate:\x20Sat,\x2004\x20Dec\x202021\x2002:40:28\x20GMT\r\nConnection:\x
+SF:20close\r\nContent-Type:\x20text/html;\x20charset=utf-8\r\nContent-Leng
+SF:th:\x20947\r\n\r\n<!doctype\x20html>\n<html>\n\x20\x20<link\x20rel=\"st
+SF:ylesheet\"\x20href=\"/static/style\.css\">\n\n\x20\x20<head>\n\x20\x20<
+SF:title>CTF\x20Gallery</title>\n\x20\x20</head>\n\n\t<body>\n\t\t<h1>CTF\
+SF:x20Gallery</h1>\n\x20\x20\x20\x20<div\x20class=\"panel\">\n\x20\x20\x20
+SF:\x20\x20\x20<a\x20class=\"pan_item\"\x20href=\"/admin\">admin</a>\n\x20
+SF:\x20\x20\x20</div>\n\n\x20\x20\x20\x20\n\x20\x20\x20\x20<div\x20class=\
+SF:"gal_links\"><p><a\x20href=\"/gallery/Sarah\">Sarah's\x20gallery</a></p
+SF:></div>\n\x20\x20\x20\x20\n\x20\x20\x20\x20<div\x20class=\"gal_links\">
+SF:<p><a\x20href=\"/gallery/John\">John's\x20gallery</a></p></div>\n\x20\x
+SF:20\x20\x20\n\x20\x20\x20\x20<div\x20class=\"gal_links\"><p><a\x20href=\
+SF:"/gallery/Ripley\">Ripley's\x20gallery</a></p></div>\n\x20\x20\x20\x20\
+SF:n\x20\x20\x20\x20<div\x20class=\"gal_links\"><p><a\x20href=\"/gallery/A
+SF:sh\">Ash's\x20gallery</a></p></div>\n\x20\x20\x20\x20\n\n\x20\x20\x20\x
+SF:20<p>Some\x20galleries\x20have\x20not\x20yet\x20been\x20added\x20to\x20
+SF:the\x20main\x20page\.<br>For\x20those\x20cases,\x20the\x20form\x20below
+SF:\x20can\x20be\x20used\x20to\x20access\x20them\.</p>\n\n\x20\x20\x20\x20
+SF:<div\x20id")%r(HTTPOptions,B3,"HTTP/1\.0\x20200\x20OK\r\nServer:\x20gun
+SF:icorn\r\nDate:\x20Sat,\x2004\x20Dec\x202021\x2002:40:28\x20GMT\r\nConne
+SF:ction:\x20close\r\nContent-Type:\x20text/html;\x20charset=utf-8\r\nAllo
+SF:w:\x20OPTIONS,\x20HEAD,\x20GET\r\nContent-Length:\x200\r\n\r\n");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port30033-TCP:V=7.92%I=7%D=12/4%Time=61AAD51C%P=x86_64-pc-linux-gnu%r(G
+SF:enericLines,1A,"\[error\]\x20invalid\x20input\x20key\n")%r(GetRequest,1
+SF:A,"\[error\]\x20invalid\x20input\x20key\n")%r(HTTPOptions,1A,"\[error\]
+SF:\x20invalid\x20input\x20key\n")%r(RTSPRequest,1A,"\[error\]\x20invalid\
+SF:x20input\x20key\n")%r(RPCCheck,1A,"\[error\]\x20invalid\x20input\x20key
+SF:\n")%r(DNSVersionBindReqTCP,1A,"\[error\]\x20invalid\x20input\x20key\n"
+SF:)%r(DNSStatusRequestTCP,1A,"\[error\]\x20invalid\x20input\x20key\n")%r(
+SF:Help,1A,"\[error\]\x20invalid\x20input\x20key\n")%r(SSLSessionReq,1A,"\
+SF:[error\]\x20invalid\x20input\x20key\n")%r(TerminalServerCookie,1A,"\[er
+SF:ror\]\x20invalid\x20input\x20key\n")%r(TLSSessionReq,1A,"\[error\]\x20i
+SF:nvalid\x20input\x20key\n")%r(Kerberos,1A,"\[error\]\x20invalid\x20input
+SF:\x20key\n")%r(SMBProgNeg,1A,"\[error\]\x20invalid\x20input\x20key\n")%r
+SF:(X11Probe,1A,"\[error\]\x20invalid\x20input\x20key\n")%r(FourOhFourRequ
+SF:est,1A,"\[error\]\x20invalid\x20input\x20key\n")%r(LPDString,1A,"\[erro
+SF:r\]\x20invalid\x20input\x20key\n")%r(LDAPSearchReq,1A,"\[error\]\x20inv
+SF:alid\x20input\x20key\n")%r(LDAPBindReq,1A,"\[error\]\x20invalid\x20inpu
+SF:t\x20key\n")%r(SIPOptions,1A,"\[error\]\x20invalid\x20input\x20key\n")%
+SF:r(LANDesk-RC,1A,"\[error\]\x20invalid\x20input\x20key\n")%r(TerminalSer
+SF:ver,1A,"\[error\]\x20invalid\x20input\x20key\n")%r(NCP,1A,"\[error\]\x2
+SF:0invalid\x20input\x20key\n")%r(NotesRPC,1A,"\[error\]\x20invalid\x20inp
+SF:ut\x20key\n")%r(JavaRMI,1A,"\[error\]\x20invalid\x20input\x20key\n")%r(
+SF:WMSRequest,1A,"\[error\]\x20invalid\x20input\x20key\n")%r(oracle-tns,1A
+SF:,"\[error\]\x20invalid\x20input\x20key\n")%r(ms-sql-s,1A,"\[error\]\x20
+SF:invalid\x20input\x20key\n")%r(afp,1A,"\[error\]\x20invalid\x20input\x20
+SF:key\n")%r(giop,1A,"\[error\]\x20invalid\x20input\x20key\n");
 Service Info: Host: 172.18.10.2
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-# Nmap done at Sat Dec  4 17:18:14 2021 -- 1 IP address (1 host up) scanned in 163.26 seconds
-
-
+# Nmap done at Sat Dec  4 02:43:14 2021 -- 1 IP address (1 host up) scanned in 174.44 seconds
 ```
 
 
 ## First flag - Port 80
 
-I decided to start with port 80. It seemed like an easy target. And neoh had already did it. 
+I decided to start with port 80. It seemed like an easy target. And neoh had already done it. 
 
 I looked at what curl would give me. 
 ```bash
@@ -355,7 +532,7 @@ This is simple HTML that displayed an image. I tried downloading the image.
 
 The first flag was 3bb0409396fdc4e168c9185929af8347. 
 
-I knew on which card it would have needed to be submitted because neoh had already did it. 
+I knew on which card it would have needed to be submitted because neoh had already done it. 
 
 But the real way to find out was to look at the image. To do that, I used scp to get the image on my machine and then opened the image.
 
@@ -367,7 +544,7 @@ $ scp -i metasploit_ctf_kali_ssh_key.pem kali@18.215.161.123:~/eric/065c6daa-a6e
 
 ## SSH Tunnel
 
-I did the first flag, but I realized that using curl to look at HTML files and scp to transfer the files was going to be painful. So I checked how I could use SSH tunnel to be able to query the target directly from my Kali VM. 
+I had the first flag, but I realized that using curl to look at HTML files and scp to transfer the files was going to be painful. So I checked how I could use a SSH tunnel to be able to query the target directly from my Kali VM. 
 
 After some trial and error, I came up with this command:
 
@@ -439,7 +616,7 @@ http://localhost:8082/server-status        (Status: 403) [Size: 276]
 ===============================================================
 ```
 
-It looks like the site developers have deployed their git repository with the site. I had used a tool to extract that in the past. So I looked around and found [git-dumper](https://github.com/arthaud/git-dumper). 
+It looks like the site developers have deployed their git repository with the site. I had used a tool to extract that in the past. So I did some searches and found [git-dumper](https://github.com/arthaud/git-dumper). 
 
 ```bash
 $ git-dumper http://localhost:8082/.git/ temp                                                            
@@ -452,7 +629,9 @@ $ git-dumper http://localhost:8082/.git/ temp
 [-] Fetching http://localhost:8082/.git/description [200]
 [-] Fetching http://localhost:8082/.git/hooks/post-commit.sample [404]                         
 [-] http://localhost:8082/.git/hooks/post-commit.sample responded with status code 404         
+
 ...
+
 [-] Fetching http://localhost:8082/.git/objects/fa/efc0407d461914a05d2abf2cfae62230ea761a [200]
 [-] Fetching http://localhost:8082/.git/objects/1e/4988fd28fdfb4116f7203451e6cf1b6c51ea43 [200]
 [-] Running git checkout .
@@ -638,7 +817,7 @@ I uploaded the file.
 
 ![.htaccess Uploaded](/assets/images/2021/12/MetasploitCTF/htaccessUploaded.png ".htacess Uploaded")
 
-I clicked on the link, and sure enough, the .htaccess was displayed. So I knew hat the bypass worked. 
+I clicked on the link, and sure enough, the .htaccess was displayed. So I knew that the bypass worked. 
 
 Next I wrote some PHP in a file called `test.vuln`, and uploaded it.
 
@@ -712,3 +891,9 @@ var current_account = {"id":7,"username":"writeup","password":"writeup","role":"
 I tried going to the admin page with that user and it gave me the flag. 
 
 ![Four of Diamonds](/assets/images/2021/12/MetasploitCTF/FourOfDiamonds.png "Four of Diamonds")
+
+## The End
+
+After that flag that was it for me. I really enjoyed the CTF. My team was great, we shared a lot of knowledge together. 
+
+Also doing the CTF over a weekend, without really trying to compete was nice. I just worked on it when I had time between my normal weekend activities. 
