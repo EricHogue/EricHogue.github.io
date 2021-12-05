@@ -671,3 +671,44 @@ $ md5sum flag.png
 ```
 ![Nine of Spades](/assets/images/2021/12/MetasploitCTF/NineOfSpades.png "Nine of Spades")
 
+## Port 10010
+
+On this port, we have a simple site. 
+
+
+![Port 10010](/assets/images/2021/12/MetasploitCTF/Port10010.png "Port 10010")
+
+I created a user and looked at the logged in pages. 
+
+![Admin Panel](/assets/images/2021/12/MetasploitCTF/AdminPanel.png "Admin Panel")
+
+The Main page just redirected to the Account page. I tried changing the account ID in the URL, but that didn't work. I was just redirected to my account page. 
+
+I ran GoBuster, and it found an admin page. But I could not access it. 
+
+At this point, I tried lots of thing. The site was a Rails site, I tried to decrypt the session cookie, but failed. I also realized that we could create multiple accounts with the same name. So I thought that I might be able to create a user called admin or administrator and use it to bypass the check on the account page. But that did not work either. 
+
+The account page, contained a json dump of the account object. 
+
+```js
+<script>
+    var current_account = {"id":6,"username":"test","password":"test","role":"user","created_at":"2021-12-05T20:04:44.243Z","updated_at":"2021-12-05T20:04:44.243Z"};
+</script>
+```
+
+It took me a while, but eventually I remember that old version of Rails had a [mass assignment vulnerability](https://www.acunetix.com/vulnerabilities/web/rails-mass-assignment/). Someone had used it to create [an issue in the future on Github](https://github.com/rails/rails/issues/5239). It looks like the date got fixed, but initially, the issue was dated in 3012. 
+
+I decided to give it a try. I logout and created a new user, this time using Burp to intercept the request and add a role attribute to the posted data. 
+
+![Mass Assignment](/assets/images/2021/12/MetasploitCTF/MassAssignment.png "MassAssignment")
+
+I looked at my profile page, and my role was now admin instead of user. 
+
+```js
+<script> 
+var current_account = {"id":7,"username":"writeup","password":"writeup","role":"admin","created_at":"2021-12-05T20:24:13.508Z","updated_at":"2021-12-05T20:24:13.508Z"};</script>
+```
+
+I tried going to the admin page with that user and it gave me the flag. 
+
+![Four of Diamonds](/assets/images/2021/12/MetasploitCTF/FourOfDiamonds.png "Four of Diamonds")
