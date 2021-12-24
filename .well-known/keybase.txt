@@ -1,70 +1,74 @@
+---
+redirect_from:
+  - /keybase.txt
+---
 ==================================================================
-https://keybase.io/EricHogue
+https://keybase.io/erichogue
 --------------------------------------------------------------------
 
 I hereby claim:
 
-  * I am an admin of http://erichogue.ca
-  * I am EricHogue (https://keybase.io/EricHogue) on keybase.
-  * I have a public key with fingerprint 018D 2228 FF55 BB3A A880  9B03 CEB0 3E1D 652D 5DD9
+  * I am an admin of https://erichogue.ca
+  * I am erichogue (https://keybase.io/erichogue) on keybase.
+  * I have a public key with fingerprint 8BEF FC96 12EC A6C5 0DC9  434F 1FAB FF90 9F9F BAF1
 
-To claim this, I am signing this object:
+To do so, I am signing this object:
 
 {
-    "body": {
-        "key": {
-            "fingerprint": "018d2228ff55bb3aa8809b03ceb03e1d652d5dd9",
-            "host": "keybase.io",
-            "key_id": "CEB03E1D652D5DD9",
-            "uid": "7f494106d561f15eb28f250059058200",
-            "username": "EricHogue"
-        },
-        "service": {
-            "hostname": "erichogue.ca",
-            "protocol": "http:"
-        },
-        "type": "web_service_binding",
-        "version": 1
+  "body": {
+    "key": {
+      "eldest_kid": "010140e509c7071eee7e79dd07be2717eb4fa937ebac2131d0a949b2037fca966aa20a",
+      "fingerprint": "8beffc9612eca6c50dc9434f1fabff909f9fbaf1",
+      "host": "keybase.io",
+      "key_id": "1fabff909f9fbaf1",
+      "kid": "010140e509c7071eee7e79dd07be2717eb4fa937ebac2131d0a949b2037fca966aa20a",
+      "uid": "7f494106d561f15eb28f250059058200",
+      "username": "erichogue"
     },
-    "ctime": 1395873759,
-    "expire_in": 157680000,
-    "prev": "5a64e9f7188bbfce7ecc00210fddf2edbdd9ebe65bd3c0fc31d567a368ae6bee",
-    "seqno": 18,
-    "tag": "signature"
+    "service": {
+      "hostname": "erichogue.ca",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1640364006,
+  "expire_in": 157680000,
+  "prev": "1d6a70c11c2f14eecb9d0c81f031d97a32daf7bab502b48888c1580fafe8d2af",
+  "seqno": 24,
+  "tag": "signature"
 }
 
-with the aforementioned key, yielding the PGP signature:
+which yields the signature:
 
 -----BEGIN PGP MESSAGE-----
-Version: GnuPG v1.4.14 (GNU/Linux)
 
-owGbwMvMwMR4boOdbKpu7E3G0wc+JzEEG4ffr1ZKyk+pVLKqVspOBVNpmXnpqUUF
-RZl5JUpWSgaGFilGRkYWaWmmpklJxomJFhYGlkkGxsmpQCLVMMXM1CjFNCXFUklH
-KSO/GKQDaExSYnGqXmY+UAzIic9MAYo6uzoZGLsaugDVu5i6uIDUl4IlzNNMLE0M
-DcxSTM0M0wxNU5OAdhmZGhiYWhqYWhgZGIAUFqcW5SXmpgJVuxZlJnvkp5emKtXq
-KAGFyzKTU0GOBtkNVZIKVJIBUqKXnAjUXFCUX5KfnJ8DlMkoKSmwAmksqSwAqSxP
-TYqHmhGflJmXAvQ4UENZalFxZn6ekpUhUGVySSbIUENjS1MLc2NzU0sdpdSKgsyi
-1PhMkApTczMLAyAAWZNaBjTSNNHMJNUyzdzQwiIpKS051Tw1OdnAwMjQIC0lJc0o
-NSUJGFSpSalmpkkpxskGacnGhkB/mycam1kkppolpaYqgXxVmJcPNNsC6M7EdKCZ
-xZnpeYklpUVAP3cyybAwMDIxsLEygeKOgYtTABaj88MFGLZ728TnTOBe/SZgz1wR
-43rJkE0Fe9VV5LYb3EhN2mt6qd/2xjKLyPh5K3VPOU5qCVmufrCzqWhXC2Nq7E5P
-xtpFJ5Tjtunzl8pVn/H34r9oHpFoq1S15VwXE0vM8WX7J0gsjat1Ptdo3fnhlWvf
-7kl2B7fVuyVGHPu/Wy1GwWKS7bGk3Omzv8z53DGZJdGLR3LSi9frf8qv/ZDmP4lr
-u4a5e4j2NVHFJ7uCFlmu1nJ7Yrb6xKWkOG1Naw8pi9mvwj9sCl1XfPM7v/kPx18C
-Vrw87/5Jq/JMztpoyyzFlViy8/Qt2b27LS/NXbXu5MzbDsdOH1qbGmV4n0312OLI
-4xFdB72Kfv/wWVYc/vvB9oOuQtK7JQyjvq/Yuc27zsKmc4N8/t4Fb5cvPjFzCcfC
-GVdZjDgMPKJeaCqdXdR55siGxER5X/OZ97tMZDK7Fr2+crZvf07N3H9xi+Iuv264
-9Mx0/59ImQVF6TrBzWe8bqR1KVUGvk2blLDwUXeziUwof+6ytMg7p0WU1+you6Vz
-al7yntlneDdMvjT/zHRHW4HbS69Lts8JqX9yMbFU8PtlF4eEZoEOgeDAyk/ZwusK
-zFWeHJo18/DWZzHTDqfdN7CrW9UW7fHEwvJcVMwSlTJrbqYO48W1ps82q3ZxP1+z
-58amogN3eevPhj1NCPQrfJh/xPvWqYTptb1nOYJKHTKcGmxcY41/3N1Rk/o2GgA=
-=ByOr
+owGtUm1sFEUYvtPDpAetbVOwErVlASHxpDP7vdcY+0GFGKFJJYCk9Zidnbkuxd1j
+b68fuVZJSk2opjZC6Bm19dJaCzUxKSQkNQQEioGrkQBKa1AkoSoNiNAf1WhTZxv5
+Y/zpJJM3887zPO/zvnm7sx/2Bf1Fw/PdfX2j9/yZW7oPjc3OJzndNlq4cJJrIAuB
+7DZI3I00mAYX5gAEUAREAhpWgAIJIQpRNMMAik54BSpEFynSBBYR5qEADYA0UdN5
+ICgUI02WEeIB4kIcNa0ocWKOablMVtUJpViTIU8wkrEEDKyJgkghRTqlGtCoRnVE
+ISPW23GPwczpKE7WmTbLsUdkwd5/4P9n34kFOYWKmgiBbEgypFAiOq9SXgJA0oCk
+8gB4wDhxLPQaYWjimLjejiYI1xbiWLrRxMSbrNfKvyHrsFcl5tiuje3d7KfedWPx
+sMd0W2IetInokX9EIrppGWyQjNFInLhpW1wYMiR2TU8VyiIQ2AVyiCPNMdMhEdND
+SIqsAna8OqTRG5shIwXswBBinkKREKxrBsAqpICNQlOQwBuIKjrSJcDrosoOhpIK
+KKJENXhEOa+vPZbNhXmRGUVRJho3oxZyEw7rOrjffzTg8wd9Ty5bEXjr7l+H8m8P
+jmWfr6x+sH2LHvJWzxfMyn2Qye5c4vvh2C4iK5nepppR5by/7OU9xTurP+gt6Iyd
+a71d8syZyhul6VTr0oLLauHivRWpnELhxnPJy8U3q57fnFvkvroqr3TffHLs0unj
+d75qq/h1beTEstPdV/XsA2syhwcPvr18E48fFTrKU+n86awS7lzn+qoBq7B25mt/
+/6dOtPlD88V+kHOiPfPOkrnDM4/PfvlRAyzP+PZ2fDI1/cZTZztSLxmnpNdHh36+
+dpNObtmY+qZu9YjSwq0RtPwrR/TMqv53h5YnA7/0rqi7e2W66N6zAztrc3vC4viw
+PevvOXn1+veB9Rc2R987foiEnqh+5FR1Sd39P7Y02+Mv5BFjX8UGZX9VV832H600
+Hv9t69rSqbEu69pPtxI1g/zkfMHKk6/MFJzlpI2zk+2VZ7LKhMGjS1Or0+25OcnC
+DYtGhkcuzj3WVn4wNDFRFyw79nnrhffDo9/6w0PmZ7u+G6jdNlXy59M1B/Lup+P0
+0qa+i7Tp94/vXO/atqN3e+pNd+5I4Atta6JnsV088Tc=
+=SD+F
 -----END PGP MESSAGE-----
 
 And finally, I am proving ownership of this host by posting or
 appending to this document.
 
-View my publicly-auditable identity here: https://keybase.io/EricHogue
+View my publicly-auditable identity here: https://keybase.io/erichogue
 
 ==================================================================
 
