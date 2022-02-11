@@ -8,7 +8,7 @@ tags:
 - Hacking
 - TryHackMe
 - Easy
-permalink: /2022/02/THM/Jaon
+permalink: /2022/02/THM/Jason
 img: 2022/02/Jason/Jason.png
 ---
 
