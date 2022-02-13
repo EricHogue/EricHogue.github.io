@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TryHackMe Walkthrough - Road
-date: 2022-02-13
+date: 2022-02-12
 type: post
 tags:
 - Walkthrough
