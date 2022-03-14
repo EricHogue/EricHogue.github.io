@@ -1,13 +1,12 @@
 ---
 layout: post
 title: Getting Into CTFs As a Web Developer
-date: 2022-01-30
+date: 2022-03-14
 type: post
 tags:
 - CTF
-- NorthSec
-permalink: /2022/02/GettingIntoCTFsAsADev
-img: 2022/02/GettingIntoCTFs/CTF.jpg
+permalink: /2022/03/GettingIntoCTFsAsADev
+img: 2022/03/GettingIntoCTFs/CTF.jpg
 ---
 
 As a web developer, it is very important to understand security. We need to know the most common vulnerabilities and how to protect our applications from them. We have to understand the tools provided by our languages and frameworks to create secure code. But we rarely get exposed to how the attacks we try to protect against are performed.
@@ -40,7 +39,7 @@ The competitions I have been in were all beginner-friendly. NorthSec 2021 was ha
 
 One thing we did on all the teams I've been on is to share how we solve challenges with the rest of the team. When someone gets a flag, they connect to a video conference and explain how they did it, and why what they did worked. It might slow us down to do this, but it's great to learn new techniques from our teammates. And it is gratifying to share our knowledge with others, and see them get better. 
 
-Once a CTF is over, I make sure to watch where the writeups are being published. I read every one of them. For the challenges I solved, I can see different ways to do them. For the challenges I did not solve, I learn how I should have done it. I can see if I was on the correct path or not. And I can get better for the next event. I also publish [my writeups](https://erichogue.ca/tags/#CTF) for the flag I got. This forces me to take notes during the event. And while writing I often do some more research, so I understand better the techniques I used. 
+Once a CTF is over, I make sure to watch where the writeups are being published. I read every one of them. For the challenges I solved, I can see different ways to do them. For the challenges I did not solve, I learn how I should have done it. I can see if I was on the correct path or not. And I can get better for the next event. I also publish [my writeups](/tags/#CTF) for the flag I got. This forces me to take notes during the event. And while writing I often do some more research, so I understand better the techniques I used. 
 
 If you are interested in participating in CTFs, but think you are not ready. I think you should go for it. Make sure you pick a team that is doing the competition for fun. And enjoy all the learning. 
 
