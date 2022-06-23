@@ -647,7 +647,7 @@ Upgrade-Insecure-Requests: 1
 If-None-Match: W/"763-yBLqx1Bg/Trp0SZ2cyMSGFoH5nU"
 ```
 
-That got me my foothold on the server, the folder was not executable.
+That got me my foothold on the server.
 
 ```bash
 $ nc -klvnp 4444
@@ -658,7 +658,7 @@ whoami
 admin
 ```
 
-I tried reading the user flag, but I could not access the home folder. 
+I tried reading the user flag but I could not access the home folder, it was not executable.
 
 ```bash
 admin@nodeblog:/opt/blog$ ls -l /home/admin/
