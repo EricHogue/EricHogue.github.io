@@ -39,7 +39,7 @@ ________________________________________
 [!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
 [!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'.
 Open 10.129.96.160:22
-Open 10.129.96.160:5001
+Open 10.129.96.160:5000
 [~] Starting Script(s)
 [>] Script to be run Some("nmap -vvv -p {{port}} {{ip}}")
 
