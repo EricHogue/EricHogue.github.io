@@ -8,6 +8,7 @@ tags:
 - Hacking
 - HackTheBox
 - Easy
+- Machine
 permalink: /2022/05/HTB/Late
 img: 2022/05/Late/Late.png
 ---
