@@ -8,6 +8,7 @@ tags:
 - Hacking
 - HackTheBox
 - Easy
+- Machine
 permalink: /2022/04/HTB/Lame
 img: 2022/04/Lame/Lame.png
 ---

@@ -8,6 +8,7 @@ tags:
 - Hacking
 - TryHackMe
 - Medium
+- Machine
 permalink: /2022/02/THM/Road
 img: 2022/02/Road/Road.png
 ---

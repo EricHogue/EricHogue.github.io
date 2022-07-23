@@ -8,6 +8,7 @@ tags:
 - Hacking
 - TryHackMe
 - Medium
+- Machine
 permalink: /2021/07/MadeyesCastle
 img: 2021/07/MadeyesCastle/MadeyesCastle.jpeg
 ---

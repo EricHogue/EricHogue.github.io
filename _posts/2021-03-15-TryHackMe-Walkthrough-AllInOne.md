@@ -9,6 +9,7 @@ tags:
 - TryHackMe
 - Boot2Root
 - Easy
+- Machine
 permalink: /2021/03/TryHackMe-Walkthrough-AllInOne/
 ---
 

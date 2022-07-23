@@ -9,6 +9,7 @@ tags:
 - TryHackMe
 - Boot2Root
 - Medium
+- Machine
 permalink: /2021/06/VulnNet
 img: 2021/06/VulnNet/VulnNet.png
 ---

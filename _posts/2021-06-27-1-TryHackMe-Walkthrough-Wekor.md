@@ -8,6 +8,7 @@ tags:
 - Hacking
 - TryHackMe
 - Medium
+- Machine
 permalink: /2021/06/Wekor
 img: 2021/06/Wekor/Wekor.jpeg
 ---
