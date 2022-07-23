@@ -8,6 +8,7 @@ tags:
 - Hacking
 - HackTheBox
 - Easy
+- Machine
 permalink: /2022/05/HTB/Pandora
 img: 2022/05/Pandora/Pandora.png
 ---

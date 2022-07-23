@@ -8,6 +8,7 @@ tags:
 - Hacking
 - TryHackMe
 - Easy
+- Machine
 permalink: /2021/07/Library
 img: 2021/07/Library/Library.jpeg
 ---

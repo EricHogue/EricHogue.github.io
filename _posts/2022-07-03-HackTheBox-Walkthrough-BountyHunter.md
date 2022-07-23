@@ -8,6 +8,7 @@ tags:
 - Hacking
 - HackTheBox
 - Easy
+- Machine
 permalink: /2022/07/HTB/BountyHunter
 img: 2022/07/BountyHunter/BountyHunter.png
 ---

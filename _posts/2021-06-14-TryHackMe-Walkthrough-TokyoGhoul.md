@@ -9,6 +9,7 @@ tags:
 - TryHackMe
 - Boot2Root
 - Medium
+- Machine
 permalink: /2021/06/TokyoGhoul
 img: 2021/06/TokyoGhoul/TokyoGhoul.jpeg
 ---
