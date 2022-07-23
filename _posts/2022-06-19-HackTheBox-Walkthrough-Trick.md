@@ -8,6 +8,7 @@ tags:
 - Hacking
 - HackTheBox
 - Easy
+- Machine
 permalink: /2022/06/HTB/Trick
 img: 2022/06/Trick/Trick.png
 ---
