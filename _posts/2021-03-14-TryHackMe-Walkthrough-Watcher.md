@@ -9,6 +9,7 @@ tags:
 - TryHackMe
 - Boot2Root
 - Medium
+- Machine
 permalink: /2021/03/TryHackMe-Walkthrough-Watcher/
 img: 2021/03/Watcher.png
 ---

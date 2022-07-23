@@ -8,6 +8,7 @@ tags:
 - Hacking
 - TryHackMe
 - Easy
+- Machine
 permalink: /2021/06/Mustacchio
 img: 2021/06/Mustacchio/Mustacchio.png
 ---

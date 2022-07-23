@@ -9,6 +9,7 @@ tags:
 - TryHackMe
 - Boot2Root
 - Easy
+- Machine
 permalink: /2021/05/TryHackMe-Walkthrough-Glitch/
 img: 2021/05/Glitch/glitch.gif
 ---

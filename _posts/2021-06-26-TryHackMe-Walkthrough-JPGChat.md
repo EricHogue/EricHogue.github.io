@@ -8,6 +8,7 @@ tags:
 - Hacking
 - TryHackMe
 - Easy
+- Machine
 permalink: /2021/06/JPGChat
 img: 2021/06/JPGChat/JPGChat.png
 ---

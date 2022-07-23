@@ -8,6 +8,7 @@ tags:
 - Hacking
 - TryHackMe
 - Easy
+- Machine
 permalink: /2022/02/THM/Jason
 img: 2022/02/Jason/Jason.png
 ---

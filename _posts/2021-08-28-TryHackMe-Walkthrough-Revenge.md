@@ -8,6 +8,7 @@ tags:
 - Hacking
 - TryHackMe
 - Medium
+- Machine
 permalink: /2021/08/THM/Revenge
 img: 2021/08/Revenge/Revenge.png
 ---

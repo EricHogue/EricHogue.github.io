@@ -8,6 +8,7 @@ tags:
 - Hacking
 - HackTheBox
 - Easy
+- Machine
 permalink: /2022/05/HTB/NodeBlog
 img: 2022/05/NodeBlog/NodeBlog.png
 ---
@@ -39,7 +40,7 @@ ________________________________________
 [!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
 [!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'.
 Open 10.129.96.160:22
-Open 10.129.96.160:5001
+Open 10.129.96.160:5000
 [~] Starting Script(s)
 [>] Script to be run Some("nmap -vvv -p {{port}} {{ip}}")
 
@@ -647,7 +648,7 @@ Upgrade-Insecure-Requests: 1
 If-None-Match: W/"763-yBLqx1Bg/Trp0SZ2cyMSGFoH5nU"
 ```
 
-That got me my foothold on the server, the folder was not executable.
+That got me my foothold on the server.
 
 ```bash
 $ nc -klvnp 4444
@@ -658,7 +659,7 @@ whoami
 admin
 ```
 
-I tried reading the user flag, but I could not access the home folder. 
+I tried reading the user flag but I could not access the home folder, it was not executable.
 
 ```bash
 admin@nodeblog:/opt/blog$ ls -l /home/admin/
