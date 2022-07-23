@@ -9,6 +9,7 @@ tags:
 - TryHackMe
 - Boot2Root
 - Easy
+- Machine
 permalink: /2021/04/TryHackMe-Walkthrough-Badbyte/
 img: 2021/04/Badbyte/badbyte.png
 ---

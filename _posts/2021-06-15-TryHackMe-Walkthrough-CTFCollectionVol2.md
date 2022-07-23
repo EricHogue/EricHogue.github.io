@@ -8,6 +8,7 @@ tags:
 - Hacking
 - TryHackMe
 - Medium
+- Machine
 permalink: /2021/06/CTFCollectionVol2
 img: 2021/06/CTFCollectionVol2/CTFCollectionVol2.png
 ---

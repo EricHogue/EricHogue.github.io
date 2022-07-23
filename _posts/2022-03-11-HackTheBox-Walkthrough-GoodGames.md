@@ -8,6 +8,7 @@ tags:
 - Hacking
 - HackTheBox
 - Easy
+- Machine
 permalink: /2022/04/HTB/GoodGames
 img: 2022/03/GoodGames/GoodGames.png
 ---

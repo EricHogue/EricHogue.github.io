@@ -49,7 +49,7 @@ analytics: UA-20604950-1
 # Build Settings
 #markdown: kramdown
 
-paginate: 8
+paginate: 15
 paginate_path: "/page/:num"
 
 include:

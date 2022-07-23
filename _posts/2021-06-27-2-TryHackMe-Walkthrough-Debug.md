@@ -8,6 +8,7 @@ tags:
 - Hacking
 - TryHackMe
 - Medium
+- Machine
 permalink: /2021/06/Debug
 img: 2021/06/Debug/Debug.jpeg
 ---

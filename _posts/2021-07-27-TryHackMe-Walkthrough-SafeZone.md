@@ -8,6 +8,7 @@ tags:
 - Hacking
 - TryHackMe
 - Medium
+- Machine
 permalink: /2021/07/THM/SafeZone
 img: 2021/07/SafeZone/SafeZone.png
 ---
