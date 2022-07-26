@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Late
-date: 2022-05-29
+date: 2022-07-26
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2022/05/HTB/Late
-img: 2022/05/Late/Late.png
+permalink: /2022/07/HTB/Late
+img: 2022/07/Late/Late.png
 ---
 
 * Room: Late
@@ -91,7 +91,7 @@ There were two opened ports:
 
 I opened the site in a web browser.
 
-![Main Web Site](/assets/images/2022/05/Late/WebSite.png "Main Web Site")
+![Main Web Site](/assets/images/2022/07/Late/WebSite.png "Main Web Site")
 
 It was the site for the 'Best online image tools'.
 
@@ -171,7 +171,7 @@ Requests/sec.: 460.8336
 
 There were no other subdomains to be found. I opened the image editor site. 
 
-![Image Converter](/assets/images/2022/05/Late/ConvertImageToText.png "Image Converter")
+![Image Converter](/assets/images/2022/07/Late/ConvertImageToText.png "Image Converter")
 
 I tried uploading an image. The site extracted the text from the image and returned it as a text file. I tried uploading a Python file, but it was rejected. I made a screenshot of some Python code and uploaded it. It returned the code as text without executing it. 
 
