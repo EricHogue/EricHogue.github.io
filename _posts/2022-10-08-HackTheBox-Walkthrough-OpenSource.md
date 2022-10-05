@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - OpenSource
-date: 2022-06-04
+date: 2022-10-08
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2022/06/HTB/OpenSource
-img: 2022/06/OpenSource/OpenSource.png
+permalink: /2022/10/HTB/OpenSource
+img: 2022/10/OpenSource/OpenSource.png
 ---
 
 This was a tough, but a fun machine. It's marked as easy, but I had a hard time and I learned a lot doing it.
@@ -55,7 +55,7 @@ I found two:
 
 I launched a browser and looked at the website on port 80.
 
-![Upcloud Site](/assets/images/2022/06/OpenSource/MainSite.png "Upcloud Site")
+![Upcloud Site](/assets/images/2022/10/OpenSource/MainSite.png "Upcloud Site")
 
 It was a file-sharing site. There were two interesting buttons at the bottom of the site. The first one allowed me to download the source code, and the second one to try the application.
 
@@ -98,11 +98,11 @@ It found `/console` that took me to a Flask debug console. But I needed a PIN to
 
 I tried the file upload function of the site. 
 
-![File Upload](/assets/images/2022/06/OpenSource/FileUpload.png "File Upload")
+![File Upload](/assets/images/2022/10/OpenSource/FileUpload.png "File Upload")
 
 Once the file was uploaded, I could access it at `http://target.htb/uploads/FILE_NAME`. 
 
-![Uploaded](/assets/images/2022/06/OpenSource/FileUploaded.png "Uploaded")
+![Uploaded](/assets/images/2022/10/OpenSource/FileUploaded.png "Uploaded")
 
 I tried uploading a Python file. It worked, but the file was returned as a text file. It was not executed on the server. 
 
@@ -407,7 +407,7 @@ $ python generate_pin.py
 
 And I used the generated PIN to log in the console.
 
-![Console](/assets/images/2022/06/OpenSource/Console.png "Console")
+![Console](/assets/images/2022/10/OpenSource/Console.png "Console")
 
 
 
@@ -524,7 +524,7 @@ This command connected to the server on port 3477 in my machine. And opened a re
 
 I opened `http://localhost:2222/` in my browser and it reached Gitea.
 
-![Gitea](/assets/images/2022/06/OpenSource/Gitea.png "Gitea")
+![Gitea](/assets/images/2022/10/OpenSource/Gitea.png "Gitea")
 
 I used the credentials I found in the source code to log in the site. There was one repository called `dev01/home-backup` and it contained a backup of dev01's SSH private key. I saved the copy on my machine and used it to connect to the server. 
 
@@ -626,7 +626,7 @@ dev01@opensource:~$ watch -n 0.5 -d "ps aux | grep git"
 
 I waited until the minute changed and saw the script doing the backup run. 
 
-![ps](/assets/images/2022/06/OpenSource/ps.png "ps")
+![ps](/assets/images/2022/10/OpenSource/ps.png "ps")
 
 The script `/usr/local/bin/git-sync` was being run by root. So if I could get it to run some custom code, I would be able to get root on the machine. 
 
