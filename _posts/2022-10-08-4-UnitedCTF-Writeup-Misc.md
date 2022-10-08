@@ -1,7 +1,7 @@
 ---
 layout: post
 title: UnitedCTF 2022 Writeup - Misc
-date: 2022-10-07
+date: 2022-10-08
 type: post
 tags:
 - Writeup
