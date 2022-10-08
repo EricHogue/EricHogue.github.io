@@ -9,8 +9,10 @@ tags:
 - UnitedCTF
 - CTF
 permalink: /2022/10/UnitedCTF/Forensics
-img: 2022/10/UnitedCTF/Forensics/Forensics.png
+img: 2022/10/UnitedCTF/UnitedCTFLogo.png
 ---
+
+![Challenges](/assets/images/2022/10/UnitedCTF/Forensics/Forensics.png "Challenges")
 
 ## XD
 
@@ -22,10 +24,10 @@ If you can convince xxd to print 4 bytes per line, the flag will appear XD
 
 Author: [ntnco](https://github.com/ntnco)
 
-The challenge had a file to download. I used `xxd` and made it return 4 bytes per line as requested in the challenge description.
+The challenge had a file to download. I used `xxd` to print an hexdump of the file. I made it return 4 bytes per line with `-c 4` as requested in the challenge description.
 
 ```bash
-$ xxd -c 4 XD.xd                      
+$ xxd -c 4 XD.xd
 00000000: aaaa aaaa  ....
 00000004: a888 888a  ....
 00000008: a8cc ccca  ....
@@ -206,7 +208,7 @@ $ xxd -c 4 XD.xd
 000002c4: aaaa aaaa  ....
 ```
 
-Looking at the output, I saw a pattern in it. I removed the `a` and the `c` from the output and got the flag.
+Looking at the output, I saw a pattern in it. The `8` were spelling the letter F. I removed the `a` and the `c` from the output and got the flag.
 
 ```bash
 $ xxd -c 4 XD.xd | tr 'ac' '  '
@@ -406,13 +408,13 @@ In this challenge, we were given a PCAP file to download. I opened it in Wiresha
 
 ![Protocols](/assets/images/2022/10/UnitedCTF/Forensics/Protocols.png "Protocols")
 
-It was all `ping`. 
+It was all `ping`.
 
-I looked at the data and quickly that the TTL contained one letter for flag per packet. 
+I looked at the data and quickly saw that the TTL contained a `F` in the first packet, a `L` in the second, and so on.
 
 ![TTL](/assets/images/2022/10/UnitedCTF/Forensics/TTLIsFlag.png "TTL")
 
-I used tshark to extract the TTL. 
+I used tshark to extract the TTL.
 
 ```bash
 $ tshark -r i-see-em-pee-1.pcapng -Y "ip.src == 13.37.13.37" -T fields -e ip.ttl
@@ -449,7 +451,7 @@ $ tshark -r i-see-em-pee-1.pcapng -Y "ip.src == 13.37.13.37" -T fields -e ip.ttl
 115
 ```
 
-And finally used [CyberChef](https://gchq.github.io/CyberChef/#recipe=From_Charcode('Line%20feed',10)&input=NzAKNzYKNjUKNzEKNDUKNDkKOTUKMTE2CjEwNAo0OAoxMTcKMTAzCjEwNAo1NQo5NQo0OQo5OQoxMDkKMTEyCjk1CjExOQo1MgoxMTUKOTUKMTE3CjExNQo1MQoxMDgKNTEKMTE1CjExNQ) to decode it. 
+And finally used [CyberChef](https://gchq.github.io/CyberChef/#recipe=From_Charcode('Line%20feed',10)&input=NzAKNzYKNjUKNzEKNDUKNDkKOTUKMTE2CjEwNAo0OAoxMTcKMTAzCjEwNAo1NQo5NQo0OQo5OQoxMDkKMTEyCjk1CjExOQo1MgoxMTUKOTUKMTE3CjExNQo1MQoxMDgKNTEKMTE1CjExNQ) to decode it.
 
 Flag: FLAG-1_th0ugh7_1cmp_w4s_us3l3ss
 
@@ -463,12 +465,12 @@ Delivering malware in style.
 
 Author: [hfz](https://github.com/hfz1337)
 
-In this challenge we have another PCAP file. By looking at the data, I saw `ELF`. It looked like it contained an executable.  
+In this challenge we have another PCAP file. By looking at the data, I saw `ELF` in the first packet. It looked like the data contained an executable.
 
 I extracted the data.
 
 ```bash
-$ tshark -r i-see-em-pee-2.pcapng -Y "ip.src == 13.37.13.37 && icmp" -T fields -e data.data             
+$ tshark -r i-see-em-pee-2.pcapng -Y "ip.src == 13.37.13.37 && icmp" -T fields -e data.data
 5dd70b00000000007f454c460201010000000000000000007f454c460201010000000000000000007f454c4602010100
 930c0c000000000002003e00010000000c0140000000000002003e00010000000c0140000000000002003e0001000000
 ba4d0c00000000004000000000000000a0010000000000004000000000000000a0010000000000004000000000000000
@@ -520,29 +522,29 @@ I copied the output to [CyberChef](https://gchq.github.io/CyberChef/#recipe=From
 
 ![CyberChef](/assets/images/2022/10/UnitedCTF/Forensics/CyberChef.png "CyberChef")
 
-It was an executable, but it had some repetition. I needed to extract the correct columns from the output. 
+It was an executable, but it had some repetition. I needed to extract the correct columns from the output.
 
 ```bash
-$ tshark -r i-see-em-pee-2.pcapng -Y "ip.src == 13.37.13.37 && icmp" -T fields -e data.data | cut -c 17-48 | xxd -r -p   
+$ tshark -r i-see-em-pee-2.pcapng -Y "ip.src == 13.37.13.37 && icmp" -T fields -e data.data | cut -c 17-48 | xxd -r -p
 ELF>
 \uHDuY�G^B@@IIII@I@++��@�@$$GNUt��������8�	u��aYo�H��I@H1Ɋ4*�H��H��+~�H1���H��H��I@H��+�<H1�lfkm^BuI�_FN
           MuGF	C�_Y.shstrtab.note.gnu.build-id.text.data
                                                          �@�$
                                                              @
-                                                              =$I@I+t*%                                                                                                                                            (⎈ |N/A:default)➜  2022 
+                                                              =$I@I+t*%
 ```
 
-Once I had the data for the executable, I saved it to a file. Then I executed the file in a VM and got the flag. 
+Once I had the data for the executable, I saved it to a file. Then I executed the file in a VM and got the flag.
 
 ```bash
 $ tshark -r i-see-em-pee-2.pcapng -Y "ip.src == 13.37.13.37 && icmp" -T fields -e data.data | cut -c 17-48 | xxd -r -p > exe
 
-$ file exe                            
+$ file exe
 exe: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, missing section headers at 672
 
-$ chmod +x exe          
+$ chmod +x exe
 
-$ ./exe                
+$ ./exe
 FLAG-th1s_c0uld'v3_b33n_s0m3th1ng_m4l1ci0us
 ```
 
@@ -591,10 +593,12 @@ for char in string.ascii_letters:
                         print(password6)
 ```
 
+(Please don't show this code to my boss)
+
 Then I used `john` to crack the zip password
 
 ```bash
-$ zip2john matryoshka.zip > zip.hash      
+$ zip2john matryoshka.zip > zip.hash
 ver 1.0 efh 5455 efh 7875 matryoshka.zip/matryoshka.zip PKZIP Encr: 2b chk, TS_chk, cmplen=52821, decmplen=52809, crc=468D951E ts=7026 cs=7026 type=0
 
 $ john --wordlist=../wordlist.txt zip.hash
@@ -602,16 +606,16 @@ Using default input encoding: UTF-8
 Loaded 1 password hash (PKZIP [32/64])
 Will run 6 OpenMP threads
 Press 'q' or Ctrl-C to abort, almost any other key for status
-m4try0shk4#QW0627 (matryoshka.zip/matryoshka.zip)     
+m4try0shk4#QW0627 (matryoshka.zip/matryoshka.zip)
 1g 0:00:00:04 DONE (2022-10-04 07:20) 0.2421g/s 5406Kp/s 5406Kc/s 5406KC/s m4try0shk4#QV5008..m4try0shk4#QW7295
 Use the "--show" option to display all of the cracked passwords reliably
-Session completed. 
+Session completed.
 
-$ unzip matryoshka.zip   
+$ unzip matryoshka.zip
 Archive:  matryoshka.zip
-[matryoshka.zip] matryoshka.zip password: 
+[matryoshka.zip] matryoshka.zip password:
 replace matryoshka.zip? [y]es, [n]o, [A]ll, [N]one, [r]ename: y
- extracting: matryoshka.zip          
+ extracting: matryoshka.zip
 ```
 
 The zip file contained another zip file that was also password-protected. I did the same thing around 10 times. It always contained another password-protected zip.
@@ -621,7 +625,7 @@ At that point, I wrote a script to unzip the file in a loop.
 ```python
 import os
 import re
- 
+
 for i in range(100):
     print(f'\n\n\n{i}\n\n')
     command = "/usr/sbin/zip2john ./matryoshka.zip > ./zip.hash"
@@ -629,7 +633,7 @@ for i in range(100):
     output_stream = os.popen(command)
     res = output_stream.read()
     print(res)
-    
+
     command = "john --wordlist=../wordlist.txt zip.hash"
     output_stream = os.popen(command)
     res = output_stream.read()
@@ -663,13 +667,13 @@ Will run 6 OpenMP threads
 Press Ctrl-C to abort, or send SIGUSR1 to john process for status
 1g 0:00:00:01 DONE (2022-10-04 07:25) 0.6060g/s 15959Kp/s 15959Kc/s 15959KC/s m4try0shk4#YG0896..m4try0shk4#YH3183
 Use the "--show" option to display all of the cracked passwords reliably
-Session completed. 
+Session completed.
 Loaded 1 password hash (PKZIP [32/64])
-m4try0shk4#YG5710 (matryoshka.zip/matryoshka.zip)     
+m4try0shk4#YG5710 (matryoshka.zip/matryoshka.zip)
 
 m4try0shk4#YG5710
 Archive:  matryoshka.zip
- extracting: matryoshka.zip          
+ extracting: matryoshka.zip
 
 
 1
@@ -682,13 +686,13 @@ Will run 6 OpenMP threads
 Press Ctrl-C to abort, or send SIGUSR1 to john process for status
 1g 0:00:00:00 DONE (2022-10-04 07:25) 2.000g/s 15458Kp/s 15458Kc/s 15458KC/s m4try0shk4#oR6864..m4try0shk4#oS9151
 Use the "--show" option to display all of the cracked passwords reliably
-Session completed. 
+Session completed.
 Loaded 1 password hash (PKZIP [32/64])
-m4try0shk4#oS2737 (matryoshka.zip/matryoshka.zip)     
+m4try0shk4#oS2737 (matryoshka.zip/matryoshka.zip)
 
 m4try0shk4#oS2737
 Archive:  matryoshka.zip
- extracting: matryoshka.zip          
+ extracting: matryoshka.zip
 
 ....
 ```
@@ -696,7 +700,7 @@ Archive:  matryoshka.zip
 It looked like the flag was zipped around 200 times.
 
 ```bash
-$ cat flag.txt 
+$ cat flag.txt
                     ⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀
                     ⠀⠀⠀⠀⣠⣴⣿⣿⣿⣿⣿⣿⣿⣷⣤⠀⠀⠀⠀⠀
                     ⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀⠀⠀

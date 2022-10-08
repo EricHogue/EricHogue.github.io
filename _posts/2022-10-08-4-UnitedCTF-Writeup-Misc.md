@@ -9,8 +9,10 @@ tags:
 - UnitedCTF
 - CTF
 permalink: /2022/10/UnitedCTF/Misc
-img: 2022/10/UnitedCTF/Misc/Misc.png
+img: 2022/10/UnitedCTF/UnitedCTFLogo.png
 ---
+
+![Challenges](/assets/images/2022/10/UnitedCTF/Misc/Misc.png "Challenges")
 
 ## Rules
 
@@ -26,7 +28,7 @@ Author: [hfz](https://github.com/hfz1337)
 
 This was the first challenge of the CTF. You could not access any other challenges until you had done this one.
 
-I opened the rules page. 
+I opened the rules page.
 
 ```markdown
 Règles générales
@@ -46,7 +48,7 @@ Règles générales
 Les organisateurs du UnitedCTF se réservent le droit de disqualifier toute personne susceptible de violer les règles du CTF.
 ```
 
-Rule #12 said that the flag was under the tag. That I had to remove all the numbers before submitting it.
+Rule #12 said that the flag was under the tag and that I had to remove all the numbers before submitting it.
 
 ```html
 <li>Le flag que tu es en train de chercher se trouve sous cette balise, enlève tous les chiffres avant de le soumettre.</li>
@@ -75,7 +77,7 @@ I connected to the server. It said I had to solve 100 equations in under 10 seco
 $ nc nc.ctf.unitedctf.ca 5000
 Can you solve 100 simple equations in less than 10 seconds?
 Round   1: -386*x + 53 = 29003
-Answer: 
+Answer:
 Invalid input, good bye!
 
 $ nc nc.ctf.unitedctf.ca 5000
@@ -84,7 +86,7 @@ Round   1: -919*x + 1209 = 1145364
 Answer: Too slow!
 ```
 
-I wrote a small script to do the math for me. 
+I wrote a small script to do the math for me.
 
 ```python
 from pwn import *
@@ -96,7 +98,7 @@ from sympy.parsing.sympy_parser import (
 
 
 conn = remote('nc.ctf.unitedctf.ca', 5000)
-line = conn.recvline() 
+line = conn.recvline()
 print(line)
 
 for i in range(100):
@@ -110,14 +112,14 @@ for i in range(100):
     print(tosend)
     conn.sendline(tosend.encode('ascii'))
 
-line = conn.recvline() 
+line = conn.recvline()
 print(line.decode('utf-8'))
 ```
 
 I ran the script to get the flag.
 
 ```bash
-$ python backToSchool.py    
+$ python backToSchool.py
 [+] Opening connection to nc.ctf.unitedctf.ca on port 5000: Done
 b'Can you solve 100 simple equations in less than 10 seconds?\n'
 Round   1: 4*x + 273 = 3217
@@ -155,7 +157,7 @@ I found this piece at the Museum of Fine Esolangs, could you help me with that?
 
 Author: [hfz](https://github.com/hfz1337)
 
-The challenge name made it clear that this was Brainfuck code. I searched for an [online interpreter](https://www.dcode.fr/brainfuck-language). 
+The challenge name made it clear that this was Brainfuck code. I searched for an [online interpreter](https://www.dcode.fr/brainfuck-language) and ran the code there.
 
 ![Interpreter](/assets/images/2022/10/UnitedCTF/Misc/BrainfuckInterpreter.png "Interpreter")
 
@@ -173,7 +175,7 @@ FLAG-3​d​4​4​c​9​6​a​5​8​4​b​5​2​9​b​7​7​7�
 
 Author: [hfz](https://github.com/hfz1337)
 
-I tried simply copy-pasting the flag, but it was rejected. The description led me to think that I had to write a script to read the flag and submit it quickly.
+I tried simply copy-pasting the flag, but it was rejected. The description talk about the flag expiring. This led me to think that I had to write a script to read the flag and submit it quickly.
 
 But when I copied the flag in vim, I saw this:
 
@@ -218,7 +220,7 @@ for i in range(100):
 ```bash
 $ python rfc4648.py
 FLAG-1l0v3b4s364encod1ng_efd3c54
-``` 
+```
 
 Flag: FLAG-1l0v3b4s364encod1ng_efd3c54
 
@@ -234,11 +236,11 @@ Author: [hfz](https://github.com/hfz1337)
 
 The description made it sound like something was on the CTF website, but had been removed. I checked the [Wayback Machine](http://web.archive.org/web/20220000000000*/https://unitedctf.ca/) for previous versions of the site.
 
-There were two versions on September 23. 
+There were two versions on September 23.
 
 ![Wayback Machine](/assets/images/2022/10/UnitedCTF/Misc/WaybackMachine.png "Wayback Machine")
 
-I checked the [first one](http://web.archive.org/web/20220923153405/https://unitedctf.ca/) and it had the flag. 
+I checked the [first one](http://web.archive.org/web/20220923153405/https://unitedctf.ca/) and it had the flag.
 
 ![Flag](/assets/images/2022/10/UnitedCTF/Misc/EarlyAccessFlag.png "Flag")
 
@@ -254,10 +256,10 @@ This subdomain is sus.
 
 Author: [hfz](https://github.com/hfz1337)
 
-I checked the DNS for TXT records. 
+I checked the DNS for TXT records.
 
 ```bash
-$ dig ctf.unitedctf.ca txt                          
+$ dig ctf.unitedctf.ca txt
 
 ; <<>> DiG 9.18.1-1ubuntu1.2-Ubuntu <<>> ctf.unitedctf.ca txt
 ;; global options: +cmd
@@ -342,7 +344,7 @@ S   #   # #   #     #
 Too slow!
 ```
 
-I did not want to spend time writing an algorithm to solve a maze so I [found one](https://thecleverprogrammer.com/2021/01/26/maze-solver-with-python/) online. I modified it to read the maze from the server and send back the result. 
+I did not want to spend time writing an algorithm to solve a maze so I [found one](https://thecleverprogrammer.com/2021/01/26/maze-solver-with-python/) online. I modified it to read the maze from the server and send back the result.
 
 ```python
 from pwn import *
@@ -440,7 +442,7 @@ if __name__ == '__main__':
     maze = read_maze(conn)
 
     start, finish = get_starting_finishing_points(maze)
-    
+
     maze[start[0]][start[1]] = 'p'
 
     rat_path = [start]
@@ -462,7 +464,7 @@ if __name__ == '__main__':
 Once the code was modified, I ran it and got the flag.
 
 ```bash
-$ python itsCorn.py 
+$ python itsCorn.py
 [+] Opening connection to nc.ctf.unitedctf.ca on port 5001: Done
 #E###################
 #   #     #       # #
@@ -485,47 +487,47 @@ $ python itsCorn.py
 # ####### ##### ### #
 # #       #         #
 #############S#######
- #  p  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  # 
+ #  p  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #
 
- #  p  p  p  #                 #                       #     # 
+ #  p  p  p  #                 #                       #     #
 
- #  #  #  p  #  #  #  #  #     #  #  #     #  #  #  #  #     # 
+ #  #  #  p  #  #  #  #  #     #  #  #     #  #  #  #  #     #
 
- #        p  #     #                 #     #     #           # 
+ #        p  #     #                 #     #     #           #
 
- #  #  #  p  #     #     #     #     #     #     #  #  #     # 
+ #  #  #  p  #     #     #     #     #     #     #  #  #     #
 
- #        p  #     #     #     #                 #     #     # 
+ #        p  #     #     #     #                 #     #     #
 
- #  #  #  p  #     #  #  #  #  #  #  #     #     #     #     # 
+ #  #  #  p  #     #  #  #  #  #  #  #     #     #     #     #
 
- #        p  #     #                 #     #     #           # 
+ #        p  #     #                 #     #     #           #
 
- #     #  p  #     #  #  #     #  #  #     #  #  #     #  #  # 
+ #     #  p  #     #  #  #     #  #  #     #  #  #     #  #  #
 
- #     #  p  p  p  p  p              #                       # 
+ #     #  p  p  p  p  p              #                       #
 
- #     #  #  #  #  #  p  #     #  #  #  #  #     #     #  #  # 
+ #     #  #  #  #  #  p  #     #  #  #  #  #     #     #  #  #
 
- #     #              p  #     #           #     #           # 
+ #     #              p  #     #           #     #           #
 
- #  #  #  #  #  #  #  p  #  #  #     #  #  #  #  #     #  #  # 
+ #  #  #  #  #  #  #  p  #  #  #     #  #  #  #  #     #  #  #
 
- #                    p        #     #     #     #           # 
+ #                    p        #     #     #     #           #
 
- #  #  #     #  #  #  p  #  #  #     #     #     #     #     # 
+ #  #  #     #  #  #  p  #  #  #     #     #     #     #     #
 
- #           #        p  p  p  p  p  #           #     #     # 
+ #           #        p  p  p  p  p  #           #     #     #
 
- #     #  #  #  #  #  #  #  #  #  p  #  #  #     #  #  #     # 
+ #     #  #  #  #  #  #  #  #  #  p  #  #  #     #  #  #     #
 
- #     #                          p  p  p  p  p        #     # 
+ #     #                          p  p  p  p  p        #     #
 
- #     #  #  #  #  #  #  #     #  #  #  #  #  p  #  #  #     # 
+ #     #  #  #  #  #  #  #     #  #  #  #  #  p  #  #  #     #
 
- #     #                       #        p  p  p              # 
+ #     #                       #        p  p  p              #
 
- #  #  #  #  #  #  #  #  #  #  #  #  #  p  #  #  #  #  #  #  # 
+ #  #  #  #  #  #  #  #  #  #  #  #  #  p  #  #  #  #  #  #  #
 
 None
 .
@@ -557,7 +559,7 @@ nc nc.ctf.unitedctf.ca 5002
 Author: [Granny](https://github.com/CloeD)
 
 
-I connected to the server. This looked like the exact same challenge as the previous one. Just bigger.
+I connected to the server. This looked like the exact same challenge as the previous one, just bigger.
 
 ```bash
 $ nc nc.ctf.unitedctf.ca 5002
@@ -642,7 +644,7 @@ $ diff itsCorn.py rome.py
 I ran the modified script.
 
 ```bash
-$ python rome.py   
+$ python rome.py
 [+] Opening connection to nc.ctf.unitedctf.ca on port 5002: Done
 ###########################################################S#
 #   # #   #   # # # # # #     # # # # # #   # #   #   #     #
@@ -705,127 +707,127 @@ $ python rome.py
 # # # ### ### ### # # ##### ### # ### # # ##### # # ##### # #
 # # #                               # # #                 # #
 ###############################E#############################
- #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  p  # 
+ #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  p  #
 
- #           #     #           #           #     #     #     #     #     #                 #     #     #     #     #     #           #     #           #           #  p  p  p  p  p  # 
+ #           #     #           #           #     #     #     #     #     #                 #     #     #     #     #     #           #     #           #           #  p  p  p  p  p  #
 
- #     #  #  #     #     #  #  #  #  #     #     #     #     #     #     #     #  #  #  #  #     #     #     #     #     #  #  #     #     #  #  #     #     #  #  #  p  #  #  #     # 
+ #     #  #  #     #     #  #  #  #  #     #     #     #     #     #     #     #  #  #  #  #     #     #     #     #     #  #  #     #     #  #  #     #     #  #  #  p  #  #  #     #
 
- #           #     #                 #                       #           #     #                             #     #           #     #  p  p  p  p  p  p  p  p  p  p  p  #     #     # 
+ #           #     #                 #                       #           #     #                             #     #           #     #  p  p  p  p  p  p  p  p  p  p  p  #     #     #
 
- #     #  #  #     #     #  #  #  #  #     #  #  #     #  #  #  #  #     #     #  #  #  #  #     #  #  #  #  #     #     #  #  #     #  p  #  #  #     #  #  #  #  #  #  #     #  #  # 
+ #     #  #  #     #     #  #  #  #  #     #  #  #     #  #  #  #  #     #     #  #  #  #  #     #  #  #  #  #     #     #  #  #     #  p  #  #  #     #  #  #  #  #  #  #     #  #  #
 
- #                             #     #     #                 #     #           #                 #     #        p  p  p  p  p  p  p  p  p        #     #           #                 # 
+ #                             #     #     #                 #     #           #                 #     #        p  p  p  p  p  p  p  p  p        #     #           #                 #
 
- #  #  #  #  #  #  #     #  #  #     #  #  #  #  #     #  #  #     #     #  #  #  #  #     #     #     #  #  #  p  #  #  #  #  #  #  #     #  #  #  #  #     #  #  #     #  #  #  #  # 
+ #  #  #  #  #  #  #     #  #  #     #  #  #  #  #     #  #  #     #     #  #  #  #  #     #     #     #  #  #  p  #  #  #  #  #  #  #     #  #  #  #  #     #  #  #     #  #  #  #  #
 
- #     #                                   #     #     #     #           #                 #           #        p              #     #     #     #                       #           # 
+ #     #                                   #     #     #     #           #                 #           #        p              #     #     #     #                       #           #
 
- #     #  #  #  #  #     #     #     #     #     #     #     #  #  #     #  #  #     #  #  #     #  #  #  #  #  p  #  #  #  #  #     #  #  #     #  #  #     #     #  #  #     #  #  # 
+ #     #  #  #  #  #     #     #     #     #     #     #     #  #  #     #  #  #     #  #  #     #  #  #  #  #  p  #  #  #  #  #     #  #  #     #  #  #     #     #  #  #     #  #  #
 
- #     #     #           #     #     #     #                 #                 #           #     #              p        #     #     #                 #     #     #           #     # 
+ #     #     #           #     #     #     #                 #                 #           #     #              p        #     #     #                 #     #     #           #     #
 
- #     #     #  #  #     #  #  #  #  #     #  #  #     #  #  #     #     #  #  #     #  #  #     #  #  #  #  #  p  #  #  #     #     #  #  #     #  #  #     #  #  #     #  #  #     # 
+ #     #     #  #  #     #  #  #  #  #     #  #  #     #  #  #     #     #  #  #     #  #  #     #  #  #  #  #  p  #  #  #     #     #  #  #     #  #  #     #  #  #     #  #  #     #
 
- #     #     #           #           #     #                 #     #           #     #                       #  p  #           #           #     #                                   # 
+ #     #     #           #           #     #                 #     #           #     #                       #  p  #           #           #     #                                   #
 
- #     #     #  #  #  #  #  #  #     #     #  #  #     #  #  #  #  #     #  #  #  #  #  #  #     #     #  #  #  p  #  #  #     #     #  #  #     #  #  #     #  #  #  #  #  #  #  #  # 
+ #     #     #  #  #  #  #  #  #     #     #  #  #     #  #  #  #  #     #  #  #  #  #  #  #     #     #  #  #  p  #  #  #     #     #  #  #     #  #  #     #  #  #  #  #  #  #  #  #
 
- #           #     #     #                                   #                 #     #           #        p  p  p  #           #     #                                         #     # 
+ #           #     #     #                                   #                 #     #           #        p  p  p  #           #     #                                         #     #
 
- #  #  #     #     #     #  #  #  #  #  #  #     #     #  #  #  #  #     #  #  #     #  #  #  #  #  #  #  p  #  #  #  #  #     #     #  #  #  #  #     #  #  #  #  #  #  #  #  #     # 
+ #  #  #     #     #     #  #  #  #  #  #  #     #     #  #  #  #  #     #  #  #     #  #  #  #  #  #  #  p  #  #  #  #  #     #     #  #  #  #  #     #  #  #  #  #  #  #  #  #     #
 
- #     #                                         #     #     #                                   #        p  p  p  p  p  p  p        #                                   #           # 
+ #     #                                         #     #     #                                   #        p  p  p  p  p  p  p        #                                   #           #
 
- #     #     #  #  #  #  #  #  #  #  #     #  #  #  #  #     #  #  #  #  #     #     #  #  #     #  #  #  #  #     #     #  p  #  #  #  #  #     #     #  #  #     #     #  #  #     # 
+ #     #     #  #  #  #  #  #  #  #  #     #  #  #  #  #     #  #  #  #  #     #     #  #  #     #  #  #  #  #     #     #  p  #  #  #  #  #     #     #  #  #     #     #  #  #     #
 
- #     #     #                 #     #     #           #     #     #           #           #     #                 #     #  p                    #           #     #     #           # 
+ #     #     #                 #     #     #           #     #     #           #           #     #                 #     #  p                    #           #     #     #           #
 
- #     #  #  #  #  #  #  #     #     #     #  #  #     #     #     #     #  #  #  #  #  #  #  #  #  #  #     #  #  #  #  #  p  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #     #     # 
+ #     #  #  #  #  #  #  #     #     #     #  #  #     #     #     #     #  #  #  #  #  #  #  #  #  #  #     #  #  #  #  #  p  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #     #     #
 
- #           #           #                       #     #           #     #           #     #     #                 #        p  #           #           #           #           #     # 
+ #           #           #                       #     #           #     #           #     #     #                 #        p  #           #           #           #           #     #
 
- #  #  #     #  #  #     #     #  #  #     #  #  #     #  #  #     #     #     #  #  #     #     #  #  #  #  #  #  #  #  #  p  #     #     #  #  #     #     #  #  #  #  #     #  #  # 
+ #  #  #     #  #  #     #     #  #  #     #  #  #     #  #  #     #     #     #  #  #     #     #  #  #  #  #  #  #  #  #  p  #     #     #  #  #     #     #  #  #  #  #     #  #  #
 
- #                       #     #                 #           #                             #           #     #           #  p        #     #     #                       #           # 
+ #                       #     #                 #           #                             #           #     #           #  p        #     #     #                       #           #
 
- #  #  #     #  #  #  #  #  #  #     #  #  #  #  #  #  #     #     #  #  #  #  #     #  #  #  #  #     #     #     #  #  #  p  #  #  #  #  #     #  #  #     #  #  #  #  #     #  #  # 
+ #  #  #     #  #  #  #  #  #  #     #  #  #  #  #  #  #     #     #  #  #  #  #     #  #  #  #  #     #     #     #  #  #  p  #  #  #  #  #     #  #  #     #  #  #  #  #     #  #  #
 
- #                 #           #           #     #           #           #     #                 #           #           #  p        #     #                 #     #     #           # 
+ #                 #           #           #     #           #           #     #                 #           #           #  p        #     #                 #     #     #           #
 
- #  #  #     #  #  #  #  #     #     #  #  #     #  #  #     #     #  #  #     #  #  #  #  #  #  #     #  #  #     #  #  #  p  #  #  #     #     #  #  #  #  #     #     #     #  #  # 
+ #  #  #     #  #  #  #  #     #     #  #  #     #  #  #     #     #  #  #     #  #  #  #  #  #  #     #  #  #     #  #  #  p  #  #  #     #     #  #  #  #  #     #     #     #  #  #
 
- #     #           #                             #     #                             #           #           #     #        p  #                 #     #     #                       # 
+ #     #           #                             #     #                             #           #           #     #        p  #                 #     #     #                       #
 
- #     #     #  #  #  #  #  #  #  #  #     #  #  #     #     #     #     #     #  #  #     #  #  #     #     #     #  #  #  p  #  #  #  #  #     #     #     #     #  #  #  #  #  #  # 
+ #     #     #  #  #  #  #  #  #  #  #     #  #  #     #     #     #     #     #  #  #     #  #  #     #     #     #  #  #  p  #  #  #  #  #     #     #     #     #  #  #  #  #  #  #
 
- #     #                                               #     #     #     #     #                 #     #     #     #        p  #     #                 #           #           #     # 
+ #     #                                               #     #     #     #     #                 #     #     #     #        p  #     #                 #           #           #     #
 
- #     #  #  #     #  #  #  #  #     #  #  #     #  #  #  #  #  #  #     #  #  #  #  #     #  #  #  #  #     #     #  #  #  p  #     #     #     #  #  #  #  #     #     #  #  #     # 
+ #     #  #  #     #  #  #  #  #     #  #  #     #  #  #  #  #  #  #     #  #  #  #  #     #  #  #  #  #     #     #  #  #  p  #     #     #     #  #  #  #  #     #     #  #  #     #
 
- #                 #           #     #                 #     #                 #     #           #     #                    p        #     #     #     #                       #     # 
+ #                 #           #     #                 #     #                 #     #           #     #                    p        #     #     #     #                       #     #
 
- #  #  #  #  #  #  #     #     #  #  #  #  #     #  #  #     #  #  #     #  #  #     #     #  #  #     #  #  #  #  #  #  #  p  #  #  #  #  #     #     #  #  #  #  #     #     #     # 
+ #  #  #  #  #  #  #     #     #  #  #  #  #     #  #  #     #  #  #     #  #  #     #     #  #  #     #  #  #  #  #  #  #  p  #  #  #  #  #     #     #  #  #  #  #     #     #     #
 
- #     #     #     #     #                       #           #                                               #              p  #     #     #     #     #           #     #     #     # 
+ #     #     #     #     #                       #           #                                               #              p  #     #     #     #     #           #     #     #     #
 
- #     #     #     #  #  #  #  #  #  #  #  #     #  #  #     #  #  #     #  #  #  #  #  #  #  #  #     #  #  #  #  #  #  #  p  #     #     #     #     #     #  #  #     #  #  #     # 
+ #     #     #     #  #  #  #  #  #  #  #  #     #  #  #     #  #  #     #  #  #  #  #  #  #  #  #     #  #  #  #  #  #  #  p  #     #     #     #     #     #  #  #     #  #  #     #
 
- #                 #                 #           #           #     #                       #     #                 #        p  #     #     #     #     #     #     #                 # 
+ #                 #                 #           #           #     #                       #     #                 #        p  #     #     #     #     #     #     #                 #
 
- #  #  #  #  #     #  #  #  #  #     #  #  #     #     #  #  #     #     #  #  #  #  #  #  #     #  #  #     #  #  #     #  p  #     #     #     #     #     #     #     #  #  #  #  # 
+ #  #  #  #  #     #  #  #  #  #     #  #  #     #     #  #  #     #     #  #  #  #  #  #  #     #  #  #     #  #  #     #  p  #     #     #     #     #     #     #     #  #  #  #  #
 
- #     #     #                                               #                 #     #                 #     #           #  p  p  p        #     #                       #     #     # 
+ #     #     #                                               #                 #     #                 #     #           #  p  p  p        #     #                       #     #     #
 
- #     #     #  #  #     #  #  #     #     #     #     #  #  #     #  #  #  #  #     #  #  #     #  #  #  #  #     #     #  #  #  p  #  #  #     #  #  #     #  #  #  #  #     #     # 
+ #     #     #  #  #     #  #  #     #     #     #     #  #  #     #  #  #  #  #     #  #  #     #  #  #  #  #     #     #  #  #  p  #  #  #     #  #  #     #  #  #  #  #     #     #
 
- #           #           #     #     #     #     #     #     #           #     #     #                       #     #     #     #  p              #                 #     #           # 
+ #           #           #     #     #     #     #     #     #           #     #     #                       #     #     #     #  p              #                 #     #           #
 
- #     #  #  #  #  #  #  #     #  #  #  #  #     #  #  #     #     #  #  #     #     #     #  #  #  #  #  #  #  #  #  #  #     #  p  #  #  #  #  #  #  #     #  #  #     #     #  #  # 
+ #     #  #  #  #  #  #  #     #  #  #  #  #     #  #  #     #     #  #  #     #     #     #  #  #  #  #  #  #  #  #  #  #     #  p  #  #  #  #  #  #  #     #  #  #     #     #  #  #
 
- #           #     #                             #     #           #     #                 #     #     #     #           #  p  p  p                    #                             # 
+ #           #     #                             #     #           #     #                 #     #     #     #           #  p  p  p                    #                             #
 
- #     #  #  #     #  #  #  #  #  #  #     #     #     #     #  #  #     #  #  #  #  #     #     #     #     #  #  #     #  p  #     #     #     #  #  #     #  #  #  #  #     #     # 
+ #     #  #  #     #  #  #  #  #  #  #     #     #     #     #  #  #     #  #  #  #  #     #     #     #     #  #  #     #  p  #     #     #     #  #  #     #  #  #  #  #     #     #
 
- #                 #           #     #     #                       #     #           #                       #     #     #  p  #     #     #                 #                 #     # 
+ #                 #           #     #     #                       #     #           #                       #     #     #  p  #     #     #                 #                 #     #
 
- #  #  #     #  #  #  #  #     #     #  #  #     #  #  #     #  #  #     #     #  #  #     #     #  #  #  #  #     #     #  p  #  #  #  #  #  #  #  #  #     #  #  #  #  #  #  #     # 
+ #  #  #     #  #  #  #  #     #     #  #  #     #  #  #     #  #  #     #     #  #  #     #     #  #  #  #  #     #     #  p  #  #  #  #  #  #  #  #  #     #  #  #  #  #  #  #     #
 
- #                 #           #     #     #           #           #     #           #     #           #              p  p  p  #                       #           #     #           # 
+ #                 #           #     #     #           #           #     #           #     #           #              p  p  p  #                       #           #     #           #
 
- #  #  #  #  #     #     #  #  #     #     #  #  #  #  #  #  #     #     #     #  #  #     #  #  #  #  #  #  #  #  #  p  #  #  #     #     #     #     #  #  #  #  #     #  #  #     # 
+ #  #  #  #  #     #     #  #  #     #     #  #  #  #  #  #  #     #     #     #  #  #     #  #  #  #  #  #  #  #  #  p  #  #  #     #     #     #     #  #  #  #  #     #  #  #     #
 
- #                 #           #     #     #     #           #           #           #     #  p  p  p  p  p  p  p  p  p              #     #     #           #           #     #     # 
+ #                 #           #     #     #     #           #           #           #     #  p  p  p  p  p  p  p  p  p              #     #     #           #           #     #     #
 
- #     #     #     #     #     #     #     #     #     #     #     #  #  #  #  #     #     #  p  #     #  #  #  #  #     #  #  #     #  #  #  #  #  #  #  #  #  #  #     #     #  #  # 
+ #     #     #     #     #     #     #     #     #     #     #     #  #  #  #  #     #     #  p  #     #  #  #  #  #     #  #  #     #  #  #  #  #  #  #  #  #  #  #     #     #  #  #
 
- #     #     #           #     #                 #     #     #           #     #              p  #     #           #     #           #                 #                       #     # 
+ #     #     #           #     #                 #     #     #           #     #              p  #     #           #     #           #                 #                       #     #
 
- #  #  #  #  #  #  #  #  #     #     #     #  #  #     #  #  #     #  #  #     #  #  #  #  #  p  #  #  #     #     #     #  #  #  #  #     #  #  #  #  #  #  #     #     #  #  #     # 
+ #  #  #  #  #  #  #  #  #     #     #     #  #  #     #  #  #     #  #  #     #  #  #  #  #  p  #  #  #     #     #     #  #  #  #  #     #  #  #  #  #  #  #     #     #  #  #     #
 
- #           #                       #     #                       #     #        p  p  p  p  p              #     #                       #     #                 #     #           # 
+ #           #                       #     #                       #     #        p  p  p  p  p              #     #                       #     #                 #     #           #
 
- #  #  #     #  #  #  #  #  #  #     #  #  #  #  #  #  #     #  #  #     #     #  p  #     #  #  #     #     #  #  #  #  #     #  #  #  #  #     #     #  #  #     #  #  #     #  #  # 
+ #  #  #     #  #  #  #  #  #  #     #  #  #  #  #  #  #     #  #  #     #     #  p  #     #  #  #     #     #  #  #  #  #     #  #  #  #  #     #     #  #  #     #  #  #     #  #  #
 
- #                                   #     #     #           #           #     #  p  #     #           #           #     #                 #           #     #     #                 # 
+ #                                   #     #     #           #           #     #  p  #     #           #           #     #                 #           #     #     #                 #
 
- #  #  #  #  #  #  #  #  #     #  #  #     #     #  #  #     #  #  #     #  #  #  p  #  #  #     #     #  #  #  #  #     #  #  #  #  #  #  #  #  #     #     #  #  #     #  #  #     # 
+ #  #  #  #  #  #  #  #  #     #  #  #     #     #  #  #     #  #  #     #  #  #  p  #  #  #     #     #  #  #  #  #     #  #  #  #  #  #  #  #  #     #     #  #  #     #  #  #     #
 
- #     #     #           #     #           #                       #              p  #     #     #     #           #                       #                             #     #     # 
+ #     #     #           #     #           #                       #              p  #     #     #     #           #                       #                             #     #     #
 
- #     #     #  #  #     #     #  #  #     #  #  #  #  #     #  #  #  #  #  #  #  p  #     #     #     #     #  #  #     #  #  #  #  #  #  #     #  #  #  #  #     #     #     #  #  # 
+ #     #     #  #  #     #     #  #  #     #  #  #  #  #     #  #  #  #  #  #  #  p  #     #     #     #     #  #  #     #  #  #  #  #  #  #     #  #  #  #  #     #     #     #  #  #
 
- #                 #                             #     #           #              p        #     #     #     #           #           #     #                 #     #                 # 
+ #                 #                             #     #           #              p        #     #     #     #           #           #     #                 #     #                 #
 
- #  #  #     #  #  #  #  #  #  #     #     #     #     #  #  #     #     #  #  #  p  #     #  #  #  #  #     #  #  #     #     #  #  #     #     #  #  #  #  #     #     #  #  #  #  # 
+ #  #  #     #  #  #  #  #  #  #     #     #     #     #  #  #     #     #  #  #  p  #     #  #  #  #  #     #  #  #     #     #  #  #     #     #  #  #  #  #     #     #  #  #  #  #
 
- #                 #           #     #     #     #     #     #     #     #        p  #     #     #                                         #     #     #     #     #     #           # 
+ #                 #           #     #     #     #     #     #     #     #        p  #     #     #                                         #     #     #     #     #     #           #
 
- #     #     #     #  #  #     #  #  #     #  #  #     #     #     #  #  #  #  #  p  #  #  #     #     #  #  #     #     #     #  #  #  #  #     #     #     #  #  #  #  #     #     # 
+ #     #     #     #  #  #     #  #  #     #  #  #     #     #     #  #  #  #  #  p  #  #  #     #     #  #  #     #     #     #  #  #  #  #     #     #     #  #  #  #  #     #     #
 
- #     #     #                                                                    p  p  p  p  p              #     #     #                                                     #     # 
+ #     #     #                                                                    p  p  p  p  p              #     #     #                                                     #     #
 
- #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  p  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  # 
+ #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  p  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #
 
 None
 .
@@ -836,4 +838,3 @@ FLAG-RXN0LWNlIHF1ZSB0b24gY2hlbWluIG3DqG5lIMOgIFJvbWUgPw==
 Flag: FLAG-RXN0LWNlIHF1ZSB0b24gY2hlbWluIG3DqG5lIMOgIFJvbWUgPw==
 
 The flag is base64 for `Est-ce que ton chemin mène à Rome ?`
- 

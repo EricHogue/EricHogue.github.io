@@ -9,8 +9,10 @@ tags:
 - UnitedCTF
 - CTF
 permalink: /2022/10/UnitedCTF/Web
-img: 2022/10/UnitedCTF/Web/Web.png
+img: 2022/10/UnitedCTF/UnitedCTFLogo.png
 ---
+
+![Challenges](/assets/images/2022/10/UnitedCTF/Web/Web.png "Challenges")
 
 ## Information à la source
 
@@ -25,10 +27,11 @@ http://coca-cola.ctf.unitedctf.ca/
 
 Author: [Deimos](https://github.com/amDeimos666)
 
+The description of the challenge talks about the page being in construction. And that it might still have some secrets.
 
 I launched a browser and opened the challenge page.
 
-![Site](/assets/images/2022/10/UnitedCTF/Web/Site.png "Site")
+![Site](/assets/images/2022/10/UnitedCTF/Web/Site.png "Site"){:width="75%"}
 
 The site was very simple. I looked at the source code and the flag was in a comment.
 
@@ -74,7 +77,7 @@ http://coca-cola.ctf.unitedctf.ca/
 
 Author: [Deimos](https://github.com/amDeimos666)
 
-This one talks about recipes. It says we only have access to the recipes that are being developed. But we need to find the original recipe. 
+This one talks about recipes. It says we only have access to the recipes that are being developed. But we need to find the original recipe.
 
 ![Recettes](/assets/images/2022/10/UnitedCTF/Web/Recettes.png "Recettes")
 
@@ -152,15 +155,15 @@ Author: [hfz](https://github.com/hfz1337)
 
 ![Site](/assets/images/2022/10/UnitedCTF/Web/SiteWidom1.png "Site")
 
-The site allows searching for quotes. 
+The site allows searching for quotes.
 
 I tried basic SQL Injections in the search field. Sending `' or 1 = 1 -- -` returned all the quotes.
 
-Next, I tried to use order by to find out how many columns the query returned `' or 1 = 1 Order By 1 -- -`. It returned 3 columns.
+Next, I tried to use `order by` to find out how many columns the query returned `' or 1 = 1 Order By 1 -- -`. It returned 2 columns.
 
 I kept experimenting and found out it was using SQLite.
 
-I extracted the list of tables in the database. 
+I extracted the list of tables in the database.
 
 ```sql
 aaa' Union Select name, sql from sqlite_master -- -

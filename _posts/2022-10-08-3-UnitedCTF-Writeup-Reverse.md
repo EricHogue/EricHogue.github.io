@@ -9,8 +9,10 @@ tags:
 - UnitedCTF
 - CTF
 permalink: /2022/10/UnitedCTF/Reverse
-img: 2022/10/UnitedCTF/Reverse/Reverse.png
+img: 2022/10/UnitedCTF/UnitedCTFLogo.png
 ---
+
+![Challenges](/assets/images/2022/10/UnitedCTF/Reverse/Reverse.png "Challenges")
 
 ## rodata
 
@@ -25,10 +27,10 @@ Author: [hfz](https://github.com/hfz1337)
 I downloaded the executable from the challenge and ran `strings` on it.
 
 ```bash
-$ file rodata                                   
+$ file rodata
 rodata: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=7155669b4d056819c64fd2de4007b4d4fd83f81c, for GNU/Linux 3.2.0, stripped
 
-$ strings rodata                                   
+$ strings rodata
 ...
 __gmon_start__
 _ITM_registerTMCloneTable
@@ -36,7 +38,7 @@ u+UH
 []A\A]A^A_
 FLAG-str1ngsftw!
 ~~ Flag checker v1.0 ~~
-Give me your input: 
+Give me your input:
 Correct!
 Wrong :(
 ;*3$"
@@ -60,7 +62,7 @@ Author: [hfz](https://github.com/hfz1337)
 I took the challenge's file and ran it with `ltrace` to view the library calls it made.
 
 ```bash
-$ ltrace ./ltrace 
+$ ltrace ./ltrace
 write(1, "~~ Flag checker v1.1 ~~\n", 24~~ Flag checker v1.1 ~~
 )                                                                                                        = 24
 write(1, "Give me your input: ", 20Give me your input: )                                                                                                             = 20
@@ -73,7 +75,7 @@ write(1, "Wrong :(", 8Wrong :()                                                 
 +++ exited (status 0) +++
 ```
 
-It used `stccmp`to compare the flag.
+It used `strcmp`to compare the flag to "a".
 
 Flag: FLAG-l1br4ryc4lltr4c1ngftw!
 
@@ -90,7 +92,7 @@ Author: [hfz](https://github.com/hfz1337)
 Another binary file. This time I used `strace` to check system calls.
 
 ```bash
-$ strace ./strace                                     
+$ strace ./strace
 execve("./strace", ["./strace"], 0x7ffdf455ef80 /* 63 vars */) = 0
 brk(NULL)                               = 0x560fbaf6a000
 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f0cd712c000
@@ -132,6 +134,6 @@ exit_group(0)                           = ?
 +++ exited with 0 +++
 ```
 
-The program used `write` to send the flag to `/dev/null`. 
+The program used `write` to send the flag to `/dev/null`.
 
 Flag: FLAG-d1ds0m3on3s4yptr4ce??

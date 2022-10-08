@@ -9,8 +9,10 @@ tags:
 - UnitedCTF
 - CTF
 permalink: /2022/10/UnitedCTF/Cryptography
-img: 2022/10/UnitedCTF/Cryptography/Cryptography.png
+img: 2022/10/UnitedCTF/UnitedCTFLogo.png
 ---
+
+![Challenges](/assets/images/2022/10/UnitedCTF/Cryptography/Cryptography.png "Challenges")
 
 ## Xorbsession 1
 
@@ -24,7 +26,7 @@ I will show you the base64 of the xored flag, here you go: jLL7+efO3NijndPfppLD5
 
 Author: [ntnco](https://github.com/ntnco)
 
-I used [CyberChef](https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true,false)XOR(%7B'option':'Hex','string':'cafebabe'%7D,'Standard',false)&input=akxMNytlZk8zTmlqbmRQZnBwTEQ1cVdNMk0ydnk0L2JyZz09) to base64 decode the flag. And then XOR it with the provided key. 
+I used [CyberChef](https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true,false)XOR(%7B'option':'Hex','string':'cafebabe'%7D,'Standard',false)&input=akxMNytlZk8zTmlqbmRQZnBwTEQ1cVdNMk0ydnk0L2JyZz09) to base64 decode the flag. And then XOR it with the provided key.
 
 Flag: FLAG-0fficiallyXorbse55ed
 
@@ -84,9 +86,9 @@ zyLDjqVFyZiZUfCtk3Lx7NchroudeuO3sH6pqo5BwK7TItyutTr3s75vsZmXb9DwyF7I7p9j+7KYJdbs
 
 Author: [ntnco](https://github.com/ntnco)
 
-The description explains that the flag was XOR and base64'd 10 times. But is selected a random key at each step for the XOR.
+The description explains that the flag was XOR and base64'd 10 times. But it selected a random key at each step for the XOR. So I could not simply reverse it.
 
-The code to `encrypt` it was provided, with all the keys to choose from.
+The code to "encrypt" it was provided, with all the keys to choose from.
 
 ```python
 from base64 import b64encode
@@ -107,7 +109,7 @@ keys = [0xa93f9c6f,
      0x031734d4,
      ...
      0x2102a284
-] 
+]
 
 
 if __name__ == '__main__':
@@ -116,11 +118,11 @@ if __name__ == '__main__':
          # print(hex(key)) # print keys
          flag = xor(flag, bytearray(key.to_bytes(4, 'big')))
          flag = bytearray(b64encode(flag))
-     
+
      print(flag.decode('ascii')) # prints the puzzle input
 ```
 
-I wrote a script to brute force the flag. It tried the oposite operations, until it got the flag back.
+I wrote a script to brute force the flag. It tried the oposite operations with all the keys, until it got the flag back.
 
 ```python
 from base64 import b64encode, b64decode
@@ -142,7 +144,7 @@ keys = [0xa93f9c6f,
      0x031734d4,
      ...
      0x2102a284
-] 
+]
 
 def decryt(flag, depth):
     flagLength = len(flag)
@@ -154,7 +156,7 @@ def decryt(flag, depth):
     except:
         return
 
-    for key in keys: 
+    for key in keys:
         attempt = xor(flag, bytearray(key.to_bytes(4, 'big')))
         if depth == 9 and len(attempt) > 3:
             try:
@@ -172,7 +174,7 @@ if __name__ == '__main__':
     decryt(flag, 0)
 ```
 
-I ran the script, and after a few minutes got the flag. 
+I ran the script, and after a few minutes got the flag.
 
 ```bash
 $ python decryptxorbsession3.py
@@ -200,7 +202,7 @@ n = 0xac586f447e16c51821999902cf993f47
 ciphertext = 0x9b7a8eb8ad559e3f52ff3ceeaf0025a4
 ```
 
-I looked around and found [RsaCtfTool](https://github.com/RsaCtfTool/RsaCtfTool) that allowed to break simple RSA. 
+I looked around and found [RsaCtfTool](https://github.com/RsaCtfTool/RsaCtfTool) that allowed to break simple RSA.
 
 ```
 $ python RsaCtfTool.py -n 0xac586f447e16c51821999902cf993f47 -e 0x10001 --uncipher 0x9b7a8eb8ad559e3f52ff3ceeaf0025a4
@@ -277,7 +279,7 @@ RXQgdHUgb2J0aWVucyB1bmUgbW91c3NlIGF1IGNob2NvbGF0IA==
 ```
 Is base64 of "Et tu obtiens une mousse au chocolat"
 
-I applied the same transformations in reverse order to the 'encrypted' flag in [CyberChef](https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true,false)URL_Decode()From_Hex('Auto')From_Charcode('Colon',10)From_Hex('Auto')&input=TXpVbE1qQXpNaVV5TUROaEpUSXdNelVsTWpBek5DVXlNRE5oSlRJd016TWxNakF6TWlVeU1ETmhKVEl3TXpVbE1qQXpNaVV5TUROaEpUSXdNemtsTWpBek9TVXlNRE5oSlRJd016TWxNakF6TWlVeU1ETmhKVEl3TXpVbE1qQXpNaVV5TUROaEpUSXdNelFsTWpBek9TVXlNRE5oSlRJd016TWxNakF6TWlVeU1ETmhKVEl3TXpVbE1qQXpNaVV5TUROaEpUSXdNelVsTWpBek5TVXlNRE5oSlRJd016TWxNakF6TWlVeU1ETmhKVEl3TXpVbE1qQXpNQ1V5TUROaEpUSXdNekVsTWpBek1DVXlNRE13SlRJd00yRWxNakF6TXlVeU1ETXlKVEl3TTJFbE1qQXpOU1V5TURNekpUSXdNMkVsTWpBek5TVXlNRE14SlRJd00yRWxNakF6TXlVeU1ETXlKVEl3TTJFbE1qQXpOU1V5TURNekpUSXdNMkVsTWpBek5DVXlNRE00SlRJd00yRWxNakF6TXlVeU1ETXlKVEl3TTJFbE1qQXpOU1V5TURNeUpUSXdNMkVsTWpBek1TVXlNRE13SlRJd016SWxNakF6WVNVeU1ETXpKVEl3TXpJbE1qQXpZU1V5TURNMUpUSXdNeklsTWpBellTVXlNRE14SlRJd016QWxNakF6TVNVeU1ETmhKVEl3TXpNbE1qQXpNaVV5TUROaEpUSXdNelVsTWpBek1pVXlNRE5oSlRJd016VWxNakF6TlNVeU1ETmhKVEl3TXpNbE1qQXpNaVV5TUROaEpUSXdNelVsTWpBek1DVXlNRE5oSlRJd016RWxNakF6TUNVeU1ETXdKVEl3TTJFbE1qQXpNeVV5TURNeUpUSXdNMkVsTWpBek5TVXlNRE15SlRJd00yRWxNakF6TlNVeU1ETXpKVEl3TTJFbE1qQXpNeVV5TURNeUpUSXdNMkVsTWpBek5TVXlNRE15SlRJd00yRWxNakF6TVNVeU1ETXdKVEl3TXpFbE1qQXpZU1V5TURNekpUSXdNeklsTWpBellTVXlNRE0xSlRJd016SWxNakF6WVNVeU1ETTFKVEl3TXpFbE1qQXpZU1V5TURNekpUSXdNeklsTWpBellTVXlNRE0xSlRJd016SWxNakF6WVNVeU1ETXhKVEl3TXpBbE1qQXpNaVV5TUROaEpUSXdNek1sTWpBek1pVXlNRE5oSlRJd016VWxNakF6TWlVeU1ETmhKVEl3TXpVbE1qQXpNaVV5TUROaEpUSXdNek1sTWpBek1pVXlNRE5oSlRJd016VWxNakF6TWlVeU1ETmhKVEl3TXpVbE1qQXpNdz09).
+I applied the same transformations in reverse order to the encrypted flag in [CyberChef](https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true,false)URL_Decode()From_Hex('Auto')From_Charcode('Colon',10)From_Hex('Auto')&input=TXpVbE1qQXpNaVV5TUROaEpUSXdNelVsTWpBek5DVXlNRE5oSlRJd016TWxNakF6TWlVeU1ETmhKVEl3TXpVbE1qQXpNaVV5TUROaEpUSXdNemtsTWpBek9TVXlNRE5oSlRJd016TWxNakF6TWlVeU1ETmhKVEl3TXpVbE1qQXpNaVV5TUROaEpUSXdNelFsTWpBek9TVXlNRE5oSlRJd016TWxNakF6TWlVeU1ETmhKVEl3TXpVbE1qQXpNaVV5TUROaEpUSXdNelVsTWpBek5TVXlNRE5oSlRJd016TWxNakF6TWlVeU1ETmhKVEl3TXpVbE1qQXpNQ1V5TUROaEpUSXdNekVsTWpBek1DVXlNRE13SlRJd00yRWxNakF6TXlVeU1ETXlKVEl3TTJFbE1qQXpOU1V5TURNekpUSXdNMkVsTWpBek5TVXlNRE14SlRJd00yRWxNakF6TXlVeU1ETXlKVEl3TTJFbE1qQXpOU1V5TURNekpUSXdNMkVsTWpBek5DVXlNRE00SlRJd00yRWxNakF6TXlVeU1ETXlKVEl3TTJFbE1qQXpOU1V5TURNeUpUSXdNMkVsTWpBek1TVXlNRE13SlRJd016SWxNakF6WVNVeU1ETXpKVEl3TXpJbE1qQXpZU1V5TURNMUpUSXdNeklsTWpBellTVXlNRE14SlRJd016QWxNakF6TVNVeU1ETmhKVEl3TXpNbE1qQXpNaVV5TUROaEpUSXdNelVsTWpBek1pVXlNRE5oSlRJd016VWxNakF6TlNVeU1ETmhKVEl3TXpNbE1qQXpNaVV5TUROaEpUSXdNelVsTWpBek1DVXlNRE5oSlRJd016RWxNakF6TUNVeU1ETXdKVEl3TTJFbE1qQXpNeVV5TURNeUpUSXdNMkVsTWpBek5TVXlNRE15SlRJd00yRWxNakF6TlNVeU1ETXpKVEl3TTJFbE1qQXpNeVV5TURNeUpUSXdNMkVsTWpBek5TVXlNRE15SlRJd00yRWxNakF6TVNVeU1ETXdKVEl3TXpFbE1qQXpZU1V5TURNekpUSXdNeklsTWpBellTVXlNRE0xSlRJd016SWxNakF6WVNVeU1ETTFKVEl3TXpFbE1qQXpZU1V5TURNekpUSXdNeklsTWpBellTVXlNRE0xSlRJd016SWxNakF6WVNVeU1ETXhKVEl3TXpBbE1qQXpNaVV5TUROaEpUSXdNek1sTWpBek1pVXlNRE5oSlRJd016VWxNakF6TWlVeU1ETmhKVEl3TXpVbE1qQXpNaVV5TUROaEpUSXdNek1sTWpBek1pVXlNRE5oSlRJd016VWxNakF6TWlVeU1ETmhKVEl3TXpVbE1qQXpNdz09).
 
 Flag: FLAG-SPONG-ENCODE
 
@@ -288,17 +290,17 @@ Flag: FLAG-SPONG-ENCODE
 ```
 Feu la reine Elizabeth a laissé derrière elle une armée de corgis tristes, qui semblent déboussolés depuis la disparition de leur maîtresse. Après leur examen avec un psychologue canin, le médecin a distingué des codes gravés au revers de la médaille de chaque chien. Sauras-tu percer le mystère des corgis de la reine?
 
-Susan: 01011010 01000110 
-Pickles: 01010101 01000001 
-Tinker: 00101101 01000001 
-Piper: 01001001 01011000 
-Harris: 01001101 01010101 
-Muick: 01010000 01011001 
-Sandy: 01001110 01000010 
-Mint: 01011001 01001011 
-Disco: 00110001 01000110 
-Fay: 01010101 01001101 
-Phoenix: 01001110 01000011 
+Susan: 01011010 01000110
+Pickles: 01010101 01000001
+Tinker: 00101101 01000001
+Piper: 01001001 01011000
+Harris: 01001101 01010101
+Muick: 01010000 01011001
+Sandy: 01001110 01000010
+Mint: 01011001 01001011
+Disco: 00110001 01000110
+Fay: 01010101 01001101
+Phoenix: 01001110 01000011
 Brush: 01000111 01011001
 ```
 
@@ -318,7 +320,7 @@ Why does everyone use 0x10001 for the public exponent? I want to make my own cho
 
 Author: [hfz](https://github.com/hfz1337)
 
-The challenge provided one file. 
+The challenge provided one file.
 
 ```
 N = 0x49ecbb13cc23b162b198731cc977c9cbe75a10a039f5f49db10bff80da81b7ea33627123e044521ce67939adf6804e6f1c693ce1aefe5977b31fd2b22eb3f8814cb7c1f05fbdaea5ac6c077958466cf77b1f2ae74cdbcad84ad392237217d64af3b008e13746df09fe632227d8cbfeac65e7b7d99f7e6327c43fb03cf0f28d81a612d7cd7acd6c3cec46ed2d2ad8dace48feed5ddfdfdad4061bc0ee513b4e304c923d4f4e62497fcc21b20c178cce17efa20448caa88728df3d4510d624b1918f60bc787e7fd863d4f6d43c9ffb0722d8fa25afb4dd8fdddfeaa06c7336e51d7fa5dd8c5fdd9911141ddef8fd5a47292ddd814c46b29185a4227d10fd259a157010d51eb146d9cd638e792fa4a745c0b570f812beabed5aa227dd7b558d599fefc2677da54582ac1bc6a1b5bc843a6b7a959ef5c3d9cbfddbea63f01c3e3e1d5535beca2c573892a5ad231b8847bc7f7b2774211e24e0461fb862c65834b04bc29ef51954b4c7ebd1b828a83d888073dccfe2addf6467d0be847a8f1609dcec9745d2fe19aaa58876e0fae21362dc73b5f560709fc8c3d642ba81a2d69afb96e974064602f4a3297034550dc313d7b68e9a0291ae687baca0916b6e6194a657bd9eaa18947883e41dff0c8447ecf44de09997406b024119459a9fc2cbf13e3a0a3dfffe395c062920825f23127069cece2153eb731102be4b320f5cab4e401d
@@ -334,7 +336,7 @@ While I worked on 'Too Close', I saw this code in the encryption.
 ciphertext = pow(FLAG, e, n)
 ```
 
-I realized that if the encryption was the same, having E = 1 meant that the encrypted value was simply `flag modulo N`. 
+I realized that if the encryption was the same, having E = 1 meant that the encrypted value was simply `flag modulo N`.
 
 To decrypt it, I simply had to add N until I got the flag back.
 
