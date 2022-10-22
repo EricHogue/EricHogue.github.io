@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Faculty
-date: 2022-09-13
+date: 2022-10-22
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Medium
 - Machine
-permalink: /2022/09/HTB/Faculty
-img: 2022/09/Faculty/Faculty.png
+permalink: /2022/10/HTB/Faculty
+img: 2022/10/Faculty/Faculty.png
 ---
 
 Really fun box where I had to exploit two injection vulnerabilities. Then exploit a vulnerable git client to get a user. And finally, use gdb to get root.
@@ -69,7 +69,7 @@ There were two open ports, 22 (SSH) and 80 (HTTP).
 
 I opened the site in a browser and I got redirected to http://faculty.htb. I added `faculty.htb` to my hosts file and reloaded the site. I got redirected again, this time to a login page.
 
-![Login Page](/assets/images/2022/09/Faculty/Login.png "Login Page")
+![Login Page](/assets/images/2022/10/Faculty/Login.png "Login Page")
 
 
 I launched feroxbuster to check for hidden files.
@@ -358,21 +358,21 @@ faculty_id=3 Union Select GROUP_CONCAT(CONCAT(id, '-',id_no)),'b',3,4,5,6,7,8,9,
 [{"id":"1-FACULTY_ID_1,2-FACULTY_ID_2,3-FACULTY_ID_3","faculty_id":"b","title":"3","schedule_type":"4","description":"5","location":"6","is_repeating":"7","repeating_data":"8","schedule_date":"9","time_from":"10","time_to":"11","date_created":"12"}]
 ```
 
-I used the first facluty id to connect to the site.
+I used the first faculty id to connect to the site.
 
 ## PDF Injection
 
 Once connected, I was on a page with a calendar.
 
-![Calendar](/assets/images/2022/09/Faculty/Calendar.png "Calendar")
+![Calendar](/assets/images/2022/10/Faculty/Calendar.png "Calendar")
 
 There was nothing else on that site. I tried going to '/admin' and I was connected there also.
 
-![Admin Section](/assets/images/2022/09/Faculty/AdminSection.png "Admin Section")
+![Admin Section](/assets/images/2022/10/Faculty/AdminSection.png "Admin Section")
 
 I looked around the admin section. The 'Course List' page had a button to download a PDF of the courses.
 
-![Course List](/assets/images/2022/09/Faculty/CourseList.png "Course List")
+![Course List](/assets/images/2022/10/Faculty/CourseList.png "Course List")
 
 When I clicked on the button, I got a PDF containing the list of courses.
 
@@ -446,7 +446,7 @@ It took me a while to realize that the file content was supposed to be in an ann
 
 I downloaded the file and opened it with a fat client.
 
-![Annotation](/assets/images/2022/09/Faculty/Annotation.png "Annotation")
+![Annotation](/assets/images/2022/10/Faculty/Annotation.png "Annotation")
 
 The annotation was there. I clicked on it and got the content of the file I was trying to extract.
 
@@ -549,7 +549,7 @@ User gbyolo may run the following commands on faculty:
 
 I was able to run [meta-git](https://www.npmjs.com/package/meta-git) as developer. I had never heard about meta-git before. But it was simply a NPM abstraction around git. I tried to use it, but I was not in a meta repository. And I did not know where I could find one. I looked on the server for `.git` folders and did not find any.
 
-Next, I looked for vulnerabilities in meta git and found on in [HackerOne](https://hackerone.com/reports/728040). Cloning a repository allowed to get remote code execution by using \|\| (or) in the repository name.
+Next, I looked for vulnerabilities in meta git and found on in [HackerOne](https://hackerone.com/reports/728040). Cloning a repository allowed to get remote code execution by using `||` (or) in the repository name.
 
 I tried the example from HackerOne, but I had to make sure the current folder was writeable by developer.
 
