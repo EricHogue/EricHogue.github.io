@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Trick
-date: 2022-06-19
+date: 2022-10-31
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2022/06/HTB/Trick
-img: 2022/06/Trick/Trick.png
+permalink: /2022/10/HTB/Trick
+img: 2022/10/Trick/Trick.png
 ---
 
 In this machine, I had to perform some SQL Injection, exploit two Local File Inclusion(LFI) vulnerabilities, and finally escalate privileges by using Fail2Ban misconfiguration.
@@ -84,7 +84,7 @@ There were four open ports:
 
 I looked at the website on port 80.
 
-![Coming Soon](/assets/images/2022/06/Trick/ComingSoon.png "Coming Soon")
+![Coming Soon](/assets/images/2022/10/Trick/ComingSoon.png "Coming Soon")
 
 The site did not have much on it. I ran feroxbuster and it did not find anything.
 
@@ -109,11 +109,11 @@ trick.htb.              604800  IN      SOA     trick.htb. root.trick.htb. 5 604
 
 I added `trick.htb`, `root.trick.htb`, and `preprod-payroll.trick.htb` to my hosts file. Then I looked at the sites on those domain names. Only the payroll domain had a new site.
 
-![Payroll Login](/assets/images/2022/06/Trick/PayrollLogin.png "Payroll Login")
+![Payroll Login](/assets/images/2022/10/Trick/PayrollLogin.png "Payroll Login")
 
 I tried random credentials, the site did not say if a username existed or not. I then tried simple SQL Injection by using the username `' or 1 = 1 -- -` and it worked. I was connected as the administrator.
 
-![Welcome Back Admin](/assets/images/2022/06/Trick/WelcomBackAdmin.png "Welcome Back Admin")
+![Welcome Back Admin](/assets/images/2022/10/Trick/WelcomBackAdmin.png "Welcome Back Admin")
 
 Once connected, I was sent to `http://preprod-payroll.trick.htb/index.php?page=home`. The `page` parameter looked like it could be vulnerable to LFI. I had run feroxbuster on the site, so I knew there was a file called `home.php`. The vulnerable code must have been adding the `.php` after the file name.
 
