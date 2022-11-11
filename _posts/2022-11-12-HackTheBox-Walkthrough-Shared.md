@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Shared
-date: 2022-11-06
+date: 2022-11-12
 type: post
 tags:
 - Walkthrough
