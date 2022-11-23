@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - RedPanda
-date: 2022-08-27
+date: 2022-11-26
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2022/08/HTB/RedPanda
-img: 2022/08/RedPanda/RedPanda.png
+permalink: /2022/11/HTB/RedPanda
+img: 2022/11/RedPanda/RedPanda.png
 ---
 
 In this machine, I had to exploit [Server Site Template Injection (SSTI)](https://portswigger.net/web-security/server-side-template-injection) to obtain a shell on the machine. Then I exploited a few bugs in a Java application to obtain privilege escalation.
@@ -125,15 +125,15 @@ It did not find much.
 
 I opened a browser to look at the website on port 8080.
 
-![Red Panda Search](/assets/images/2022/08/RedPanda/RedPandaSearch.png "Red Panda Search")
+![Red Panda Search](/assets/images/2022/11/RedPanda/RedPandaSearch.png "Red Panda Search")
 
 I tried the search functionality.
 
-![Search Results](/assets/images/2022/08/RedPanda/SearchResults.png "Search Results")
+![Search Results](/assets/images/2022/11/RedPanda/SearchResults.png "Search Results")
 
 There was also an author's page that showed how many times a panda was viewed.
 
-![Author's Page](/assets/images/2022/08/RedPanda/AuthorPage.png "Author's Page")
+![Author's Page](/assets/images/2022/11/RedPanda/AuthorPage.png "Author's Page")
 
 The `Export table` link gave the same stats in XML.
 
