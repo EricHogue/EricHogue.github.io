@@ -15,7 +15,7 @@ img: 2022/11/RedPanda/RedPanda.png
 
 In this machine, I had to exploit [Server Site Template Injection (SSTI)](https://portswigger.net/web-security/server-side-template-injection) to obtain a shell on the machine. Then I exploited a few bugs in a Java application to obtain privilege escalation.
 
-* Room: Late
+* Room: RedPanda
 * Difficulty: Easy
 * URL: [https://app.hackthebox.com/machines/RedPanda](https://app.hackthebox.com/machines/RedPanda)
 * Author: [Woodenk](https://app.hackthebox.com/users/25507)
