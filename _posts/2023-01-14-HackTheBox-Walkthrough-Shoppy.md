@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Shoppy
-date: 2022-10-09
+date: 2023-01-14
 type: post
 tags:
 - Walkthrough
