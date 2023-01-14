@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2022/10/HTB/Shoppy
-img: 2022/10/Shoppy/Shoppy.png
+permalink: /2023/01/HTB/Shoppy
+img: 2023/01/Shoppy/Shoppy.png
 ---
 
 I had a hard time getting my initial access to this box. It required playing with Mongo Injection. And multiple enumerations of subdomains. Once on the box, getting root was quick. A reversing of a simple application and running Docker.
@@ -88,7 +88,7 @@ Connection: close
 
 I opened it in a browser and got some kind of garbage collector logs.
 
-![Logs](/assets/images/2022/10/Shoppy/LogsSite.png "Logs")
+![Logs](/assets/images/2023/01/Shoppy/LogsSite.png "Logs")
 
 I also scanned for UDP ports. None were open.
 
@@ -108,7 +108,7 @@ Nmap done: 1 IP address (1 host up) scanned in 997.63 seconds
 
 I opened a browser to port 80 and I was redirected to `http://shoppy.htb`. I added that to my hosts files and reloaded the site.
 
-![Main Site](/assets/images/2022/10/Shoppy/MainSite.png "Main site")
+![Main Site](/assets/images/2023/01/Shoppy/MainSite.png "Main site")
 
 It was a simple page with a countdown for the launch of the site.
 
@@ -180,7 +180,7 @@ by Ben "epi" Risher 🤓                 ver: 2.7.1
 
 There was a login page on the site.
 
-![Login](/assets/images/2022/10/Shoppy/ShoppyLogin.png "Login")
+![Login](/assets/images/2023/01/Shoppy/ShoppyLogin.png "Login")
 
 I started experimenting with the login page. The form post was sending URL encoded data, but I found out I could send JSON.
 
@@ -257,11 +257,11 @@ Set-Cookie: connect.sid=s%3AmNKTxh7ftyqhqdj5A07TAa2X-KIG_5wR.yESFg91bOC3floCU0ms
 
 I tried the same thing in my browser and I got the admin page.
 
-![Admin](/assets/images/2022/10/Shoppy/Admin.png "Admin")
+![Admin](/assets/images/2023/01/Shoppy/Admin.png "Admin")
 
 The site had a static product list. But it also allowed searching for users. I use the same injection than the login page. This gave me a button to download the results.
 
-![Search Results](/assets/images/2022/10/Shoppy/SearchResult.png "Search Results")
+![Search Results](/assets/images/2023/01/Shoppy/SearchResult.png "Search Results")
 
 I downloaded them, it gave me a JSON of the users.
 
@@ -369,11 +369,11 @@ ID           Response   Lines    Word       Chars       Payload
 
 I added `mattermost.shoppy.htb` to my host file. And loaded the site. It gave me a login page.
 
-![Mattermost](/assets/images/2022/10/Shoppy/MattermostLogin.png "Mattermost")
+![Mattermost](/assets/images/2023/01/Shoppy/MattermostLogin.png "Mattermost")
 
 I tried josh's credentials and I was in the chat application. I looked around the channels and found one that contained credentials.
 
-![Chat](/assets/images/2022/10/Shoppy/CredsInChat.png "Chat")
+![Chat](/assets/images/2023/01/Shoppy/CredsInChat.png "Chat")
 
 I used those credentials in SSH and I was in.
 
@@ -442,7 +442,7 @@ I tried reading `/home/deploy/creds.txt` but I was not allowed.
 
 I used `scp` to get the executable locally and used Ghidra to reverse it. I quickly found the code that checked for the password.
 
-![Ghidra](/assets/images/2022/10/Shoppy/Ghidra.png "Ghidra")
+![Ghidra](/assets/images/2023/01/Shoppy/Ghidra.png "Ghidra")
 
 I used the password I found in the code and I was able to `su` as deploy.
 
