@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - UpDown
-date: 2023-01-07
+date: 2023-01-21
 type: post
 tags:
 - Walkthrough
