@@ -378,10 +378,6 @@ I tried josh's credentials and I was in the chat application. I looked around th
 I used those credentials in SSH and I was in.
 
 ```bash
-$ ssh jess@target
-jess@target's password:
-
-➜  Shoppy
 $ ssh jaeger@target
 jaeger@target's password:
 Linux shoppy 5.10.0-18-amd64 #1 SMP Debian 5.10.140-1 (2022-09-02) x86_64
