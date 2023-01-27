@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Ambassador
-date: 2022-11-11
+date: 2023-01-28
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Medium
 - Machine
-permalink: /2022/11/HTB/Ambassador
-img: 2022/11/Ambassador/Ambassador.png
+permalink: /2023/01/HTB/Ambassador
+img: 2023/01/Ambassador/Ambassador.png
 ---
 
 This was a really fun box where I had to use multiple vulnerabilities. There was a Local File Inclusion (LFI), credentials stored in clear, misconfiguration, and a Git repository with a token in it. 
@@ -110,7 +110,7 @@ The box had four open ports
 
 I opened a browser and navigated to the site on port 80. 
 
-![Ambassador Development Server](/assets/images/2022/11/Ambassador/AmbassadorDevelopmentServer.png "Ambassador Development Server")
+![Ambassador Development Server](/assets/images/2023/01/Ambassador/AmbassadorDevelopmentServer.png "Ambassador Development Server")
 
 The site was pretty simple. It had a single post. This post had instructions about connecting to a development environment. It said to use `developer` and that the password would be provided. 
 
@@ -124,7 +124,7 @@ I looked around for a hidden password but did not find anything. I ran Feroxbust
 
 Next, I looked at what was on port 3000. 
 
-![Grafana](/assets/images/2022/11/Ambassador/Grafana.png "Grafana")
+![Grafana](/assets/images/2023/01/Ambassador/Grafana.png "Grafana")
 
 It was running [Grafana](https://grafana.com/). And it was telling me that it ran version 8.2.0. I looked for vulnerabilities in this version and found that it was vulnerable to [LFI](https://grafana.com/blog/2021/12/07/grafana-8.3.1-8.2.7-8.1.8-and-8.0.7-released-with-high-severity-security-fix/). There was also a [script on Exploit-DB](https://www.exploit-db.com/exploits/50581) that showed how to abuse it.
 
@@ -233,7 +233,7 @@ admin_password = REDACTED
 
 I used the password to login in Grafana.
 
-![Logged In](/assets/images/2022/11/Ambassador/LoggedInGrafana.png "Logged In")
+![Logged In](/assets/images/2023/01/Ambassador/LoggedInGrafana.png "Logged In")
 
 I spent some time trying to find something in Grafana. Maybe I could use it to run some commands on the server. But I did not find anything. 
 
