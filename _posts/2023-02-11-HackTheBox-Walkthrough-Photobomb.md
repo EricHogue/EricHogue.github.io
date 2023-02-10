@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Photobomb
-date: 2022-11-05
+date: 2023-02-11
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2022/11/HTB/Photobomb
-img: 2022/11/Photobomb/Photobomb.png
+permalink: /2023/02/HTB/Photobomb
+img: 2023/02/Photobomb/Photobomb.png
 ---
 
 In this easy box, I had to exploit a web application that allowed reformatting images to get remote code execution. Then I got root by exploiting a cleanup script with too many permissions.
@@ -72,7 +72,7 @@ Only ports 22 (SSH) and 80 (HTTP) were open.
 
 I opened a browser and navigated to the machine IP. I was redirected to 'http://photobomb.htb/'. I added 'photobomb.htb' to my hosts file and reloaded the page.
 
-![Main Site](/assets/images/2022/11/Photobomb/MainSite.png "Main Site")
+![Main Site](/assets/images/2023/02/Photobomb/MainSite.png "Main Site")
 
 Since the box had a domain name, I looked for subdomains but did not find anything.
 
@@ -145,11 +145,11 @@ window.onload = init;
 
 I used those credentials to access the '/printer' page.
 
-![Printer Page](/assets/images/2022/11/Photobomb/Connected.png "Printer Page")
+![Printer Page](/assets/images/2023/02/Photobomb/Connected.png "Printer Page")
 
 This page had a bunch of images. And it allowed downloading them in different file types and sizes.
 
-![Download Image](/assets/images/2022/11/Photobomb/DownloadImage.png "Download Image")
+![Download Image](/assets/images/2023/02/Photobomb/DownloadImage.png "Download Image")
 
 Thinking that the application might have used shell commands to transform the images, I tried executing commands. I launched a web server on my machine and tried to make the application sends requests to it. I quickly found that I could use `;` in the file type and append a command to it.
 
