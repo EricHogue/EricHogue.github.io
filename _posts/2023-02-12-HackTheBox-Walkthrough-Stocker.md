@@ -13,7 +13,7 @@ permalink: /2023/02/HTB/Stocker
 img: 2023/02/Stocker/Stocker.png
 ---
 
-In Stoker, I exploited a NoSQL Injection to login an application before using a Local File Inclusion vulnerability to extract files. Then I used an unsecure sudo configuration to become root.
+In Stocker, I exploited a NoSQL Injection to login an application before using a Local File Inclusion vulnerability to extract files. Then I used an unsecure sudo configuration to become root.
 
 * Room: Stocker
 * Difficulty: Easy
