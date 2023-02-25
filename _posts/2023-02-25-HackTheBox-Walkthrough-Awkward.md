@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Awkward
-date: 2023-01-14
+date: 2023-02-25
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Medium
 - Machine
-permalink: /2023/01/HTB/Awkward
-img: 2023/01/Awkward/Awkward.png
+permalink: /2023/02/HTB/Awkward
+img: 2023/02/Awkward/Awkward.png
 ---
 
 This was a difficult box for me. I had to exploit a web application to get Remote Code Execution, find the user's password in an notes file, then exploit the same application a second time to get root.
@@ -115,7 +115,7 @@ There were two open ports, 22 (SSH) and 80 (HTTP).
 
 The website was redirecting to `http://hat-valley.htb/`, I added the domain to my hosts file. I scanned the site with Feroxbuster. But it did not find anything useful.
 
-![Main Site](/assets/images/2023/01/Awkward/HatValleySite.png "Main Site")
+![Main Site](/assets/images/2023/02/Awkward/HatValleySite.png "Main Site")
 
 I used wfuzz to look for subdomains. 
 
@@ -150,7 +150,7 @@ I looked around the site. There were a few employee profiles. I noted their name
 
 I looked at the JavaScript code, it had the [Source Maps](https://developer.chrome.com/blog/sourcemaps/). I opened the Firefox Developers tools to look at it. 
 
-![Source Code](/assets/images/2023/01/Awkward/SourceCode.png "Source Code")
+![Source Code](/assets/images/2023/02/Awkward/SourceCode.png "Source Code")
 
 I opened the router's code and saw that the site was exposing four routes.
 
@@ -206,11 +206,11 @@ export default router;
 
 The `dashboard` and `leave` endpoints needed a `token` cookie. If it was set to anything other than 'guest', the page would be rendered. I changed my cookie to 'admin' and loaded the dashboard page.
 
-![Dashboard](/assets/images/2023/01/Awkward/Dashboard.png "Dashboard")
+![Dashboard](/assets/images/2023/02/Awkward/Dashboard.png "Dashboard")
 
 The page loaded. Same with the page to send leave requests.
 
-![Leave Requests](/assets/images/2023/01/Awkward/LeaveRequest.png "Leave Requests")
+![Leave Requests](/assets/images/2023/02/Awkward/LeaveRequest.png "Leave Requests")
 
 But posting a request failed. 
 
@@ -547,7 +547,7 @@ I did some experimentation and found that those characters were rejected: {% raw
 
 But those were not:
 
-![Valid Characters](/assets/images/2023/01/Awkward/ValidChars.png "Valid Characters")
+![Valid Characters](/assets/images/2023/02/Awkward/ValidChars.png "Valid Characters")
 
 Sending a comma in my payload was very interesting. 
 
@@ -559,7 +559,7 @@ Sending a comma in my payload was very interesting.
 }
 ```
 
-![Comma In Payload](/assets/images/2023/01/Awkward/CommaInPayload.png "Comma In Payload")
+![Comma In Payload](/assets/images/2023/02/Awkward/CommaInPayload.png "Comma In Payload")
 
 It looked like the comma was used as a separator. With the name of the box hinting at the use of `awk`, I pushed more in that direction. There was a [vulnerability in awk](https://bugs.busybox.net/show_bug.cgi?id=14781) released a few months before the box. But I could not exploit it.
 
@@ -836,7 +836,7 @@ https://www.slac.stanford.edu/slac/www/resource/how-to-use/cgi-rexx/cgi-esc.html
 
 It contained a password and a bolded note to use it everywhere. I used it to connect to the store.
 
-![Store](/assets/images/2023/01/Awkward/Store.png "Store")
+![Store](/assets/images/2023/02/Awkward/Store.png "Store")
 
 And to SSH.
 
@@ -898,7 +898,7 @@ I saw that I could create new products by adding files to the `product-details` 
 I ran pspy again, and the process that sent the emails keep coming back.
 
 ```bash
-023/01/16 00:40:01 CMD: UID=0    PID=4201   | /usr/sbin/sendmail -oi -f root@awkward -t 
+2023/01/16 00:40:01 CMD: UID=0    PID=4201   | /usr/sbin/sendmail -oi -f root@awkward -t 
 2023/01/16 00:40:01 CMD: UID=0    PID=4204   | /usr/sbin/postdrop -r 
 2023/01/16 00:40:01 CMD: UID=0    PID=4203   | /usr/sbin/postdrop -r 
 2023/01/16 00:40:01 CMD: UID=0    PID=4202   | /usr/sbin/sendmail -FCronDaemon -i -B8BITMIME -oem root 
@@ -917,7 +917,7 @@ It took me a while, but eventually, I realized that the subject of the email con
 
 When I first got a shell on the machine, I found the `TOKEN_SECRET` that was used to generate JWT. I took my token to [jwt.io](https://jwt.io/) to confirm that it worked.
 
-![Signature Verified](/assets/images/2023/01/Awkward/SignatureVerified.png "Signature Verified")
+![Signature Verified](/assets/images/2023/02/Awkward/SignatureVerified.png "Signature Verified")
 
 I tried generating a token with a fake name to see if it would be used in the mail command. I used Burp to send a leave request with my new token and checked what was executed on the server.
 
