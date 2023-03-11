@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Mentor
-date: 2023-03-02
+date: 2023-03-11
 type: post
 tags:
 - Walkthrough
