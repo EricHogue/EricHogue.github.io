@@ -513,7 +513,7 @@ content-length: 83
 content-type: application/json
 Connection: close
 
-{"admin_funcs":{"check db connection":"/check","backup the application":"/backup"}}o
+{"admin_funcs":{"check db connection":"/check","backup the application":"/backup"}}
 ```
 
 It showed 2 additional endpoints. I tried '/admin/check', the response said that it was not implemented yet.
