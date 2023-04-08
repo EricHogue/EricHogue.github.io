@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - BroScience
-date: 2023-01-30
+date: 2023-04-08
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Medium
 - Machine
-permalink: /2023/01/HTB/BroScience
-img: 2023/01/BroScience/BroScience.png
+permalink: /2023/04/HTB/BroScience
+img: 2023/04/BroScience/BroScience.png
 ---
 
 In this box, I had to exploit an LFI, a vulnerable token generation, and a serialization vulnerability to get to a shell. Then I had to crack a hashed password, and finally, get code execution in a script running as root.
@@ -177,11 +177,11 @@ by Ben "epi" Risher 🤓                 ver: 2.7.3
 
 I opened 'https://broscience.htb' in my browser.
 
-![Main Site](/assets/images/2023/01/BroScience/MainSite.png "Main Site")
+![Main Site](/assets/images/2023/04/BroScience/MainSite.png "Main Site")
 
 I looked around the site. The user page appears to allow user enumeration.
 
-![Users](/assets/images/2023/01/BroScience/Users.png "Users")
+![Users](/assets/images/2023/04/BroScience/Users.png "Users")
 
 I extracted the list of users and tried to brute-force the login page with Hydra.
 
@@ -201,7 +201,7 @@ It ran for a while and failed to find a working password.
 
 Next, I tried registering a user. But it needed activation of the account through a link sent by email.
 
-![Register](/assets/images/2023/01/BroScience/Register.png "Register")
+![Register](/assets/images/2023/04/BroScience/Register.png "Register")
 
 I kept looking around. Eventually, I saw the image's URL: `https://broscience.htb/includes/img.php?path=bench.png`. This looked like it could be vulnerable to LFI.
 
@@ -428,7 +428,7 @@ $ php generateCode.php
 https://broscience.htb/activate.php?code=OqxSuRjhkh02FEDHXHtPeTLu5PJ8z2fo
 ```
 
-![Account Activated](/assets/images/2023/01/BroScience/AccountActivated.png "Account Activated")
+![Account Activated](/assets/images/2023/04/BroScience/AccountActivated.png "Account Activated")
 
 ## Remote Code Execution
 
