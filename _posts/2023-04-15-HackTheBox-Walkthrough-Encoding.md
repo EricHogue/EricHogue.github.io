@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Encoding
-date: 2023-02-25
+date: 2023-04-15
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Medium
 - Machine
-permalink: /2023/03/HTB/Encoding
-img: 2023/03/Encoding/Encoding.png
+permalink: /2023/04/HTB/Encoding
+img: 2023/04/Encoding/Encoding.png
 ---
 
 This was a really fun box. I had to exploit two LFI vulnerabilities and PHP filters to get a foothold. Then exploit git configuration and systemd to escalate my privileges.
@@ -137,7 +137,7 @@ It found 'image.haxtables.htb', I added it with the other domains.
 
 I loaded the main website in a browser.
 
-![Main Site](/assets/images/2023/03/Encoding/WebSite.png "Main Site")
+![Main Site](/assets/images/2023/04/Encoding/WebSite.png "Main Site")
 
 The site allowed performing some transformations on strings and integers. There was also a section for images, but it was 'Coming soon'.
 
@@ -147,7 +147,7 @@ The Encoding menu took us to the pages to modify strings or integers. The URLs o
 
 The API menu took me to the API documentation with some examples on how to use it. And a hint about the API supporting more features not exposed in the UI.
 
-![API](/assets/images/2023/03/Encoding/API.png "API")
+![API](/assets/images/2023/04/Encoding/API.png "API")
 
 
 > You can use our live API to make these convertions easier. There are some additional features which the API supports that our application doesn't. This application itself uses the API internally as the backbone.
@@ -208,7 +208,7 @@ by Ben "epi" Risher 🤓                 ver: 2.7.3
 
 There were 3 versions of the API, and they had directory listing available. V1 and V3 of the API had two endpoints.
 
-![Directory Listing](/assets/images/2023/03/Encoding/DirectoryListing.png "Directory Listing")
+![Directory Listing](/assets/images/2023/04/Encoding/DirectoryListing.png "Directory Listing")
 
 V2 was blocked, apparently it had security issues.
 
