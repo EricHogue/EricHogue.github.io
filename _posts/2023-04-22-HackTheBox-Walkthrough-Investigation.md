@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Investigation
-date: 2023-02-12
+date: 2023-04-22
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Medium
 - Machine
-permalink: /2023/02/HTB/Investigation
-img: 2023/02/Investigation/Investigation.png
+permalink: /2023/04/HTB/Investigation
+img: 2023/04/Investigation/Investigation.png
 ---
 
 In this machine, I had to exploit a known vulnerability in exiftool, find a password in some logs, and finally reverse a program to find how to exploit it.
@@ -75,19 +75,19 @@ Port 80 was redirecting to 'http://eforenzics.htb/' so I added that to my hosts 
 
 I opened the website in a browser.
 
-![eForenzics Site](/assets/images/2023/02/Investigation/eForenzicsSite.png "eForenzics Site")
+![eForenzics Site](/assets/images/2023/04/Investigation/eForenzicsSite.png "eForenzics Site")
 
 The website was mostly static. Except for the 'Free Services' page that allowed uploading files.
 
-![File Upload](/assets/images/2023/02/Investigation/FileUpload.png "File Upload")
+![File Upload](/assets/images/2023/04/Investigation/FileUpload.png "File Upload")
 
 I tried uploading an image to the site. The image was uploaded, and I was given a link to view an analysis report on the file.
 
-![File Uploaded](/assets/images/2023/02/Investigation/FileUploaded.png "File Uploaded")
+![File Uploaded](/assets/images/2023/04/Investigation/FileUploaded.png "File Uploaded")
 
 I clicked on the link. It took me to a page that displayed the file image's metadata extracted with [ExifTool](https://exiftool.org/).
 
-![ExifTool Results](/assets/images/2023/02/Investigation/ExifTool.png "ExifTool Results")
+![ExifTool Results](/assets/images/2023/04/Investigation/ExifTool.png "ExifTool Results")
 
 Seeing file uploads, I thought I might be able to get [Local File Inclusion](https://www.acunetix.com/blog/articles/local-file-inclusion-lfi/), but I was not able to access the uploaded files, just the text file with the ExifTool results.
 
@@ -238,7 +238,7 @@ Exiting...
 
 They could execute a binary. I tried running it, but it appeared to exit immediately. I downloaded the executable to my machine and opened it in Ghidra. I renamed a few variables and added comments to make the code readable.
 
-![Binary decompiled](/assets/images/2023/02/Investigation/BinaryDecompiled.png "Binary Decompiled")
+![Binary decompiled](/assets/images/2023/04/Investigation/BinaryDecompiled.png "Binary Decompiled")
 
 The binary needed two arguments, a URL and a file name. The file name needed to be "lDnxUysaQn". It used curl to download from the given URL and save the content to the file specified. It then used perl to execute the file it downloaded.
 
