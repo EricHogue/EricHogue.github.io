@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - MetaTwo
-date: 2022-11-05
+date: 2023-04-29
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2022/11/HTB/MetaTwo
-img: 2022/11/MetaTwo/MetaTwo.png
+permalink: /2023/04/HTB/MetaTwo
+img: 2023/04/MetaTwo/MetaTwo.png
 ---
 
 This is a fun box where I got to exploit two WordPress vulnerabilities and then crack the password for a command line password vault.
@@ -85,7 +85,7 @@ I tried anonymous login on the FTP server, but I got access denied.
 
 I opened my browser to the website and got redirected to metapress.htb. I added that to my hosts file and reloaded the site.
 
-![Main Site](/assets/images/2022/11/MetaTwo/MainSite.png "Main Site")
+![Main Site](/assets/images/2023/04/MetaTwo/MainSite.png "Main Site")
 
 The site was clearly a WordPress site. I launched WPScan to look for vulnerable plugins and enumerate users. 
 
@@ -210,7 +210,7 @@ It found two users. I tried brute forcing their passwords, but it failed.
 
 The only post on the site was pointing to an Events page.
 
-![Events](/assets/images/2022/11/MetaTwo/Events.png "Events")
+![Events](/assets/images/2023/04/MetaTwo/Events.png "Events")
 
 This looked like it was built by a plugin. I tried to identify it so I could look for known vulnerabilities. WPScan was not finding the plugin. I looked at the files that were loaded and saw `http://metapress.htb/wp-content/plugins/bookingpress-appointment-booking`.
 
@@ -354,7 +354,7 @@ It found the password for `manager`, but not for `admin`.
 
 I connected as manager. I only had access to my profile and the media library.
 
-![Media Library](/assets/images/2022/11/MetaTwo/MediaLibrary.png "Media Library")
+![Media Library](/assets/images/2023/04/MetaTwo/MediaLibrary.png "Media Library")
 
 I tried uploading some malicious files, but it failed. The site was rejecting everything I sent.
 
