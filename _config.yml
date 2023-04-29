@@ -14,12 +14,13 @@ about-author:
   I am a web developer from Montreal, Quebec, Canada. I write about web development 
   , security and anything that interest me.
 
-social-twitter: ehogue
+  #social-twitter: ehogue
 social-github: EricHogue
 social-linkedin: ehogue
 social-email: blog@erichogue.ca
 social-stackexchange: 2919
 #* [Stack Overflow Career](http://careers.stackoverflow.com/erichogue)
+social-mastodon: https://infosec.exchange/@EricHogue
 
 
 #twitter_username: ehogue
