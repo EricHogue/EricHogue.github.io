@@ -45,7 +45,7 @@ plugins:
 discus-identifier: erichogue
 
 # Tracker
-analytics: UA-20604950-1
+#analytics: UA-20604950-1
 
 # Build Settings
 #markdown: kramdown
