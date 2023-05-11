@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Interface
-date: 2023-03-11
+date: 2023-05-13
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Medium
 - Machine
-permalink: /2023/03/HTB/Interface
-img: 2023/03/Interface/Interface.png
+permalink: /2023/05/HTB/Interface
+img: 2023/05/Interface/Interface.png
 ---
 
 This box was all about enumeration. I had to enumerate everything over and over to find the foothold. All the while trying to avoid rabbit holes.
@@ -93,7 +93,7 @@ Ports 22 (SSH) and 80 (HTTP) were open.
 
 I looked at the website.
 
-![Back Soon](/assets/images/2023/03/Interface/WellBeBackSoon.png "Back Soon")
+![Back Soon](/assets/images/2023/05/Interface/WellBeBackSoon.png "Back Soon")
 
 It was a simple site that just said they were performing maintenance and that the site would be back soon. The 'contact us' text was a mailto link for 'contact@interface.htb'. I added the domain to my hosts file and reloaded the site. It was the same site.
 
@@ -101,7 +101,7 @@ I scanned for hidden files, and for subdomains. But I did not find anything.
 
 The simple web page was requesting a suspicious amount of JavaScript for a page with just a few lines of text.
 
-![Queries](/assets/images/2023/03/Interface/Queries.png "Queries")
+![Queries](/assets/images/2023/05/Interface/Queries.png "Queries")
 
 I spent a lot of time reading all the JS for that site. I looked for vulnerabilities in the Next.js framework. 
 
