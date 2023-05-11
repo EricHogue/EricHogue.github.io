@@ -375,20 +375,20 @@ $ snmpbulkwalk -v 2c -c internal target . > snmp.txt
 
 ...
 
-HOST-RESOURCES-MIB::hrSWRunParameters.1991 = STRING: "-proto tcp -host-ip 172.22.0.1 -host-port 81 -container-ip 172.22.0.2 -container-port 80"¬
-HOST-RESOURCES-MIB::hrSWRunParameters.2006 = STRING: "-namespace moby -id 42602c871adeb563d57151cd342480f8a7f3cd30928eef2b1bee26105a2cec4f -address /run/containerd/containerd.sock"¬
-HOST-RESOURCES-MIB::hrSWRunParameters.2026 = STRING: "main.py"¬
-HOST-RESOURCES-MIB::hrSWRunParameters.2044 = STRING: "-c from multiprocessing.semaphore_tracker import main;main(4)"¬
-HOST-RESOURCES-MIB::hrSWRunParameters.2045 = STRING: "-c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=5, pipe_handle=7) --multiprocessing-fork"¬
-HOST-RESOURCES-MIB::hrSWRunParameters.2085 = ""¬
-HOST-RESOURCES-MIB::hrSWRunParameters.2087 = ""¬
-HOST-RESOURCES-MIB::hrSWRunParameters.2112 = STRING: "/usr/local/bin/login.py REDACTED"¬
-HOST-RESOURCES-MIB::hrSWRunParameters.2279 = ""¬
-HOST-RESOURCES-MIB::hrSWRunParameters.2347 = ""¬
-HOST-RESOURCES-MIB::hrSWRunParameters.2348 = ""¬
-HOST-RESOURCES-MIB::hrSWRunParameters.2454 = ""¬
-HOST-RESOURCES-MIB::hrSWRunParameters.2486 = ""¬
-HOST-RESOURCES-MIB::hrSWRunParameters.2530 = ""¬
+HOST-RESOURCES-MIB::hrSWRunParameters.1991 = STRING: "-proto tcp -host-ip 172.22.0.1 -host-port 81 -container-ip 172.22.0.2 -container-port 80"
+HOST-RESOURCES-MIB::hrSWRunParameters.2006 = STRING: "-namespace moby -id 42602c871adeb563d57151cd342480f8a7f3cd30928eef2b1bee26105a2cec4f -address /run/containerd/containerd.sock"
+HOST-RESOURCES-MIB::hrSWRunParameters.2026 = STRING: "main.py"
+HOST-RESOURCES-MIB::hrSWRunParameters.2044 = STRING: "-c from multiprocessing.semaphore_tracker import main;main(4)"
+HOST-RESOURCES-MIB::hrSWRunParameters.2045 = STRING: "-c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=5, pipe_handle=7) --multiprocessing-fork"
+HOST-RESOURCES-MIB::hrSWRunParameters.2085 = ""
+HOST-RESOURCES-MIB::hrSWRunParameters.2087 = ""
+HOST-RESOURCES-MIB::hrSWRunParameters.2112 = STRING: "/usr/local/bin/login.py REDACTED"
+HOST-RESOURCES-MIB::hrSWRunParameters.2279 = ""
+HOST-RESOURCES-MIB::hrSWRunParameters.2347 = ""
+HOST-RESOURCES-MIB::hrSWRunParameters.2348 = ""
+HOST-RESOURCES-MIB::hrSWRunParameters.2454 = ""
+HOST-RESOURCES-MIB::hrSWRunParameters.2486 = ""
+HOST-RESOURCES-MIB::hrSWRunParameters.2530 = ""
 
 ...
 ```
@@ -513,7 +513,7 @@ content-length: 83
 content-type: application/json
 Connection: close
 
-{"admin_funcs":{"check db connection":"/check","backup the application":"/backup"}}o
+{"admin_funcs":{"check db connection":"/check","backup the application":"/backup"}}
 ```
 
 It showed 2 additional endpoints. I tried '/admin/check', the response said that it was not implemented yet.
@@ -930,4 +930,4 @@ async def backup(payload: backup):
     return {"INFO": "Done!"}
 ```
 
-There was no validation of the 'path' variable. Using [subprocess](https://docs.python.org/3/library/subprocess.html#security-considerations) would have helped prevent command injection. But a better solution would have been to not use input from the user. Why allow them to write backups anywhere they want? 
+There was no validation of the 'path' variable. Using [subprocess](https://docs.python.org/3/library/subprocess.html#security-considerations) would have helped prevent command injection. But a better solution would have been to not use input from the user. Why allow them to write backups anywhere they want?
