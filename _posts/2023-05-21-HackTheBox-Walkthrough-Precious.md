@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Precious
-date: 2022-11-27
+date: 2023-05-21
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2022/11/HTB/Precious
-img: 2022/11/Precious/Precious.png
+permalink: /2023/05/HTB/Precious
+img: 2023/05/Precious/Precious.png
 ---
 
 In this machine, I had to exploit a vulnerability in a web application that converts HTML pages to PDF. Then I found a password that allowed me to pivot to a new user. And finally, exploit a vulnerability in Ruby's YAML parser to get root.
@@ -77,7 +77,7 @@ Ports 22 (SSH) and 80 (HTTP) were open.
 
 In the scan results, nmap showed that the website redirected to `http://precious.htb/` so I added it to my hosts file and opened it in a browser.
 
-![Website](/assets/images/2022/11/Precious/Site.png "Website")
+![Website](/assets/images/2023/05/Precious/Site.png "Website")
 
 I ran some enumeration of the web server to look for hidden files and subdomains, but nothing came out.
 
@@ -135,7 +135,7 @@ Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
 10.129.77.144 - - [27/Nov/2022 10:46:04] "GET / HTTP/1.1" 200 -
 ```
 
-![Directory Listing](/assets/images/2022/11/Precious/DirectoryListing.png "Directory Listing")
+![Directory Listing](/assets/images/2023/05/Precious/DirectoryListing.png "Directory Listing")
 
 It requested the page and displayed the response in a PDF. 
 
