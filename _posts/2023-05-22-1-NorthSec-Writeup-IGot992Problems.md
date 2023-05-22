@@ -17,10 +17,10 @@ This challenge was about solving a CAPTCHA that used a predicable value to seed 
 ```
 Anti-robot captcha to validate. 99^2 valid tries to pass it.
 
-http://igot992problems.ctf 
+http://igot992problems.ctf
 ```
 
-I opened the provided link. 
+I opened the provided link.
 
 ![CAPTCHA](/assets/images/2023/05/NorthSec/IGot992Problems/Captchat.png "CAPTCHA")
 
@@ -83,7 +83,7 @@ while True:
         print('Errored out')
         print(response.text)
         exit()
-    
+
     counter += 1
 ```
 
@@ -91,13 +91,13 @@ I ran the script, and waited for the flag.
 
 ```bash
 $ ./igot992problem.py
-0 - AiEfbC3unc   
-1 - 4rcsj5CkLR   
-2 - SKeHcF4EOY   
-3 - 64P3MvKYlw   
-4 - Ik36HYcaRP   
-5 - qyGVUkDp0t   
-6 - iaY4cS8hKe   
+0 - AiEfbC3unc
+1 - 4rcsj5CkLR
+2 - SKeHcF4EOY
+3 - 64P3MvKYlw
+4 - Ik36HYcaRP
+5 - qyGVUkDp0t
+6 - iaY4cS8hKe
 
 ...
 

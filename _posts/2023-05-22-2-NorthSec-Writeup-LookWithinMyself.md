@@ -62,7 +62,7 @@ Enter password (will not be echoed):
 ERROR: results/trailing_data.bin
 Cannot open encrypted archive. Wrong password?
 
-    
+
 Can't open as archive: 1
 Files: 0
 Size:       0
@@ -75,7 +75,7 @@ It was a 7-zip file, I tried to extract it, but it was password protected. I sho
 $ 7z2john trailing_data.bin > hash.txt
 ATTENTION: the hashes might contain sensitive encrypted data. Be careful when sharing or posting these hashes
 
-$ john hash.txt        
+$ john hash.txt
 Using default input encoding: UTF-8
 Loaded 1 password hash (7z, 7-Zip archive encryption [SHA256 256/256 AVX2 8x AES])
 Cost 1 (iteration count) is 524288 for all loaded hashes
@@ -93,10 +93,10 @@ Press 'q' or Ctrl-C to abort, almost any other key for status
 0g 0:00:07:43 95.79% 1/3 (ETA: 23:10:54) 0g/s 45.68p/s 45.68c/s 45.68C/s trailingtrailing_data.bin194..trailing_data.bindata1946
 Almost done: Processing the remaining buffered candidate passwords, if any.
 Proceeding with wordlist:/usr/share/john/password.lst
-password         (trailing_data.bin)     
+password         (trailing_data.bin)
 1g 0:00:08:13 DONE 2/3 (2023-05-19 23:11) 0.002025g/s 45.56p/s 45.56c/s 45.56C/s 123456..diamond
 Use the "--show" option to display all of the cracked passwords reliably
-Session completed. 
+Session completed.
 ```
 
 The password was simply 'password'. I used it to extract the files from the archive and got the flag.
@@ -130,13 +130,13 @@ Size:       23050616
 Compressed: 22875265
 
 
-$ ls myself 
+$ ls myself
 cat10.png  cat12.jpg  cat14.png  cat16.jpg  cat18.jpg  cat1.jpg   cat2.png  cat4.png  cat6.png  cat8.png  myself.txt
 cat11.png  cat13.png  cat15.jpg  cat17.jpg  cat19.jpg  cat20.jpg  cat3.png  cat5.png  cat7.png  cat9.png
 
-$ cat myself/myself.txt 
+$ cat myself/myself.txt
  I am 120875ABAB, Intermediate Operator for GOD. If you read this, it is because you want to know more about me. Things I like are pictures of animals, logic puzzles and computers. I dislike fizzy drinks, wearing my necktie and boring colors. I hope to become a senior GOD operator one day. As an employee of the Corporation, I believe in our power to succeed. It was nice talking to you, goodbye!
- 
+
  FLAG-43e1f21fd2741b2266eaf9c6cf93b46f62b73d7d9df0fa1e98611e6f64200815
 ```
 
