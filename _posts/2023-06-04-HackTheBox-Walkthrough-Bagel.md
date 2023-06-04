@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Bagel
-date: 2023-03-13
+date: 2023-06-04
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Medium
 - Machine
-permalink: /2023/03/HTB/Bagel
-img: 2023/03/Bagel/Bagel.png
+permalink: /2023/06/HTB/Bagel
+img: 2023/06/Bagel/Bagel.png
 ---
 
 This was a really fun machine where I exploited a Local File Inclusion (LFI) vulnerability to extract a .NET application. Then reversed the .NET application to get the SSH key of a user and the password for another user. And finally, get root by running .Net with sudo.
@@ -190,11 +190,11 @@ This was a first for me. It promised to be interesting. I opened it in a browser
 
 I opened the site on port 8000 in a browser. I got redirected to 'bagel,htb' so I added that domain to my hosts file and reloaded the page.
 
-![Bagel Website](/assets/images/2023/03/Bagel/BagelWebsite.png "Bagel Website")
+![Bagel Website](/assets/images/2023/06/Bagel/BagelWebsite.png "Bagel Website")
 
 The home page was giving information about a bagel shop. The 'Orders' page was showing a list of orders in plain text.
 
-![Orders](/assets/images/2023/03/Bagel/Orders.png "Orders")
+![Orders](/assets/images/2023/06/Bagel/Orders.png "Orders")
 
 The home page redirected me to 'http://bagel.htb:8000/?page=index.html'. The page parameter hinted at LFI. I tried to read '/etc/passwd'.
 
@@ -410,7 +410,7 @@ I then launched a Windows VM and used [dnSpy](https://github.com/dnSpy/dnSpy) to
 
 The first thing that caught my eyes was a password in the DB class.
 
-![DB](/assets/images/2023/03/Bagel/ClassDB.png "DB")
+![DB](/assets/images/2023/06/Bagel/ClassDB.png "DB")
 
 I tried to SSH as both users. But as the comment from the Python file said, I needed an SSH key to connect.
 
@@ -424,45 +424,45 @@ developer@target: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
 
 I kept looking at the code. When I sent a message to the .NET application, it would deserialize the JSON, then serialize the returned object before sending it back to me.
 
-![Message Received Method](/assets/images/2023/03/Bagel/MessageReceived.png "Message Received Method")
+![Message Received Method](/assets/images/2023/06/Bagel/MessageReceived.png "Message Received Method")
 
 The Handler class was using [Newtonsoft.Json](https://www.newtonsoft.com/json/help/html/N_Newtonsoft_Json.htm) to serialize and deserialize the JSON payload.
 
-![Handler](/assets/images/2023/03/Bagel/ClassHandler.png "Handler")
+![Handler](/assets/images/2023/06/Bagel/ClassHandler.png "Handler")
 
 The `TypeNameHandling = 4` part was interesting. It meant I could use `$type` to send a [different type](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_TypeNameHandling.htm) than what was expected. I tried using a [payload I found](https://medium.com/c-sharp-progarmming/stop-insecure-deserialization-with-c-6a488c95cf2f), but it failed. The typing <Base> forced me to use an instance of the Base class.
 
 The Base class was simple.
 
-![Base](/assets/images/2023/03/Bagel/ClassBase.png "Base")
+![Base](/assets/images/2023/06/Bagel/ClassBase.png "Base")
 
 It extended the Orders class and added a few properties. The properties add simple getters and setters.
 
 The Orders had more to it.
 
-![Orders](/assets/images/2023/03/Bagel/ClassOrders.png "Orders")
+![Orders](/assets/images/2023/06/Bagel/ClassOrders.png "Orders")
 
 On deserialization, the setters of the passed in methods were called. Then immediately after, the serizalization would call the getters. Orders used the File class to read and write to the server's file system.
 
 `WriteOrder` setter would take the value passed in the JSON and write it to a file. The getter returned a string saying if it was successful or not.
 
-![WriteFile](/assets/images/2023/03/Bagel/WriteFile.png "WriteFile")
+![WriteFile](/assets/images/2023/06/Bagel/WriteFile.png "WriteFile")
 
 `ReadOrder` setter would read the content of a file. The getter returned the read content.
 
-![ReadFile](/assets/images/2023/03/Bagel/ReadFile.png "ReadFile")
+![ReadFile](/assets/images/2023/06/Bagel/ReadFile.png "ReadFile")
 
 I thought I might be able to set the file location by calling `ReadOrder`, then call `WriteOrder` to write anywhere on the disk. But `ReadOrder` was removing `/` and `..` from the file path. And the File class was reading files from a hardcoded path.
 
-![File Properties](/assets/images/2023/03/Bagel/FileProperties.png "File Properties")
+![File Properties](/assets/images/2023/06/Bagel/FileProperties.png "File Properties")
 
 The first few times I read the code, I completely ignored the `RemoveOrder` getter and setter. At first glance, they do not appear to do anything.
 
-![RemoveOrder](/assets/images/2023/03/Bagel/RemoveOrder.png "RemoveOrder")
+![RemoveOrder](/assets/images/2023/06/Bagel/RemoveOrder.png "RemoveOrder")
 
 This code was returning an object of any type. If I gave it a File object, I would be able to call ReadFile and give it anything I wanted. The hardest thing was giving it the correct type to load a File object, but all the needed information was in dnSpy.
 
-![Bagel Type](/assets/images/2023/03/Bagel/BagelType.png "Bagel Type")
+![Bagel Type](/assets/images/2023/06/Bagel/BagelType.png "Bagel Type")
 
 I used this to read phil's SSH key.
 
