@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Soccer
-date: 2023-01-26
+date: 2023-06-10
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2023/01/HTB/Soccer
-img: 2023/01/Soccer/Soccer.png
+permalink: /2023/06/HTB/Soccer
+img: 2023/06/Soccer/Soccer.png
 ---
 
 This was an easy machine where I exploited LFI, SQL Injection, and some insecure configurations.
@@ -136,11 +136,11 @@ by Ben "epi" Risher 🤓                 ver: 2.7.3
 
 I opened a browser and looked at the website on port 80.
 
-![Main Site](/assets/images/2023/01/Soccer/HTBFootballClub.png "Main Site")
+![Main Site](/assets/images/2023/06/Soccer/HTBFootballClub.png "Main Site")
 
 It took me to what looked like a static site. FeroxBuster had found something on '/tiny', so I looked at that.
 
-![Tiny File Manager](/assets/images/2023/01/Soccer/TinyFileManager.png "Tiny File Manager")
+![Tiny File Manager](/assets/images/2023/06/Soccer/TinyFileManager.png "Tiny File Manager")
 
 It contained an instance of [Tiny File Manager](https://tinyfilemanager.github.io/). I immediately thought about LFI. But I needed to log in first. I tried basic SQL Injection and some simple credentials. But that failed. 
 
@@ -153,11 +153,11 @@ I looked for default credentials and found them in the [documentation](https://t
 
 I tried the admin credentials, and they worked. 
 
-![Logged In](/assets/images/2023/01/Soccer/LoggedIn.png "Logged In")
+![Logged In](/assets/images/2023/06/Soccer/LoggedIn.png "Logged In")
 
 The application allowed uploading files. My first attempts were rejected because I could not write to the webroot. I looked in the '/tiny' folder and saw an '/upload' folder. I tried to upload a PHP file there.
 
-![Uploaded File](/assets/images/2023/01/Soccer/UploadedFile.png "Uploaded File")
+![Uploaded File](/assets/images/2023/06/Soccer/UploadedFile.png "Uploaded File")
 
 Once the file was uploaded, I clicked on the 'Open' link to view the file. It opened and printed only 'IN', which confirmed that the code was executed.
 
@@ -209,19 +209,19 @@ server {
 
 I added 'soc-player.soccer.htb' to my hosts file and loaded that site.
 
-![Soccer Player Site](/assets/images/2023/01/Soccer/SocPlayerSite.png "Soccer Player Site")
+![Soccer Player Site](/assets/images/2023/06/Soccer/SocPlayerSite.png "Soccer Player Site")
 
 It was the same site as before, with some additional menu options. The Match tab showed some upcoming games. I create an account and logged in the website.
 
 Once connected, I was taken to a page where I was given a ticket ID, and I could check for other tickets.
 
-![My Ticket](/assets/images/2023/01/Soccer/MyTicket.png "My Ticket")
+![My Ticket](/assets/images/2023/06/Soccer/MyTicket.png "My Ticket")
 
 The page was making a websocket request to port 9091 to check if the ticket existed or not. 
 
 I tried SQL Injection, and it worked. 
 
-![SQL Injection](/assets/images/2023/01/Soccer/WebSocketSQLi.png "SQL Injection")
+![SQL Injection](/assets/images/2023/06/Soccer/WebSocketSQLi.png "SQL Injection")
 
 I was about to write a script to extract the data, but I decided to check if sqlmap could exploit websockets. 
 
