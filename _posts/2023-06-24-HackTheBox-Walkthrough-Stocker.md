@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Stocker
-date: 2023-02-12
+date: 2023-06-20
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2023/02/HTB/Stocker
-img: 2023/02/Stocker/Stocker.png
+permalink: /2023/06/HTB/Stocker
+img: 2023/06/Stocker/Stocker.png
 ---
 
 In Stocker, I exploited a NoSQL Injection to login an application before using a Local File Inclusion vulnerability to extract files. Then I used an unsecure sudo configuration to become root.
@@ -103,7 +103,7 @@ It found one, I added it to my hosts file. I used Feroxbuster to look for hidden
 
 I opened a browser and looked at both sites.
 
-![stocker.htb](/assets/images/2023/02/Stocker/StockersSite.png "stocker.htb")
+![stocker.htb](/assets/images/2023/06/Stocker/StockersSite.png "stocker.htb")
 
 The main site did not have much on it. It looked like a static page. There was a quote from the staff, I took note of the potential username.
 
@@ -113,7 +113,7 @@ The main site did not have much on it. It looked like a static page. There was a
 
 Next, I looked at the site on 'dev.stocker.htb'.
 
-![dev.stocker.htb](/assets/images/2023/02/Stocker/LoginPage.png "dev.stocker.htb")
+![dev.stocker.htb](/assets/images/2023/06/Stocker/LoginPage.png "dev.stocker.htb")
 
 Since Feroxbuster had not found anything else, I tried exploiting the login page. I started by trying SQL Injection, but it did not appear to work.
 
@@ -177,15 +177,15 @@ Set-Cookie: connect.sid=s%3AYUlMAjvWCRTh9JTq8BoSQtLz1QX4XP87.Wc10Lfnf9Vz%2BvcLyT
 
 Once connected, I was redirected to a small e-commerce site. 
 
-![Stock](/assets/images/2023/02/Stocker/StockPage.png "Stock")
+![Stock](/assets/images/2023/06/Stocker/StockPage.png "Stock")
 
 I tried buying some stuff. 
 
-![Thank You](/assets/images/2023/02/Stocker/ThankYouPage.png "Thank You")
+![Thank You](/assets/images/2023/06/Stocker/ThankYouPage.png "Thank You")
 
 Once I completed a purchase, the 'Thank You' page contained a link to a PDF with the details of the transaction.
 
-![PDF](/assets/images/2023/02/Stocker/PDF.png "PDF")
+![PDF](/assets/images/2023/06/Stocker/PDF.png "PDF")
 
 I looked at the payload sent when I sent my order. It contained my basket in JSON.
 
@@ -238,7 +238,7 @@ I tried using Caido's Replay to modify some values in the JSON. The title, price
 }
 ```
 
-![Strikethrough](/assets/images/2023/02/Stocker/Strikethrough.png "Strikethrough")
+![Strikethrough](/assets/images/2023/06/Stocker/Strikethrough.png "Strikethrough")
 
 I used that to add an iframe to the page, loading a file from the server.
 
