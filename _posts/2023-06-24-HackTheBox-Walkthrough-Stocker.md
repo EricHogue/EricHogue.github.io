@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Stocker
-date: 2023-06-20
+date: 2023-06-24
 type: post
 tags:
 - Walkthrough
