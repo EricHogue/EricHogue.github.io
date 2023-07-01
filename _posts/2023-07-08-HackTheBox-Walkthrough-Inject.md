@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Inject
-date: 2023-04-23
+date: 2023-07-08
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Medium
 - Machine
-permalink: /2023/04/HTB/Inject
-img: 2023/04/Inject/Inject.png
+permalink: /2023/07/HTB/Inject
+img: 2023/07/Inject/Inject.png
 ---
 
 In Inject, I had to exploit a file read vulnerability to extract the Maven configuration and learn that the application was vulnerable to Remote Code Execution. Next, I found a password in another Maven configuration file and finally used Ansible to get root.
@@ -88,17 +88,17 @@ Port 22 (SSH) and 8080 (HTTP) were open.
 
 I open the website in my browser.
 
-![Zodd Cloud Website](/assets/images/2023/04/Inject/ZoddCloudSite.png "Zodd Cloud Website")
+![Zodd Cloud Website](/assets/images/2023/07/Inject/ZoddCloudSite.png "Zodd Cloud Website")
 
 It was an application to store files on the cloud. The 'Log in' button did not do anything. And the 'Sign Up' button sent me to a page that was under construction.
 
-![Under Construction](/assets/images/2023/04/Inject/UnderConstruction.png "Under Construction")
+![Under Construction](/assets/images/2023/07/Inject/UnderConstruction.png "Under Construction")
 
 ### Files Read 
 
 There was an 'Upload' link on the page even if I was not connected to the application. I tried it, I was able to upload files to the server.
 
-![File Uploaded](/assets/images/2023/04/Inject/Uploaded.png "File Uploaded")
+![File Uploaded](/assets/images/2023/07/Inject/Uploaded.png "File Uploaded")
 
 After I uploaded an image, I had a link to look at it. I tried uploading some source code files, but they were rejected.
 
