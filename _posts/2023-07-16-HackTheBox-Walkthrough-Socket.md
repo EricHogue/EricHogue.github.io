@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Socket
-date: 2023-04-29
+date: 2023-07-16
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Medium
 - Machine
-permalink: /2023/04/HTB/Socket
-img: 2023/04/Socket/Socket.png
+permalink: /2023/07/HTB/Socket
+img: 2023/07/Socket/Socket.png
 ---
 
 In Socket, I exploited an SQL Injection vulnerabilities in a websocket to extract the database. I used credentials found in the database to connect to the server. Finally, I ran Python code through PyInstaller to become root.
@@ -259,7 +259,7 @@ It did not find anything.
 
 I looked at the website on port 80.
 
-![QReader Site](/assets/images/2023/04/Socket/qreaderSite.png "QReader Site")
+![QReader Site](/assets/images/2023/07/Socket/qreaderSite.png "QReader Site")
 
 The site allowed converting text to a QR code, and converting a QR code image back to text.
 
@@ -267,7 +267,7 @@ I tried sending some [Server Site Template Injection (SSTI)](https://portswigger
 
 There was a page to report bugs from the application.
 
-![Report page](/assets/images/2023/04/Socket/Report.png "Report Page")
+![Report page](/assets/images/2023/07/Socket/Report.png "Report Page")
 
 I tried sending it some XSS payloads. I did not get any hit on my listener.
 
@@ -301,7 +301,7 @@ Nothing worked. I got authentication failure or some errors.
 
 The site had links to download the application for Linux or Windows. I downloaded them and opened the Linux version in Ghidra.
 
-![Ghidra](/assets/images/2023/04/Socket/Ghidra.png "Ghidra")
+![Ghidra](/assets/images/2023/07/Socket/Ghidra.png "Ghidra")
 
 I looked at the code a little bit. I renamed a few things to make the code easier to read and looked at the strings it contained. The program was not simple, so I left it aside and tried something else.
 
@@ -311,7 +311,7 @@ While looking at the website, and the application I had completely forgotten tha
 
 I tried looking at what was on port 5789 with a browser, it gave me an error.
 
-![Websocket Error](/assets/images/2023/04/Socket/WebsocketError.png "Websocket Error")
+![Websocket Error](/assets/images/2023/07/Socket/WebsocketError.png "Websocket Error")
 
 I went through every page of the site, trying to find what was using the websocket, but I did not find anything.
 
@@ -377,15 +377,15 @@ The website was not using the websocket anywhere I could see, so maybe the appli
 
 The application had an 'About' menu with options to check the version, and for updates.
 
-![About Menu](/assets/images/2023/04/Socket/AboutMenu.png "About Menu")
+![About Menu](/assets/images/2023/07/Socket/AboutMenu.png "About Menu")
 
 When I clicked on one of the options, it made some requests.
 
-![DNS Requests](/assets/images/2023/04/Socket/DNSRequests.png "DNS Requests")
+![DNS Requests](/assets/images/2023/07/Socket/DNSRequests.png "DNS Requests")
 
 I added 'ws.qreader.htb' to my hosts file and tried again. When I clicked on 'Version', it replied that I was on version '0.0.2'.
 
-![Version](/assets/images/2023/04/Socket/Version.png "Version")
+![Version](/assets/images/2023/07/Socket/Version.png "Version")
 
 I tried the websocket again with this version.
 
