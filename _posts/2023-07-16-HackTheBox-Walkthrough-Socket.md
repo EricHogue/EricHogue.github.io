@@ -13,7 +13,7 @@ permalink: /2023/07/HTB/Socket
 img: 2023/07/Socket/Socket.png
 ---
 
-In Socket, I exploited an SQL Injection vulnerabilities in a websocket to extract the database. I used credentials found in the database to connect to the server. Finally, I ran Python code through PyInstaller to become root.
+In Socket, I exploited an SQL Injection vulnerability in a websocket to extract the database. I used credentials found in the database to connect to the server. Finally, I ran Python code through PyInstaller to become root.
 
 * Room: Socket
 * Difficulty: {{ page.tags[3] }}
