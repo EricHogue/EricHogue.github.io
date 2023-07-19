@@ -1,7 +1,7 @@
 ---
 layout: post
 title: HTB Business CTF 2023 Writeup - Cloud - Unveiled
-date: 2023-07-18
+date: 2023-07-19
 type: post
 tags:
 - Writeup
