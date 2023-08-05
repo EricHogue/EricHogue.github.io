@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Agile
-date: 2023-04-16
+date: 2023-08-05
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Medium
 - Machine
-permalink: /2023/04/HTB/Agile
-img: 2023/04/Agile/Agile.png
+permalink: /2023/08/HTB/Agile
+img: 2023/08/Agile/Agile.png
 ---
 
 In Agile, I had to exploit a password manager to read arbitrary files on a server. I used the information from those files to generate the PIN for the Flask debug console. Then, I read the cookies from Chrome running in debug to access the password of another user. And finally, used `sudoedit` to gain root access.
@@ -129,21 +129,21 @@ Nmap done: 1 IP address (1 host up) scanned in 1010.10 seconds
 
 I opened a browser and navigated to 'http://superpass.htb'.
 
-![SuperPassword Site](/assets/images/2023/04/Agile/SuperPassSite.png "SuperPassword Site")
+![SuperPassword Site](/assets/images/2023/08/Agile/SuperPassSite.png "SuperPassword Site")
 
 It was a password manager. I ran Feroxbuster to look for hidden pages, but everything it found was redirecting to the login page.
 
-![Login Page](/assets/images/2023/04/Agile/Login.png "Login Page")
+![Login Page](/assets/images/2023/08/Agile/Login.png "Login Page")
 
 I tried simple SQL and NoSQL injection payloads in the login form. Nothing worked, but the site kept throwing errors.
 
-![Errors](/assets/images/2023/04/Agile/ErrorOnLogin.png "Errors")
+![Errors](/assets/images/2023/08/Agile/ErrorOnLogin.png "Errors")
 
 It was a Flask app deployed in debug mode. The error page had buttons to access the debug console, but it required a PIN.
 
 I used the 'Register' page to create an account and log in the application.
 
-![Vault](/assets/images/2023/04/Agile/Vault.png "Vault")
+![Vault](/assets/images/2023/08/Agile/Vault.png "Vault")
 
 Once logged in, I was able to add passwords to the vault, and export them.
 
@@ -837,7 +837,7 @@ Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-60-generic x86_64)
 
 I opened a browser to 'http://localhost:5555/' and I got served the test instance. I used the developer's tools of the browser to add the session cookie I stole.
 
-![Test Vault](/assets/images/2023/04/Agile/TestVault.png "Test Vault")
+![Test Vault](/assets/images/2023/08/Agile/TestVault.png "Test Vault")
 
 I used edwards' password to SSH on the server.
 
