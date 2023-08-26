@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - OnlyForYou
-date: 2023-05-07
+date: 2023-08-26
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Medium
 - Machine
-permalink: /2023/05/HTB/OnlyForYou
-img: 2023/05/OnlyForYou/OnlyForYou.png
+permalink: /2023/08/HTB/OnlyForYou
+img: 2023/08/OnlyForYou/OnlyForYou.png
 ---
 
 OnlyForYou was a very fun box. I had to exploit a file read vulnerability, a Remote Command Injection, and a Cypher Injection to get the user flag. Then I had to use pip with a local repository to finally get root.
@@ -177,11 +177,11 @@ It found one subdomain, I added it to my hosts file.
 
 I opened a browser and looked at the site on 'only4you.htb'.
 
-![Main Site](/assets/images/2023/05/OnlyForYou/MainSite.png "Main Site")
+![Main Site](/assets/images/2023/08/OnlyForYou/MainSite.png "Main Site")
 
 There was not much to the site. There was a contact form, but when I tried it, I got an authorization error.
 
-![Not Authorized](/assets/images/2023/05/OnlyForYou/NotAuthorized.png "Not Authorized")
+![Not Authorized](/assets/images/2023/08/OnlyForYou/NotAuthorized.png "Not Authorized")
 
 There was also a link to 'beta.only4you.htb' in the Frequently Asked Questions section.
 
@@ -189,14 +189,14 @@ There was also a link to 'beta.only4you.htb' in the Frequently Asked Questions s
 
 I clicked on the link to the beta site.
 
-![Beta Site](/assets/images/2023/05/OnlyForYou/BetaSite.png "Beta Site")
+![Beta Site](/assets/images/2023/08/OnlyForYou/BetaSite.png "Beta Site")
 
 There was a button to download the site source code. I downloaded it. But I still went through the site before looking at the code.
 
 The site had functionalities to resize and convert images.
 
-![Image Resizer](/assets/images/2023/05/OnlyForYou/ImageResizer.png "Image Resizer")
-![Image Converter](/assets/images/2023/05/OnlyForYou/ImageConverter.png "Image Converter")
+![Image Resizer](/assets/images/2023/08/OnlyForYou/ImageResizer.png "Image Resizer")
+![Image Converter](/assets/images/2023/08/OnlyForYou/ImageConverter.png "Image Converter")
 
 I tried uploading code, but the site only accepted JPG and PNG files. I had the source code, so I opened it to try and find some flaws in it.
 
@@ -618,7 +618,7 @@ Then on the server I created the reverse tunnel on port 3000.
 
 I opened `localhost:3000` in my browser.
 
-![Gogs](/assets/images/2023/05/OnlyForYou/Gogs.png "Gogs")
+![Gogs](/assets/images/2023/08/OnlyForYou/Gogs.png "Gogs")
 
 It was an installation of [Gogs](https://gogs.io/). I could see two users (john and administrator), but no public repository. In [Health](https://erichogue.ca/2023/01/HTB/Health) I exploited an SQL Injection vulnerability in an old version of Gogs. The version on this box did not display the version, and it did not look as old. But I tried the SQL Injection anyway. It failed.
 
@@ -628,7 +628,7 @@ I found another vulnerability, but it required to be authenticated. I tried to l
 
 I recreate a Chisel reverse tunnel on port 8001.
 
-![Private Application](/assets/images/2023/05/OnlyForYou/PrivateApp.png "Private Application")
+![Private Application](/assets/images/2023/08/OnlyForYou/PrivateApp.png "Private Application")
 
 This application redirected me to a login page. I scanned it with Feroxbuster.
 
@@ -672,11 +672,11 @@ by Ben "epi" Risher 🤓                 ver: 2.9.5
 
 It did not find anything I could use. I tried the same credentials I had tried in Gogs. They didn't work here either. I tried admin/admin, that worked.
 
-![Dashboard](/assets/images/2023/05/OnlyForYou/Dashboard.png "Dashboard")
+![Dashboard](/assets/images/2023/08/OnlyForYou/Dashboard.png "Dashboard")
 
 The dashboard did not have much, but the Employees page allowed search for employees.
 
-![Employees](/assets/images/2023/05/OnlyForYou/Employees.png "Employees")
+![Employees](/assets/images/2023/08/OnlyForYou/Employees.png "Employees")
 
 I tried SQL and NoSQL injection. They both failed, but sending a `'` gave me an error. I remembered seeing Neo4j on the server. I never did injection in Neo4j. But a quick search gave me a nice [cheatsheet on Cypher Injection](https://pentester.land/blog/cypher-injection-cheatsheet/). And as usual [HackTricks](https://book.hacktricks.xyz/pentesting-web/sql-injection/cypher-injection-neo4j) also had lots of information.
 
@@ -880,11 +880,11 @@ $ ssh -L 3000:localhost:3000 john@target
 
 I opened the Gogs site and connected with jonh's credentials.
 
-![Gogs Connected](/assets/images/2023/05/OnlyForYou/GogsConnected.png "Gogs Connected")
+![Gogs Connected](/assets/images/2023/08/OnlyForYou/GogsConnected.png "Gogs Connected")
 
 There was one repository called Test. But it was private, so pip could not use it. I went to the repository setting to make it public.
 
-![Make Repository Public](/assets/images/2023/05/OnlyForYou/MakeRepoPublic.png "Make Repository Public")
+![Make Repository Public](/assets/images/2023/08/OnlyForYou/MakeRepoPublic.png "Make Repository Public")
 
 Now pip could access the repository. I checked on [GTFOBins](https://gtfobins.github.io/gtfobins/pip/) and saw that code in `setup.py` would get executed on installation. I created a small script that copied bash in `/tmp` and set the suid bit on it.
 
