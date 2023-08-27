@@ -13,7 +13,7 @@ permalink: /2023/08/HTB/Jupiter
 img: 2023/08/Jupiter/Jupiter.png
 ---
 
-In Jupyter I had to exploit an SQL Injection and run code through a network simulator, a Jupyter Notebook, and a satellite tracking application to get to root.
+In Jupiter I had to exploit an SQL Injection and run code through a network simulator, a Jupyter Notebook, and a satellite tracking application to get to root.
 
 * Room: Jupiter
 * Difficulty: {{ page.tags[3] }}
