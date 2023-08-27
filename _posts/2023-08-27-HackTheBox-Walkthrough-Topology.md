@@ -13,7 +13,7 @@ permalink: /2023/08/HTB/Topology
 img: 2023/08/Topology/Topology.png
 ---
 
-In this machine I had to get code execution through an application that convert LaTeX into images, crack an hash that was on the server, and finally run code through Gnuplot.
+In this machine I had to get code execution through an application that converts LaTeX into images, crack a hash that was on the server, and finally run code through Gnuplot.
 
 * Room: Topology
 * Difficulty: {{ page.tags[3] }}
@@ -229,13 +229,13 @@ by Ben "epi" Risher 🤓                 ver: 2.10.0
 [####################] - 4s    119601/119601  31041/s http://latex.topology.htb/tempfiles/ => Directory listing
 ```
 
-There were a few folder with directoy listing enabled. The 'tempfiles' folder looked promising.
+There were a few folder with directory listing enabled. The 'tempfiles' folder looked promising.
 
 I looked for [LaTeX Injection in HackTricks](https://book.hacktricks.xyz/pentesting-web/formula-doc-latex-injection). There were a few possibilities, but they all seemed to be blocked. When I tried to use most of the provided commands, I got an error back.
 
 ![Illegal Command](/assets/images/2023/08/Topology/IllegalCommand.png "Illegal Command")
 
-Most of commands that looked like they could help me get a shell were blocked.
+Most commands that looked like they could help me get a shell were blocked.
 
 I was able to read the first 3 lines of a file.
 
@@ -263,11 +263,11 @@ I also found how to create a file in the 'tempfiles' folder.
 
 The file was created, but I could not write any content to it since `/write` was blocked.
 
-I got blocked here for a while. I tried to use different kind of loops. I looked for alternative to read and write commands. Nothing worked. 
+I got blocked here for a while. I tried to use different kinds of loops. I looked for alternatives to read and write commands. Nothing worked. 
 
 After some time, I took a look at the forum for the box. It pointed me to [catcodes](https://en.wikibooks.org/wiki/TeX/catcode). I could use this command to change how some characters behave. 
 
-I tried making the undescore (_) behave as the backslash (\\). And then use the _ in my commands to bypass the validation.
+I tried making the underscore (_) behave as the backslash (\\). And then use the _ in my commands to bypass the validation.
 
 ```
 \catcode`_=0
