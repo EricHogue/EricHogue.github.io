@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - MonitorsTwo
-date: 2023-05-10
+date: 2023-09-02
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2023/05/HTB/MonitorsTwo
-img: 2023/05/MonitorsTwo/MonitorsTwo.png
+permalink: /2023/09/HTB/MonitorsTwo
+img: 2023/09/MonitorsTwo/MonitorsTwo.png
 ---
 
 In this box, I exploited a know vulnerability in Cacti. I found SSH credentials in a database. And finally I exploited another know vulnerability, this one in Docker, to get root access.
@@ -172,7 +172,7 @@ It found a few things, but almost everything was redirecting to `index.php`.
 
 I looked at the website on port 80.
 
-![Cacti](/assets/images/2023/05/MonitorsTwo/Cacti.png "Cacti")
+![Cacti](/assets/images/2023/09/MonitorsTwo/Cacti.png "Cacti")
 
 It was an instance of [Cacti](https://www.cacti.net/), a monitoring tool. I tried a few default credentials, but they were rejected.
 
