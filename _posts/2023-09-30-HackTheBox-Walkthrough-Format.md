@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Format
-date: 2023-07-01
+date: 2023-09-30
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Medium
 - Machine
-permalink: /2023/07/HTB/Format
-img: 2023/07/Format/Format.png
+permalink: /2023/09/HTB/Format
+img: 2023/09/Format/Format.png
 ---
 
 This was a very fun box. I got the initial foothold by using nginx misconfiguration to modify a value in Redis, and writing a PHP file where I should not have been able to. Next, I found a user's password in Redis. And finally, exploited a vulnerability in python's `string.format` to get root.
@@ -123,39 +123,39 @@ It found 'sunny.microblog.htb'. I added that to my hosts file also.
 
 I opened a browser and looked at the application on 'app.microblog.htb'.
 
-![Microblog Application](/assets/images/2023/07/Format/AppMicroblog.png "Microblog Application")
+![Microblog Application](/assets/images/2023/09/Format/AppMicroblog.png "Microblog Application")
 
 It was an application that allowed creating small blogs. The 'contribute' link at the bottom of the page was taking us to a public Git repository hosted in Gitea on port 3000. I cloned the repository, but kept looking at the site before digging in the code.
 
 There was a login page. I tried simple credentials, but they didn't work. I used the Register link to create an account.
 
-![Register](/assets/images/2023/07/Format/Register.png "Register")
+![Register](/assets/images/2023/09/Format/Register.png "Register")
 
 Once registered, I could create microblogs.
 
-![Registered](/assets/images/2023/07/Format/Registered.png "Registered")
+![Registered](/assets/images/2023/09/Format/Registered.png "Registered")
 
 The page had an ad to buy a pro licence that would allow uploading images. This looked very interesting. File uploads are great to get code execution. But the feature was not implemented yet.
 
-![Go Pro](/assets/images/2023/07/Format/GoPro.png "Go Pro")
+![Go Pro](/assets/images/2023/09/Format/GoPro.png "Go Pro")
 
 I created a blog. It asked me for a subdomain. I created a few and added them to my hosts file to be able to access them. This hinted at the possibility of a proxy allowing serving all those different subdomains.
 
 Once created, it was added to my list of blogs and I could visit it and edit it.
 
-![My Blogs](/assets/images/2023/07/Format/MyBlogs.png "My Blogs")
+![My Blogs](/assets/images/2023/09/Format/MyBlogs.png "My Blogs")
 
 I looked at the blog, it started empty. 
 
-![Empty Blog](/assets/images/2023/07/Format/EmptyBlog.png "Empty Blog")
+![Empty Blog](/assets/images/2023/09/Format/EmptyBlog.png "Empty Blog")
 
 I went to the edit page. I could add headers and text to the blog.
 
-![Edit Blog](/assets/images/2023/07/Format/EditBlog.png "Edit Blog")
+![Edit Blog](/assets/images/2023/09/Format/EditBlog.png "Edit Blog")
 
 I added fields and reloaded my blog, the new content was there.
 
-![Blog With Content](/assets/images/2023/07/Format/BlogWithContent.png "Blog With Content")
+![Blog With Content](/assets/images/2023/09/Format/BlogWithContent.png "Blog With Content")
 
 I tried adding some [XSS](https://owasp.org/www-community/attacks/xss/) payloads. They worked, but no one else seemed to be visiting the site. I also tried [SSTI](https://portswigger.net/web-security/server-side-template-injection), that failed.
 
@@ -163,7 +163,7 @@ I tried adding some [XSS](https://owasp.org/www-community/attacks/xss/) payloads
 
 I visited the site on 'sunny.microblog.htb'. It was an instance of a microblog that talked about Philadelphia and Danny DeVito.
 
-![Sunny Microblog](/assets/images/2023/07/Format/SunnyMicroblog.png "Sunny Microblog")
+![Sunny Microblog](/assets/images/2023/09/Format/SunnyMicroblog.png "Sunny Microblog")
 
 ### Source Code Analysis
 
@@ -506,7 +506,7 @@ Referer: http://app.microblog.htb/
 
 I refreshed the page and I was pro.
 
-![Pro](/assets/images/2023/07/Format/Pro.png "Pro")
+![Pro](/assets/images/2023/09/Format/Pro.png "Pro")
 
 ### Getting a Shell
 
@@ -562,7 +562,7 @@ id=../edit/bulletproof.php&txt=<?php echo 'IN';?>
 
 The I reloaded the edit page. I had code execution.
 
-![Code Execution](/assets/images/2023/07/Format/CodeExecution.png "Code Execution")
+![Code Execution](/assets/images/2023/09/Format/CodeExecution.png "Code Execution")
 
 When I reloaded the edit page, my message was gone. The file gets overwitten on every execution.
 
