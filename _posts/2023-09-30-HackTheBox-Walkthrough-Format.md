@@ -16,7 +16,7 @@ img: 2023/09/Format/Format.png
 This was a very fun box. I got the initial foothold by using nginx misconfiguration to modify a value in Redis, and writing a PHP file where I should not have been able to. Next, I found a user's password in Redis. And finally, exploited a vulnerability in python's `string.format` to get root.
 
 * Room: Format
-* Difficulty: Medium
+* Difficulty: {{ page.tags[3] }}
 * URL: [https://app.hackthebox.com/machines/Format](https://app.hackthebox.com/machines/Format)
 * Author: [coopertim13](https://app.hackthebox.com/users/55851)
 
