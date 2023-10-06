@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - PC
-date: 2023-07-02
+date: 2023-10-07
 type: post
 tags:
 - Walkthrough
@@ -9,14 +9,14 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2023/07/HTB/PC
-img: 2023/07/PC/PC.png
+permalink: /2023/10/HTB/PC
+img: 2023/10/PC/PC.png
 ---
 
 In this box, I had to exploit SQL Injection through gRPC to get SSH credentials. Then exploit a known vulnerability in pyLoad to get root.
 
 * Room: PC
-* Difficulty: Easy
+* Difficulty: {{ page.tags[3] }}
 * URL: [https://app.hackthebox.com/machines/PC](https://app.hackthebox.com/machines/PC)
 * Author: [sau123](https://app.hackthebox.com/users/201596)
 
@@ -375,7 +375,7 @@ ssh -L 8001:localhost:8000 sau@target
 
 And I opened it in my browser.
 
-![pyLoad](/assets/images/2023/07/PC/pyLoad.png "pyLoad")
+![pyLoad](/assets/images/2023/10/PC/pyLoad.png "pyLoad")
 
 It was an instance of [pyLoad](https://pyload.net/), a download manager. I tried using the credentials I found earlier, they failed.
 
