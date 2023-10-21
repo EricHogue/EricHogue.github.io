@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Jupiter
-date: 2023-08-26
+date: 2023-10-21
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Medium
 - Machine
-permalink: /2023/08/HTB/Jupiter
-img: 2023/08/Jupiter/Jupiter.png
+permalink: /2023/10/HTB/Jupiter
+img: 2023/10/Jupiter/Jupiter.png
 ---
 
 In Jupiter I had to exploit an SQL Injection and run code through a network simulator, a Jupyter Notebook, and a satellite tracking application to get to root.
@@ -117,7 +117,7 @@ It found 'kiosk.jupiter.htb'.
 
 I loaded the main website in a browser.
 
-![Main Site](/assets/images/2023/08/Jupiter/WebSite.png "Main Site")
+![Main Site](/assets/images/2023/10/Jupiter/WebSite.png "Main Site")
 
 The site did not do much. There was a contact form, but it did not do anything.
 
@@ -226,7 +226,7 @@ It did not find anything of interest.
 
 I looked at the site on 'kiosk.jupiter.htb'.
 
-![Grafana](/assets/images/2023/08/Jupiter/Grafana.png "Grafana")
+![Grafana](/assets/images/2023/10/Jupiter/Grafana.png "Grafana")
 
 This was a dashboard built with Grafana. I did a quick search and saw that it could be vulnerable to [inject arbitrary queries](https://vuldb.com/?id.230868). I looked at the traffic from the site and saw that it was sending a raw query to the server.
 
@@ -589,7 +589,7 @@ postgres@jupiter:/tmp$ ./chisel client 10.10.14.8:3477 R:8888:localhost:8888/tcp
 
 I opened the notebook in my browser.
 
-![Jupyter Notebook](/assets/images/2023/08/Jupiter/JupyterNotebook.png "Jupyter Notebook")
+![Jupyter Notebook](/assets/images/2023/10/Jupiter/JupyterNotebook.png "Jupyter Notebook")
 
 It worked, but I needed a password or a token to access it. I tried running Feroxbuster on the site, but it did not find anything interesting.
 
@@ -796,19 +796,19 @@ I created an SSH tunnel, reloaded the UI, and used the found token to connect.
 $ ssh -L 8888:localhost:8888 juno@target
 ```
 
-![Jupyter Connected](/assets/images/2023/08/Jupiter/JupyterConnected.png "Jupyter Connected")
+![Jupyter Connected](/assets/images/2023/10/Jupiter/JupyterConnected.png "Jupyter Connected")
 
 I opened the Flare notebook.
 
-![Running Notebook](/assets/images/2023/08/Jupiter/RunningNotebook.png "Running Notebook")
+![Running Notebook](/assets/images/2023/10/Jupiter/RunningNotebook.png "Running Notebook")
 
 I could modify the code it ran from the UI. I searched how to run commands and saw that if I use [%%bash](https://stackoverflow.com/questions/38694081/executing-terminal-commands-in-jupyter-notebook/58047187#58047187), I could use bash commands.
 
-![Jupyter RCE](/assets/images/2023/08/Jupiter/JupyterRCE.png "Jupiter RCE")
+![Jupyter RCE](/assets/images/2023/10/Jupiter/JupyterRCE.png "Jupiter RCE")
 
 I used this to copy my SSH public key in jovian's home folder.
 
-![Copy SSH Key](/assets/images/2023/08/Jupiter/JupyterCopySSHKey.png "Copy SSH Key")
+![Copy SSH Key](/assets/images/2023/10/Jupiter/JupyterCopySSHKey.png "Copy SSH Key")
 
 I reconnected as jovian using my key.
 
