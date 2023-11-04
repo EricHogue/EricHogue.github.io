@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Topology
-date: 2023-08-27
+date: 2023-11-04
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2023/08/HTB/Topology
-img: 2023/08/Topology/Topology.png
+permalink: /2023/11/HTB/Topology
+img: 2023/11/Topology/Topology.png
 ---
 
 In this machine I had to get code execution through an application that converts LaTeX into images, crack a hash that was on the server, and finally run code through Gnuplot.
@@ -89,7 +89,7 @@ There were two open ports:
 
 I open a browser to check the website.
 
-![Website](/assets/images/2023/08/Topology/Website.png "Website")
+![Website](/assets/images/2023/11/Topology/Website.png "Website")
 
 The website was simple, but it contained a link to 'latex.topology.htb'. I took a note, but kept looking at the main website.
 
@@ -176,13 +176,13 @@ There were none that I could find.
 
 The link from the main site took me to an application that converted [LaTeX](https://www.latex-project.org/) equations to images.
 
-![LaTeX Generator](/assets/images/2023/08/Topology/LaTeXGenerator.png "LaTeXGenerator")
+![LaTeX Generator](/assets/images/2023/11/Topology/LaTeXGenerator.png "LaTeXGenerator")
 
 It took formulas in the LaTeX format and converted them to an image.
 
 Sending something simple like '2 + 2' resulted in the following image.
 
-![2 + 2](/assets/images/2023/08/Topology/2+2.png "2 + 2")
+![2 + 2](/assets/images/2023/11/Topology/2+2.png "2 + 2")
 
 
 I ran Feroxbuster again to check for hidden files in that subdomain.
@@ -233,7 +233,7 @@ There were a few folder with directory listing enabled. The 'tempfiles' folder l
 
 I looked for [LaTeX Injection in HackTricks](https://book.hacktricks.xyz/pentesting-web/formula-doc-latex-injection). There were a few possibilities, but they all seemed to be blocked. When I tried to use most of the provided commands, I got an error back.
 
-![Illegal Command](/assets/images/2023/08/Topology/IllegalCommand.png "Illegal Command")
+![Illegal Command](/assets/images/2023/11/Topology/IllegalCommand.png "Illegal Command")
 
 Most commands that looked like they could help me get a shell were blocked.
 
@@ -247,7 +247,7 @@ I was able to read the first 3 lines of a file.
 \closein\file
 ```
 
-![Read File](/assets/images/2023/08/Topology/ReadFile.png "Read File")
+![Read File](/assets/images/2023/11/Topology/ReadFile.png "Read File")
 
 But I could not read an entire file. The `loop` command was blocked. If I tried to read more lines, my code was rejected for being too long.
 
@@ -259,7 +259,7 @@ I also found how to create a file in the 'tempfiles' folder.
 \closeout\outfile
 ```
 
-![Write File](/assets/images/2023/08/Topology/PHPFileCreated.png "Write File")
+![Write File](/assets/images/2023/11/Topology/PHPFileCreated.png "Write File")
 
 The file was created, but I could not write any content to it since `/write` was blocked.
 
