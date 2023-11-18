@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Sandworm
-date: 2023-09-03
+date: 2023-11-18
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Medium
 - Machine
-permalink: /2023/09/HTB/Sandworm
-img: 2023/09/Sandworm/Sandworm.png
+permalink: /2023/11/HTB/Sandworm
+img: 2023/11/Sandworm/Sandworm.png
 ---
 
 This was a fun box. I had to get code execution through [GPG](https://gnupg.org/) by injecting [SSTI](https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection) in the name field of a key. Next I had to find a user's credentials, abuse a cron to get back to the first user I found. And finally exploit a vulnerability in [Firejail](https://firejail.wordpress.com/). The box was themed around the NSA, which added a nice twist.
@@ -164,19 +164,19 @@ Nmap done: 1 IP address (1 host up) scanned in 0.73 seconds
 
 I opened a browser to look at the website.
 
-![Website](/assets/images/2023/09/Sandworm/Website.png "Website")
+![Website](/assets/images/2023/11/Sandworm/Website.png "Website")
 
 It was the site for a spying agency. I looked around the site. The contact form allowed sending a PGP encrypted message.
 
-![Contact Form](/assets/images/2023/09/Sandworm/ContactForm.png "Contact Form")
+![Contact Form](/assets/images/2023/11/Sandworm/ContactForm.png "Contact Form")
 
 The guide page had a few forms to test encrypting, decrypting, and signing messages.
 
-![Guides](/assets/images/2023/09/Sandworm/Guides.png "Guides")
+![Guides](/assets/images/2023/11/Sandworm/Guides.png "Guides")
 
 There was also a public key that was provided to encrypt messages.
 
-![Public Key](/assets/images/2023/09/Sandworm/PublicKey.png "Public Key")
+![Public Key](/assets/images/2023/11/Sandworm/PublicKey.png "Public Key")
 
 I ran Feroxbuster to check for hidden pages.
 
@@ -302,7 +302,7 @@ I started a web server on my machine, and sent the message through the contact f
 
 The first form from the guide page took an encrypted message and decrypted it. I use the same payload that I build for the contact form and tried to decrypt it.
 
-![Decrypt Message](/assets/images/2023/09/Sandworm/DecryptedPayload.png "Decrypt Message")
+![Decrypt Message](/assets/images/2023/11/Sandworm/DecryptedPayload.png "Decrypt Message")
 
 The decryption worked. My payload was displayed, but not executed.
 
@@ -320,7 +320,7 @@ SSA: 09/03/2023-14;10;19
 
 The last form of the page allowed verifying a signature. It required a public key, and a signed message to verify. I tried it with the provided key and the example signed message.
 
-![Verified Signature](/assets/images/2023/09/Sandworm/VerifiedSignature.png "Verified Signature")
+![Verified Signature](/assets/images/2023/11/Sandworm/VerifiedSignature.png "Verified Signature")
 
 This opened a pop-up with the result of the signature verification. And some of the information displayed in the resulting HTML seemed to be coming from the public key. I could probably control some of it if I generated my own key.
 
@@ -472,7 +472,7 @@ gc/R2QwZXfGer/LvVLNs+Jjy4iEA
 
 I sent this to the verification form, my payload was executed.
 
-![SSTI](/assets/images/2023/09/Sandworm/SSTI.png "SSTI")
+![SSTI](/assets/images/2023/11/Sandworm/SSTI.png "SSTI")
 
 I knew that I could be some code execution on the server, but I did not know which templating engine was used. I tried a few payloads from [HackTricks](https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection). It looked like the server was using [Jinja2](https://palletsprojects.com/p/jinja/), but my payloads were crashing the server. I tried a [payload from a different site](https://www.onsecurity.io/blog/server-side-template-injection-with-jinja2/).
 
@@ -596,7 +596,7 @@ ha2PONZc+Xj88UXpLg9WEdOKCoEXX+rM15yTvvE37/qz3E37Pff5LTOp1zBkDk2+
 -----END PGP MESSAGE-----
 ```
 
-![id executed](/assets/images/2023/09/Sandworm/id.png "id executed")
+![id executed](/assets/images/2023/11/Sandworm/id.png "id executed")
 
 I knew I could run commands on the server. I used that to get a reverse shell. I started by generating a base64 encoded reverse shell to make sure my payload did not have forbidden characters.
 
