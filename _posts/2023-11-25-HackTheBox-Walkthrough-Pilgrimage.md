@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Pilgrimage
-date: 2023-09-03
+date: 2023-11-25
 type: post
 tags:
 - Walkthrough
@@ -9,11 +9,11 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2023/09/HTB/Pilgrimage
-img: 2023/09/Pilgrimage/Pilgrimage.png
+permalink: /2023/11/HTB/Pilgrimage
+img: 2023/11/Pilgrimage/Pilgrimage.png
 ---
 
-In Pilgrimage, I had to exploit a known vulnerability in Binwalk to obtain credentials. And another known vulnerability in Binwalk to get root.
+In Pilgrimage, I had to exploit a known vulnerability in ImageMagick to obtain credentials. And another known vulnerability in Binwalk to get root.
 
 * Room: Pilgrimage
 * Difficulty: {{ page.tags[3] }}
@@ -106,11 +106,11 @@ I scanned for UDP ports, but did not find any.
 
 I opened a browser and looked at the website on port 80.
 
-![Website](/assets/images/2023/09/Pilgrimage/Website.png "Website")
+![Website](/assets/images/2023/11/Pilgrimage/Website.png "Website")
 
 It was a website that allowed shrinking images. You could register to the site. It would give access to a dashboard that showed the images that were shrinked.
 
-![Dashboard](/assets/images/2023/09/Pilgrimage/Dashboard.png "Dashboard")
+![Dashboard](/assets/images/2023/11/Pilgrimage/Dashboard.png "Dashboard")
 
 Rustscan had detected that there was a `.git` folder. I used [git-dumper](https://github.com/arthaud/git-dumper) to extract the git repository.
 
