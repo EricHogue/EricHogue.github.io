@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Sau
-date: 2023-09-30
+#date: 2024-01-06
+date: 2023-12-28
 type: post
 tags:
 - Walkthrough
@@ -9,8 +10,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2023/09/HTB/Sau
-img: 2023/09/Sau/Sau.png
+permalink: /2024/01/HTB/Sau
+img: 2024/01/Sau/Sau.png
 ---
 
 In Sau, I exploited two known vulnerabilities. One in Maltrail to get a shell. And one in the way `systemd` uses `less` to display the status of a service.
@@ -146,29 +147,29 @@ There were two open ports. Port 22 (SSH) was open. Port 55555 was also open. I d
 
 I opened a browser and looked at the website on port 55555.
 
-![Website](/assets/images/2023/09/Sau/Website.png "Website")
+![Website](/assets/images/2024/01/Sau/Website.png "Website")
 
 The site allowed creating a basket to collect HTTP requests. The kind of site that can be used to test webhooks or XSS payloads. I tried the 'Administration' link on the top right of the page. It required a token.
 
-![Token Required](/assets/images/2023/09/Sau/TokenRequired.png "Token Required")
+![Token Required](/assets/images/2024/01/Sau/TokenRequired.png "Token Required")
 
 I created a basket. 
 
-![Empty Basket](/assets/images/2023/09/Sau/EmptyBasket.png "Empty Basket")
+![Empty Basket](/assets/images/2024/01/Sau/EmptyBasket.png "Empty Basket")
 
 It gave me the URL where I could send HTTP requests to be collected. I sent a few requests to the URL. It gave me a blank page, but the requests appeared in my basket.
 
-![Collected Requests](/assets/images/2023/09/Sau/Requests.png "Collected Requests")
+![Collected Requests](/assets/images/2024/01/Sau/Requests.png "Collected Requests")
 
 I looked at the settings of the basket.
 
-![Settings](/assets/images/2023/09/Sau/Configuration.png "Settings")
+![Settings](/assets/images/2024/01/Sau/Configuration.png "Settings")
 
 There were two interesting settings. The 'Forward URL' allowed me to send the requests somewhere else after capturing them. And the 'Proxy Response' setting allowed sending back the response from the forward URL to the requester. 
 
 I tried to read a local file by setting the forward URL to `file:///etc/passwd`. It failed.
 
-![Read Local File](/assets/images/2023/09/Sau/RequestEtcPasswd.png "Read Local File")
+![Read Local File](/assets/images/2024/01/Sau/RequestEtcPasswd.png "Read Local File")
 
 I tried sending the requests to my machine. That worked, but it was not really useful. 
 
@@ -187,11 +188,11 @@ I left it redirecting to my machine for a few minutes to see if someone else wou
 
 Next, I tried using the Forward URL to read endpoints that were not exposed on the server. I started with port 80 to test it. 
 
-![Read localhost](/assets/images/2023/09/Sau/SSRFConfiguration.png "Read localhost")
+![Read localhost](/assets/images/2024/01/Sau/SSRFConfiguration.png "Read localhost")
 
 I sent a request with Caido and got an interesting response. I loaded it in a browser.
 
-![Maltrail](/assets/images/2023/09/Sau/Maltrail.png "Maltrail")
+![Maltrail](/assets/images/2024/01/Sau/Maltrail.png "Maltrail")
 
 The page was not rendering correctly since it could not load the images, CSS, and JavaScript. But it showed that it was an instance of [Maltrail](https://github.com/stamparm/maltrail), a tool to detect malicious traffic. It also displayed that it was using version 'v0.53'. I looked for known vulnerability with this version. I quickly found that the login page had a [Remote Code Execution vulnerability](https://github.com/spookier/Maltrail-v0.53-Exploit).
 
@@ -199,7 +200,7 @@ There was a POC in the GitHub repository, but the exploit was simple. I just nee
 
 I changed my basket to forward the requests to the login page.
 
-![Forward to Login](/assets/images/2023/09/Sau/ForwardToLogin.png "Forward to Login")
+![Forward to Login](/assets/images/2024/01/Sau/ForwardToLogin.png "Forward to Login")
 
 I tried running `id`, but it only replied with 'Login failed', so I did not know if it worked. I tried sending a request to my machine.
 
