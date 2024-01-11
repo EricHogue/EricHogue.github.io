@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Zipping
-date: 2023-10-22
+date: 2024-01-13
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Medium
 - Machine
-permalink: /2023/10/HTB/Zipping
-img: 2023/10/Zipping/Zipping.png
+permalink: /2024/01/HTB/Zipping
+img: 2024/01/Zipping/Zipping.png
 ---
 
 In Zipping, I had to exploit three different vulnerabilites to get a shell. A Local File Inclusion, a File Upload, and SQL Injection combined together. Then I exploited a binary that I could run with `sudo` to become root.
@@ -87,7 +87,7 @@ I did not see any domain to scan for subdomains, and a UDP scan did not show any
 
 I looked at the website on port 80.
 
-![Watch Store](/assets/images/2023/10/Zipping/WatchStore.png "Watch Store")
+![Watch Store](/assets/images/2024/01/Zipping/WatchStore.png "Watch Store")
 
 It was a site for selling watches. I ran Feroxbuster on it, but it did not find anything did not see by navigating through the site.
 
@@ -95,12 +95,12 @@ It was a site for selling watches. I ran Feroxbuster on it, but it did not find 
 
 The store page URL for products looked interesting.
 
-![Product](/assets/images/2023/10/Zipping/Product.png "Product")
+![Product](/assets/images/2024/01/Zipping/Product.png "Product")
 
 
 The page parameter allowed including files from the server. I played with it a little bit. Whenever the file inclusion failed, I would get the list of products. It was adding the '.php' extension after the file name. And the PHP files were executed. I could not add PHP filters, so I was not able to use it to read the code.
 
-![LFI](/assets/images/2023/10/Zipping/LFI.png "LFI")
+![LFI](/assets/images/2024/01/Zipping/LFI.png "LFI")
 
 I was able to include PHP files, but I could not find any way to exploit it yet. So I kept looking at other pages on the site.
 
@@ -108,11 +108,11 @@ I was able to include PHP files, but I could not find any way to exploit it yet.
 
 The 'Work With Us' page allowed uploading files to the server.
 
-![Work With Us](/assets/images/2023/10/Zipping/WorkWithUs.png "Work With Us")
+![Work With Us](/assets/images/2024/01/Zipping/WorkWithUs.png "Work With Us")
 
 The application only allowed uploading zip files. And the file had to contain one PDF.
 
-![Zip File Must Contain One PDF](/assets/images/2023/10/Zipping/ZipFileMustContainOnePdf.png "Zip File Must Contain One PDF")
+![Zip File Must Contain One PDF](/assets/images/2024/01/Zipping/ZipFileMustContainOnePdf.png "Zip File Must Contain One PDF")
 
 I looked on HackTricks and found that I could use the fact that the server was decompressing the zip file to get it to [read arbitrary files](https://book.hacktricks.xyz/pentesting-web/file-upload#zip-tar-file-automatically-decompressed-upload). I had to create a ZIP file that contained a symlink to the file I wanted to read. The server would uncompress the zip file, if the symlink had the '.pdf' extension, I would get a link to it back. Reading the PDF would give me the content of the file I was trying to read.
 
@@ -393,7 +393,7 @@ Invalid password, please try again.
 
 I was able to run a binary. I tried it, it needed a password. I downloaded the file to my machine and opened it with Ghidra. I renamed a few variables to make it more readable. The `checkAuth` function had the password in clear.
 
-![Check Auth Function](/assets/images/2023/10/Zipping/checkAuth.png "Check Auth Function")
+![Check Auth Function](/assets/images/2024/01/Zipping/checkAuth.png "Check Auth Function")
 
 ```bash
 rektsu@zipping:~$ sudo /usr/bin/stock
@@ -475,7 +475,7 @@ rektsu@zipping:~$
 
 The application displayed an inventory and allowed changing it. I looked at the application code in Ghidra. Most of it was in `main`.
 
-![Main Function](/assets/images/2023/10/Zipping/main.png "Main Function")
+![Main Function](/assets/images/2024/01/Zipping/main.png "Main Function")
 
 The call to [dlopen](https://linux.die.net/man/3/dlopen) was interesting. It dynamically loaded a library from the server. The path to the library was obfuscated with XOR. I ran the application with GDB to be able to read the path after it was XORed back to the original value.
 
