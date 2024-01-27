@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Clicker
-date: 2023-11-12
+date: 2024-01-27
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Medium
 - Machine
-permalink: /2023/11/HTB/Clicker
-img: 2023/11/Clicker/Clicker.png
+permalink: /2024/01/HTB/Clicker
+img: 2024/01/Clicker/Clicker.png
 ---
 
 This was a really fun box. I had to get the source code of a web application through NFS. Then I was able to abuse multiple vulnerabilities in the application to get a shell on the server. Once on the server, I exploited a suid application to get a user, and a badly configured sudo to finally get root.
@@ -165,17 +165,17 @@ It did not find anything.
 
 I launched a browser and started looking at the website.
 
-![Website](/assets/images/2023/11/Clicker/Website.png "Website")
+![Website](/assets/images/2024/01/Clicker/Website.png "Website")
 
 It was a site for a game. I tried login in with simple credentials, and basic injections, that did not work. There was a register link. I tried to create a user called 'admin'.
 
-![Admin User Exists](/assets/images/2023/11/Clicker/AdminUserExists.png "Admin User Exists")
+![Admin User Exists](/assets/images/2024/01/Clicker/AdminUserExists.png "Admin User Exists")
 
 It told me that admin already existed in the application. I knew I could try to brute force their password if I did not find anything else. I created a user and logged in.
 
 I tried playing the game.
 
-![The Game](/assets/images/2023/11/Clicker/TheGame.png "The Game")
+![The Game](/assets/images/2024/01/Clicker/TheGame.png "The Game")
 
 The game consisted of clicking until you got enough point to level up. Very exciting!
 
@@ -211,7 +211,7 @@ Upgrade-Insecure-Requests: 1
 
 I looked at my profile, and I had one million points.
 
-![Profile](/assets/images/2023/11/Clicker/ProfileInfo.png "Profile")
+![Profile](/assets/images/2024/01/Clicker/ProfileInfo.png "Profile")
 
 The game was easy to cheat, but it didn't give me anything. I launched Feroxbuster to look for hidden pages.
 
@@ -468,7 +468,7 @@ Upgrade-Insecure-Requests: 1
 
 After sending that request, I reconnected to the application to refresh the session. And I was admin.
 
-![Administration Portal](/assets/images/2023/11/Clicker/Admin.png "Administration Portal")
+![Administration Portal](/assets/images/2024/01/Clicker/Admin.png "Administration Portal")
 
 ### Remote Code Execution
 
@@ -578,7 +578,7 @@ threshold=1000000&extension=php
 
 I looked at the exported file. My PHP code was executed since my nickname was simply 'IN'.
 
-![RCE](/assets/images/2023/11/Clicker/RCE.png "RCE")
+![RCE](/assets/images/2024/01/Clicker/RCE.png "RCE")
 
 With this, I could build a reverse shell. I started by encoding the reverse shell code in base64.
 
