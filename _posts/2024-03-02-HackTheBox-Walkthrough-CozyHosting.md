@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - CozyHosting
-date: 2023-10-21
+date: 2024-03-02
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2023/10/HTB/CozyHosting
-img: 2023/10/CozyHosting/CozyHosting.png
+permalink: /2024/03/HTB/CozyHosting
+img: 2024/03/CozyHosting/CozyHosting.png
 ---
 
 In this box, I had to enumerate the endpoints of a Spring Boot application, steal a user session, and inject a command to get a shell. Then I cracked a hash found in a database and exploited a command I could run through sudo.
@@ -117,7 +117,7 @@ Requests/sec.: 0
 
 I opened a browser and looked at the website.
 
-![Website](/assets/images/2023/10/CozyHosting/WebSite.png "Website")
+![Website](/assets/images/2024/03/CozyHosting/WebSite.png "Website")
 
 It was a website for a hosting company. The site didn't do much. Only the login page seems to work. I tried to connect using a few sets of simple credentials. I also tried SQL and NoSQL injections. Nothing worked.
 
@@ -177,7 +177,7 @@ by Ben "epi" Risher 🤓                 ver: 2.10.0
 
 It did not appear to find anything of interest. At first I ignored the error page. I had seen it a few times already.
 
-![Error Page](/assets/images/2023/10/CozyHosting/ErrorPage.png "Error Page")
+![Error Page](/assets/images/2024/03/CozyHosting/ErrorPage.png "Error Page")
 
 After some time, I researched the error page and found it was from [Spring Boot](https://spring.io/projects/spring-boot). I launched Feroxbuster again, trying to find `.java`, `.class`, `.xml`, and `.jar` files. That failed. I found a word list that was built for Spring Boot. I used it in Feroxbuster.
 
@@ -242,15 +242,15 @@ by Ben "epi" Risher 🤓                 ver: 2.10.0
 
 This one came up with lots of interesting stuff. The [actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html) was exposing a few endpoints. It's used to monitor and manage applications. And the 'Sessions' endpoint was exposed. 
 
-![Sessions](/assets/images/2023/10/CozyHosting/Sessions.png "Sessions")
+![Sessions](/assets/images/2024/03/CozyHosting/Sessions.png "Sessions")
 
 It gave me the session ID of a logged-in user. I changed my 'JSESSIONID' cookie to this value and navigated to the admin page.
 
-![Admin](/assets/images/2023/10/CozyHosting/Admin.png "Admin")
+![Admin](/assets/images/2024/03/CozyHosting/Admin.png "Admin")
 
 The bottom of the page had a form to include hosts for automatic patching. I tried adding localhost.
 
-![Failed to add host](/assets/images/2023/10/CozyHosting/FailedToAddHost.png "Failed to add host")
+![Failed to add host](/assets/images/2024/03/CozyHosting/FailedToAddHost.png "Failed to add host")
 
 It failed, but I thought the values I sent might be used in a shell command. I used Caido to see if I could get it to run arbitrary commands. Especially since the endpoint was called `executessh`.
 
