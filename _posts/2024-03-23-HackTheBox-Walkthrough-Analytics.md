@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Analytics
-date: 2024-01-20
+date: 2024-03-23
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2024/01/HTB/Analytics
-img: 2024/01/Analytics/Analytics.png
+permalink: /2024/03/HTB/Analytics
+img: 2024/03/Analytics/Analytics.png
 ---
 
 In this machine, I exploited a known vulnerability in Metabase to get a user, and a vulnerability in Ubuntu to become root.
@@ -105,7 +105,7 @@ It found 'data.analytical.htb. I added it to my hosts file. I ran `feroxbuster` 
 
 I opened a web browser to check at the website on 'analytical.htb'.
 
-![Main Website](/assets/images/2024/01/Analytics/AnalyticalWebsite.png "Main Website")
+![Main Website](/assets/images/2024/03/Analytics/AnalyticalWebsite.png "Main Website")
 
 The site was very simple. It had a contact form, but it did not do anything. Same thing with newsletter subscription at the bottom. The login link took me to 'data.analytical.htb'.
 
@@ -113,7 +113,7 @@ The site was very simple. It had a contact form, but it did not do anything. Sam
 
 The login page was an instance of [Metabase](https://www.metabase.com/). I tried a few common passwords with emails I saw in the main site. They did not work.
 
-![Metabase Login](/assets/images/2024/01/Analytics/LoginForm.png "Metabase Login")
+![Metabase Login](/assets/images/2024/03/Analytics/LoginForm.png "Metabase Login")
 
 I looked at the page's source to find the version of Metabase.
 
@@ -401,7 +401,7 @@ It was listening to port 3000, but that was only the instance of Metabase. I upl
 
 I also ran [LinPEAS](https://github.com/carlospolop/PEASS-ng/blob/master/linPEAS/README.md) on the server. I looked at the results a few times and I could not find anything to exploit.
 
-![LinPEAS](/assets/images/2024/01/Analytics/LinPEAS.png "LinPEAS")
+![LinPEAS](/assets/images/2024/03/Analytics/LinPEAS.png "LinPEAS")
 
 After a long time, I searched for exploits in the Ubuntu version. I quickly found a [CVE for it](https://www.reddit.com/r/selfhosted/comments/15ecpck/ubuntu_local_privilege_escalation_cve20232640/). It used OverlayFS to mount a file system and run Python with the setuid capability.
 
