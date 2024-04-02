@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Codify
-date: 2024-01-28
+date: 2024-04-06
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2024/01/HTB/Codify
-img: 2024/01/Codify/Codify.png
+permalink: /2024/04/HTB/Codify
+img: 2024/04/Codify/Codify.png
 ---
 
 In Codify I had to exploit a known vulnerability in a sandboxing library, find a password in a SQLite database, and exploit a script running with `sudo`.
@@ -155,21 +155,21 @@ Requests/sec.: 0
 
 I opened a browser to look at the website.
 
-![Website](/assets/images/2024/01/Codify/WebSite.png "Website")
+![Website](/assets/images/2024/04/Codify/WebSite.png "Website")
 
 The website allowed running JavaScript code. That looked like a very easy exploitation path.
 
 The site mentioned some limitations.
 
-![Limitations](/assets/images/2024/01/Codify/Limitations.png "Limitations")
+![Limitations](/assets/images/2024/04/Codify/Limitations.png "Limitations")
 
 It also mentioned the tool that it used to execute the code in a sandbox.
 
-![About Page](/assets/images/2024/01/Codify/AboutPage.png "About Page")
+![About Page](/assets/images/2024/04/Codify/AboutPage.png "About Page")
 
 I tried a few things to see if I could quickly get it to run bash commands. After a few minutes, I looked at the [library it used](https://github.com/patriksimek/vm2). The GitHub repository had a big warning about it being insecure.
 
-![Warning](/assets/images/2024/01/Codify/Warning.png "Warning")
+![Warning](/assets/images/2024/04/Codify/Warning.png "Warning")
 
 I looked for a POC, and quickly [found one](https://gist.github.com/leesh3288/381b230b04936dd4d74aaf90cc8bb244).
 
@@ -209,7 +209,7 @@ Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
 10.129.203.134 - - [27/Jan/2024 13:04:52] "GET / HTTP/1.1" 200 -
 ```
 
-![Code Execution](/assets/images/2024/01/Codify/CodeExecution.png "Code Execution")
+![Code Execution](/assets/images/2024/04/Codify/CodeExecution.png "Code Execution")
 
 Now that I knew I could execute commands on the server, I changed it to open a reverse shell.
 
