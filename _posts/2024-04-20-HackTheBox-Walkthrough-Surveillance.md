@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Surveillance
-date: 2024-03-02
+date: 2024-04-20
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2024/03/HTB/Surveillance
-img: 2024/03/Surveillance/Surveillance.png
+permalink: /2024/04/HTB/Surveillance
+img: 2024/04/Surveillance/Surveillance.png
 ---
 
 In Surveillance, I exploited two known vulnerabilities in web applications, cracked a password, and exploited a Perl script to become root.
@@ -98,7 +98,7 @@ The web server was redirecting to 'surveillance.htb'. I added that to my hosts f
 
 I opened a browser and navigated to the website on port 80.
 
-![Website](/assets/images/2024/03/Surveillance/Website.png "Website")
+![Website](/assets/images/2024/04/Surveillance/Website.png "Website")
 
 I ran Feroxbuster to check for hidden pages on the site.
 
@@ -171,11 +171,11 @@ by Ben "epi" Risher 🤓                 ver: 2.10.1
 
 It found the login page for an admin section.
 
-![Login](/assets/images/2024/03/Surveillance/LoginCraftCMS.png "Login")
+![Login](/assets/images/2024/04/Surveillance/LoginCraftCMS.png "Login")
 
 The login page and the main page showed that the site was built with [Craft CMS](https://craftcms.com/). The 'Powered by' link at the bottom of the main page showed a [link to the version](https://github.com/craftcms/cms/tree/4.4.14) it was running on.
 
-![Powered By](/assets/images/2024/03/Surveillance/PoweredBy.png "Powered By")
+![Powered By](/assets/images/2024/04/Surveillance/PoweredBy.png "Powered By")
 
 I quickly found a [blog post](https://blog.calif.io/p/craftcms-rce) about a known vulnerability in the CMS. The vulnerability allowed creating arbitrary objects on the server. It used that with Imagick to write a file containing a reverse shell to the server and access it. I found a [POC](https://gist.github.com/to016/b796ca3275fa11b5ab9594b1522f7226) that exploited that vulnerability.
 
@@ -469,7 +469,7 @@ Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-89-generic x86_64)
 ...
 ```
 
-![ZoneMinder](/assets/images/2024/03/Surveillance/ZoneMinderLogin.png "ZoneMinder")
+![ZoneMinder](/assets/images/2024/04/Surveillance/ZoneMinderLogin.png "ZoneMinder")
 
 It was running [ZoneMinder](https://zoneminder.com/), an application to manage video surveillance. I quickly found an [unauthenticated RCE](https://github.com/rvizx/CVE-2023-26035). The application code to create snapshots does not check authentication and uses the ID that is passed on the command line without sanitizing it.
 
