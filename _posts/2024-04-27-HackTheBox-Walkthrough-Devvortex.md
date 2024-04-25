@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Devvortex
-date: 2024-02-11
+date: 2024-04-27
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2024/02/HTB/Devvortex
-img: 2024/02/Devvortex/Devvortex.png
+permalink: /2024/04/HTB/Devvortex
+img: 2024/04/Devvortex/Devvortex.png
 ---
 
 In this box, I used a known vulnerability to extract the database credentials from a Joomla application. The credentials were reused to connect to the site. I used them to login and get a shell through the Joomla templates. I found another user password in the database, and finally exploited a known vulnerability in a crash reporting application to get root.
@@ -106,7 +106,7 @@ It found 'dev.devvortex.htb'. I also added that domain to my hosts file.
 
 I launched a browser and looked at the site on 'http://devvortex.htb'.
 
-![Main Website](/assets/images/2024/02/Devvortex/Website.png "Main Website")
+![Main Website](/assets/images/2024/04/Devvortex/Website.png "Main Website")
 
 This was a simple site. It appeared to have only static pages. The site had a contact form, and a form to subscribe to a newsletter. Both only refreshed the page without submitting any data to the server.
 
@@ -204,7 +204,7 @@ I think it's pretty weird that Bootstrap tracks people on every site that use it
 
 Next, I opened the site on 'dev.devvortex.htb'.
 
-![Dev Site](/assets/images/2024/02/Devvortex/DevSite.png "Dev Site")
+![Dev Site](/assets/images/2024/04/Devvortex/DevSite.png "Dev Site")
 
 I ran Feroxbuster on it. But the site had a 'robots.txt' that had a few folders to check.
 
@@ -242,7 +242,7 @@ Disallow: /tmp/
 
 The first entry was for an administrator section. I checked it, it was the login page for a Joomla site.
 
-![Joomla](/assets/images/2024/02/Devvortex/Joomla.png "Joomla")
+![Joomla](/assets/images/2024/04/Devvortex/Joomla.png "Joomla")
 
 I tried simple credentials and SQL injection in the login page. That did not work. I looked for known Joomla vulnerabilities and quickly found an [unauthenticated information disclosure](https://www.exploit-db.com/exploits/51334) issue. I could use it to extract users and configurations from the site.
 
@@ -354,7 +354,7 @@ Once connected on the site, I looked for ways to get it to run arbitrary PHP cod
 
 I looked for ways to add code to pages. The post editor did not allow PHP code. I wanted to change the editor, but I found the templates first. The templating engine was running PHP. So I used it to add a reverse shell to the error template.
 
-![Error Template](/assets/images/2024/02/Devvortex/ErrorTemplate.png "Error Template")
+![Error Template](/assets/images/2024/04/Devvortex/ErrorTemplate.png "Error Template")
 
 I started a netcat listener and navigated to a URL that did not exist. I got the shell back.
 
