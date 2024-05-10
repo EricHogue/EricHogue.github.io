@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Monitored
-date: 2024-04-06
+date: 2024-05-11
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Medium
 - Machine
-permalink: /2024/04/HTB/Monitored
-img: 2024/04/Monitored/Monitored.png
+permalink: /2024/05/HTB/Monitored
+img: 2024/05/Monitored/Monitored.png
 ---
 
 Monitored is a fairly hard machine. To get a foothold, I had to find credentials in SNMP, use them to abuse a SQL Injection vulnerability in Nagios XI, use a token found in the database to create a user, and finally get a shell by creating a command in the UI. To get root I had to exploit a script that could restart services as root.
@@ -171,13 +171,13 @@ It did not find anything else.
 
 I took a look at the website on the HTTP/HTTPS ports.
 
-![Nagios XI](/assets/images/2024/04/Monitored/NagiosXI.png "Nagios XI")
+![Nagios XI](/assets/images/2024/05/Monitored/NagiosXI.png "Nagios XI")
 
 It was an installation of the [Nagios XI](https://www.nagios.com/) monitoring suite. 
 
 The 'Access Nagios XI' button took me to a login page.
 
-![Login Page](/assets/images/2024/04/Monitored/LoginPage.png "Login Page")
+![Login Page](/assets/images/2024/05/Monitored/LoginPage.png "Login Page")
 
 I tried to connect with simple credentials. That didn't work.
 
@@ -312,11 +312,11 @@ SNMP returned lots of data. I was still focussed on LDAP, so I searched for it i
 
 The found credentials did not work with SSH. I tried them in the Nagios UI.
 
-![Valid Credentials](/assets/images/2024/04/Monitored/CorrectCredentials.png "Valid Credentials")
+![Valid Credentials](/assets/images/2024/05/Monitored/CorrectCredentials.png "Valid Credentials")
 
 It failed, but the error was different than the one I got when using random credentials.
 
-![Wrong Credentials](/assets/images/2024/04/Monitored/WrongCredentials.png "Wrong Credentials")
+![Wrong Credentials](/assets/images/2024/05/Monitored/WrongCredentials.png "Wrong Credentials")
 
 The credentials were valid, but the user was disabled. I tried them in LDAP, still no luck.
 
@@ -944,7 +944,7 @@ username=eric&email=eric@test.com&name=eric&password=123456
 
 It worked! I connected to the UI with the new user.
 
-![Logged In](/assets/images/2024/04/Monitored/LoggedIn.png "Logged In")
+![Logged In](/assets/images/2024/05/Monitored/LoggedIn.png "Logged In")
 
 I was logged in, but I could not change anything. I tried some other API endpoints I found. I was able to create services and hosts, but nothing that allowed me to run commands on the server.
 
@@ -978,19 +978,19 @@ username=eric5&email=eric@test.com&name=eric&password=123456&auth_level=admin
 
 I logged back in.
 
-![Admin Login](/assets/images/2024/04/Monitored/AdminLogin.png "Admin Login")
+![Admin Login](/assets/images/2024/05/Monitored/AdminLogin.png "Admin Login")
 
 I had new 'Configure' and 'Admin' menu options. The 'Configure' menu options allowed me to create new host, services, and commands. I create a simple command that would make an HTTP request to my machine.
 
-![Create Command](/assets/images/2024/04/Monitored/CreateCommand.png "Create Command")
+![Create Command](/assets/images/2024/05/Monitored/CreateCommand.png "Create Command")
 
 Then I created a service that would use this command. 
 
-![Create Service](/assets/images/2024/04/Monitored/CreateService.png "Create Service")
+![Create Service](/assets/images/2024/05/Monitored/CreateService.png "Create Service")
 
 I clicked on the button to run the command. 
 
-![Test Command](/assets/images/2024/04/Monitored/TestCommand.png "Test Command")
+![Test Command](/assets/images/2024/05/Monitored/TestCommand.png "Test Command")
 
 I got the request on my web server.
 
