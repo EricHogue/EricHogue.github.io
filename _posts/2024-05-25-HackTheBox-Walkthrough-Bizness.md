@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Bizness
-date: 2024-03-10
+date: 2024-05-25
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2024/03/HTB/Bizness
-img: 2024/03/Bizness/Bizness.png
+permalink: /2024/05/HTB/Bizness
+img: 2024/05/Bizness/Bizness.png
 ---
 
 In this box, I exploited a known vulnerability in Apache OFBiz to get a shell. Then I extracted a password from a database and cracked it to become root.
@@ -148,18 +148,18 @@ Ports 80 and 443 were redirecting to 'https://bizness.htb/'. I added the domain 
 
 I launched a browser and looked at the website.
 
-![Website](/assets/images/2024/03/Bizness/Website.png "Website")
+![Website](/assets/images/2024/05/Bizness/Website.png "Website")
 
 The site was simple. There was a contact form that didn't do anything. And a newsletter form that posted the email to the main page.
 
 The bottom of the page said that the site was built with [Apache OFBiz](https://ofbiz.apache.org/).
 
-![Powered By](/assets/images/2024/03/Bizness/PoweredBy.png "Powered By")
+![Powered By](/assets/images/2024/05/Bizness/PoweredBy.png "Powered By")
 
 So did the error pages.
 
-![Error](/assets/images/2024/03/Bizness/OFBizError.png "Error")
-![Error](/assets/images/2024/03/Bizness/OFBizError2.png "Error")
+![Error](/assets/images/2024/05/Bizness/OFBizError.png "Error")
+![Error](/assets/images/2024/05/Bizness/OFBizError2.png "Error")
 
 A quick search found an [Unauthenticated Remote Code execution](https://vulncheck.com/blog/ofbiz-cve-2023-51467) vulnerability. The application has a sandbox that allows executing Groovy code.
 
