@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Perfection
-date: 2024-04-07
+date: 2024-07-06
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2024/04/HTB/Perfection
-img: 2024/04/Perfection/Perfection.png
+permalink: /2024/07/HTB/Perfection
+img: 2024/07/Perfection/Perfection.png
 ---
 
 In this machine, I exploited an SSTI vulnerability, cracked a password found in a database, and used sudo to become root.
@@ -136,11 +136,11 @@ It did not find anything that I did not see on the website.
 
 I looked at the website in a browser.
 
-![Website](/assets/images/2024/04/Perfection/Website.png "Website")
+![Website](/assets/images/2024/07/Perfection/Website.png "Website")
 
 The website had a calculator to compute the grades for a class.
 
-![Calculator](/assets/images/2024/04/Perfection/CalculateYourWeightGrade.png "Calculator")
+![Calculator](/assets/images/2024/07/Perfection/CalculateYourWeightGrade.png "Calculator")
 
 The site said it was using [WEBrick 1.7.0](https://github.com/ruby/webrick). A quick search did not show any vulnerability I could use in this version.
 
