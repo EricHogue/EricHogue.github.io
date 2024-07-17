@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Headless
-date: 2024-06-09
+date: 2024-07-20
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2024/06/HTB/Headless
-img: 2024/06/Headless/Headless.png
+permalink: /2024/07/HTB/Headless
+img: 2024/07/Headless/Headless.png
 ---
 
 In this very easy box, I exploited an XSS vulnerability in the page the display hacking attempts. Then I got a reverse shell through remote code execution. And finally, elevated my privileges through a script that did not use absolute path.
@@ -184,15 +184,15 @@ There was not much in the application. `/support` had a contact form and `/dashb
 
 I opened a browser to look at the website on port 5000.
 
-![Website](/assets/images/2024/06/Headless/Website.png "Website")
+![Website](/assets/images/2024/07/Headless/Website.png "Website")
 
 The main page had a countdown and a button to a support page.
 
-![Contact Support](/assets/images/2024/06/Headless/ContactSupport.png "Contact Support")
+![Contact Support](/assets/images/2024/07/Headless/ContactSupport.png "Contact Support")
 
 I tried sending some Cross Site Scripting payloads. It detected my payloads as malicious and gave me an error.
 
-![Hacking Detected](/assets/images/2024/06/Headless/HackingDetected.png "Hacking Detected")
+![Hacking Detected](/assets/images/2024/07/Headless/HackingDetected.png "Hacking Detected")
 
 My attempts were blocked. But it also displayed my request headers back to me. I tried sending my malicious payload in a header.
 
@@ -252,7 +252,7 @@ I waited, and got the admin cookie.
 
 I changed my cookie value in the browser and tried accessing the dashboard again.
 
-![Dashboard](/assets/images/2024/06/Headless/Dashboard.png "Dashboard")
+![Dashboard](/assets/images/2024/07/Headless/Dashboard.png "Dashboard")
 
 It worked.
 
