@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Usage
-date: 2024-07-06
+date: 2024-08-10
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2024/07/HTB/Usage
-img: 2024/07/Usage/Usage.png
+permalink: /2024/08/HTB/Usage
+img: 2024/08/Usage/Usage.png
 ---
 
 In Usage, I had to exploit an SQL Injection and a file upload to get a shell. Then I found a password in a configuration file, and exploited a binary to become root.
@@ -148,31 +148,31 @@ It found 'admin.usage.htb'. I added it to my hosts file.
 
 I opened a browser on the main website.
 
-![Website](/assets/images/2024/07/Usage/Website.png "Website")
+![Website](/assets/images/2024/08/Usage/Website.png "Website")
 
 The website required to be logged in. I tried a few credentials, and some simple SQL Injection payloads. They did not work.
 
 There was a form to register a new user and logged in with it.
 
-![Logged in](/assets/images/2024/07/Usage/LoggedIn.png "Logged In")
+![Logged in](/assets/images/2024/08/Usage/LoggedIn.png "Logged In")
 
 Once connected, I got access to a few blog posts about penetration testing and Laravel. And that was it. I did not see any API calls, no other functionality that I could abuse.
 
 I kept looking around the site. There was an admin link that took me to 'admin.usage.htb'. This took me to another login page. I tried the credentials of the user I created. They did not work.
 
-![Admin Login](/assets/images/2024/07/Usage/AdminLogin.png "Admin Login")
+![Admin Login](/assets/images/2024/08/Usage/AdminLogin.png "Admin Login")
 
 I looked at the 'Reset Password' page.
 
-![Reset Password](/assets/images/2024/07/Usage/ResetPassword.png "Reset Password")
+![Reset Password](/assets/images/2024/08/Usage/ResetPassword.png "Reset Password")
 
 The page was showing different messages if the user existed or not. I tried to send SQL Injection it. It worked.
 
-![SQL Injection](/assets/images/2024/07/Usage/SQLInjection.png "SQL Injection")
+![SQL Injection](/assets/images/2024/08/Usage/SQLInjection.png "SQL Injection")
 
 I had a Boolean SQL Injection. I used it to detect how many columns were returned by the query.
 
-![8 Columns](/assets/images/2024/07/Usage/8Columns.png "8 Columns")
+![8 Columns](/assets/images/2024/08/Usage/8Columns.png "8 Columns")
 
 I tried to create a PHP file by using `SELECT INTO OUTFILE`.
 
@@ -582,7 +582,7 @@ All three were cracked quickly. I tried to SSH to the server, it failed.
 
 I use the admin credentials to connect to the admin portal.
 
-![Admin Dashboard](/assets/images/2024/07/Usage/AdminDashboard.png "Admin Dashboard")
+![Admin Dashboard](/assets/images/2024/08/Usage/AdminDashboard.png "Admin Dashboard")
 
 
 ## Remote Code Execution
@@ -591,11 +591,11 @@ I looked around the admin dashboard. There were more functionalities here, mostl
 
 The user setting page allowed uploading images.
 
-![User Setting](/assets/images/2024/07/Usage/UserSetting.png "User Setting")
+![User Setting](/assets/images/2024/08/Usage/UserSetting.png "User Setting")
 
 I tried uploading a PHP file. It failed.
 
-![Invalid Type](/assets/images/2024/07/Usage/InvalidType.png "Invalid Type")
+![Invalid Type](/assets/images/2024/08/Usage/InvalidType.png "Invalid Type")
 
 The validation was happening client side. I tried to modify a request that worked before to upload a PHP file.
 
@@ -620,7 +620,7 @@ Cookie: XSRF-TOKEN=eyJpdiI6ImFTaWlpbWQ1OHZSb0ZpdFJERTNXVFE9PSIsInZhbHVlIjoibzQyV
 -----------------------------108357318173490374446982946
 Content-Disposition: form-data; name="name"
 
-{{ 7 * 7 }}
+{% raw %}{{ 7 * 7 }}{% endraw %}
 -----------------------------108357318173490374446982946
 Content-Disposition: form-data; name="avatar"; filename="shell.php"
 Content-Type: image/png
@@ -641,7 +641,7 @@ PUT
 
 This one worked. I refreshed the page and my file was there instead of the image.
 
-![Uploaded Shell](/assets/images/2024/07/Usage/UploadedShell.png "Upladed Shell")
+![Uploaded Shell](/assets/images/2024/08/Usage/UploadedShell.png "Upladed Shell")
 
 I clicked on the button to view my image. It displayed 'IN', which meant that my PHP code was executed.
 
@@ -674,7 +674,7 @@ Cookie: XSRF-TOKEN=eyJpdiI6ImJaV3RjOVBMdXlQMTd0RzFsbTVyN1E9PSIsInZhbHVlIjoiMHlGQ
 -----------------------------39024373798398473741341256299
 Content-Disposition: form-data; name="name"
 
-{{ 7 * 7 }}
+{% raw %}{{ 7 * 7 }}{% endraw %}
 -----------------------------39024373798398473741341256299
 Content-Disposition: form-data; name="avatar"; filename="shell.php"
 Content-Type: image/png
@@ -927,19 +927,19 @@ It was a utility that took backups of the website and database and allowed reset
 
 The code was fairly simple. The main function took the option provided by the user and called the associated function.
 
-![Main](/assets/images/2024/07/Usage/FunctionMain.png "Main")
+![Main](/assets/images/2024/08/Usage/FunctionMain.png "Main")
 
 The function to reset the admin password just printed that the password was resetted, but it didn't do anything.
 
-![Reset Admin Password](/assets/images/2024/07/Usage/FunctionResetAdminPassword.png "Reset Admin Password")
+![Reset Admin Password](/assets/images/2024/08/Usage/FunctionResetAdminPassword.png "Reset Admin Password")
 
 The function to backup the database used `mysqldump` to dump the content.
 
-![Backup MySQL Data](/assets/images/2024/07/Usage/FunctionBackupMysqlData.png "Backup MySQL Data")
+![Backup MySQL Data](/assets/images/2024/08/Usage/FunctionBackupMysqlData.png "Backup MySQL Data")
 
 And finally, the function to backup the website was using `7za` to take the backup.
 
-![Backup Web Content](/assets/images/2024/07/Usage/FunctionBackupWebContent.png "Backup Web Content")
+![Backup Web Content](/assets/images/2024/08/Usage/FunctionBackupWebContent.png "Backup Web Content")
 
 All the call to external programs were using full paths. So I could not create a replacement for them.
 
