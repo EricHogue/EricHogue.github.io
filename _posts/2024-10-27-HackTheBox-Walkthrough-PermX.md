@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - PermX
-date: 2024-08-10
+date: 2024-11-02
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2024/10/HTB/PermX
-img: 2024/10/PermX/PermX.png
+permalink: /2024/11/HTB/PermX
+img: 2024/11/PermX/PermX.png
 ---
 
 In this box, I had to exploit a known vulnerability in a web application, find a password in a configuration file, and finally exploit a script that I could run with `sudo`.
@@ -113,7 +113,7 @@ It detected two open ports: 22 (SSH) and 80 (HTTP). I ran a scan for UDP ports, 
 
 The web server was redirecting to 'permx.htb'. I added the domain to my hosts file and opened it in a browser.
 
-![Website](/assets/images/2024/10/PermX/Website.png "Website")
+![Website](/assets/images/2024/11/PermX/Website.png "Website")
 
 It was a website for an E-Learning platform. The site did not do much. There were two forms on it: one for a newsletter and a contact form. They did not do anything.
 
@@ -246,7 +246,7 @@ This found 'lms.permx.htb'. I added it to my hosts file and took a look at it.
 
 This domain was running the [Chamilo E-Learning software](https://chamilo.org/en/). 
 
-![Chamilo](/assets/images/2024/10/PermX/ChamiloLogin.png "Chamilo")
+![Chamilo](/assets/images/2024/11/PermX/ChamiloLogin.png "Chamilo")
 
 A quick search showed that it had an [unauthenticated remote code execution vulnerability](https://nvd.nist.gov/vuln/detail/CVE-2023-4220) in its file upload functionality. You could access the `bigUpload.php` endpoint without being authenticated and use it to upload any files. Then you could access the new file directly. So it was easy to upload a PHP file and get it to execute any code you wanted.
 
