@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Sea
-date: 2024-11-15
+date: 2024-12-21
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2024/11/HTB/Sea
-img: 2024/11/Sea/Sea.png
+permalink: /2024/12/HTB/Sea
+img: 2024/12/Sea/Sea.png
 ---
 
 In Sea, I exploited a known vulnerability in a CMS to get a shell. Then I found credentials for a user. And finally exploited another RCE vulnerability to become root.
@@ -120,7 +120,7 @@ The machine had two open ports: 22 (SSH) and 80 (HTTP). The website on port 80 c
 
 I launched Caido and a browser to take a look at the website.
 
-![Website](/assets/images/2024/11/Sea/Website.png "Website")
+![Website](/assets/images/2024/12/Sea/Website.png "Website")
 
 I looked around the site. There was a link to a contact form that used the domain 'sea.htb'. I added it to my hosts file and ran a scan for subdomains.
 
@@ -212,7 +212,7 @@ I looked for this and came out with [HamsterCMS](https://github.com/turboblack/H
 
 The site had a contact form with a field for a URL.
 
-![Contact Form](/assets/images/2024/11/Sea/ContactForm.png "Contact Form")
+![Contact Form](/assets/images/2024/12/Sea/ContactForm.png "Contact Form")
 
 I tried XSS on all the fields, that did not work. But when I entered a URL in the Website field, I got a hit on my web server a few seconds later.
 
@@ -528,11 +528,11 @@ ssh -L 8081:127.0.0.1:8080 amay@target
 
 Then I loaded it in my browser. It asked for a username and password.
 
-![Internal Login](/assets/images/2024/11/Sea/InternalLogin.png "Internal Login")
+![Internal Login](/assets/images/2024/12/Sea/InternalLogin.png "Internal Login")
 
 I used amay's credentials and they worked. It gave me access to a page to monitor the system.
 
-![System Monitor](/assets/images/2024/11/Sea/SystemMonitor.png "System Monitor")
+![System Monitor](/assets/images/2024/12/Sea/SystemMonitor.png "System Monitor")
 
 There were a few actions I could run with this site. I tried them for RCE by modifying the data that was sent in Caido. Eventually I found that I could abuse the 'Analyse Log File' command by adding a semicolon and a command after the log file name.
 
