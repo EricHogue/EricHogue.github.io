@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Code
-date: 2025-07-27
+date: 2025-08-02
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2025/07/HTB/Code
-img: 2025/07/Code/Code.png
+permalink: /2025/08/HTB/Code
+img: 2025/08/Code/Code.png
 ---
 
 In this box, I exploited an application that allowed running Python code to get a shell. Then I cracked a password and used a backup utility to elevate my privileges up to root.
@@ -109,11 +109,11 @@ Nmap done: 1 IP address (1 host up) scanned in 90.24 seconds
 
 I opened a browser to look at the website on port 5000.
 
-![Python Code Editor](/assets/images/2025/07/Code/PythonCodeEditor.png "Python Code Editor")
+![Python Code Editor](/assets/images/2025/08/Code/PythonCodeEditor.png "Python Code Editor")
 
 The site offered a way to easily run some Python code. Which sounded like a very easy way to get Remote Code Execution. 
 
-![About Code](/assets/images/2025/07/Code/AboutCode.png "About Code")
+![About Code](/assets/images/2025/08/Code/AboutCode.png "About Code")
 
 I ran `feroxbuster` to check for hidden pages.
 
@@ -157,7 +157,7 @@ It did not show anything I could not get to with the buttons on the site.
 
 The site appeared to be running the provided code with `eval` or something similar. It tried to protect against attacks by restricting the use of some keywords.
 
-![Restricted Keywords](/assets/images/2025/07/Code/RestrictedKeywords.png "Restricted Keywords")
+![Restricted Keywords](/assets/images/2025/08/Code/RestrictedKeywords.png "Restricted Keywords")
 
 Bypassing the restrictions was simple. I simply needed to build the commands by concatenating strings. With a little bit of research on [Python code injection](https://sethsec.blogspot.com/2016/11/exploiting-python-code-injection-in-web.html) and how to call a Python function by using its [name as a string](https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string), I was able to build a RCE payload that worked.
 
