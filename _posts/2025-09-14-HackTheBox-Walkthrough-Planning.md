@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - Planning
-date: 2025-08-30
+date: 2025-09-14
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2025/08/HTB/Planning
-img: 2025/08/Planning/Planning.png
+permalink: /2025/09/HTB/Planning
+img: 2025/09/Planning/Planning.png
 ---
 
 In this box, I had to exploit a known vulnerability in Grafana to get a shell, find some credentials to get a user connection. And finally exploit an application to manage cron jobs to get root.
@@ -137,7 +137,7 @@ It found one.
 
 I opened a browser and looked at the website on port 80.
 
-![Website](/assets/images/2025/08/Planning/Website.png "Website")
+![Website](/assets/images/2025/09/Planning/Website.png "Website")
 
 The website was for an online education platform. There were a few forms on the different pages, but they did not appear to do much. The search form never returned anything. And the contact form was not submitting anything. The enrollment form looked interesting, but I kept looking around.
 
@@ -228,7 +228,7 @@ It didn't find anything interesting.
 
 The subdomains scan found `grafana.planning.htb`. I added it to my hosts file and navigated to it.
 
-![Grafana](/assets/images/2025/08/Planning/GrafanaLogin.png "Grafana")
+![Grafana](/assets/images/2025/09/Planning/GrafanaLogin.png "Grafana")
 
 It was an instance of [Grafana](https://grafana.com/) v11.0.0. The credentials provided with the box allowed me to connect as an admin.
 
@@ -768,11 +768,11 @@ Welcome to Ubuntu 24.04.2 LTS (GNU/Linux 6.8.0-59-generic x86_64)
 
 I opened the site in my browser and got asked for credentials. I used the passwords that I had found with a few usernames. The password in the json worked for root.
 
-![Cronjobs](/assets/images/2025/08/Planning/Cronjobs.png "Cronjobs")
+![Cronjobs](/assets/images/2025/09/Planning/Cronjobs.png "Cronjobs")
 
 I got a web application that displayed the crons I found on the server. I used the application to create a new cron job that would copy bash and set the `suid` bit on it. I added a call to `sleep`, to make sure that the cleanup script would not delete the bash copy before I could use it.
 
-![Create cronjob](/assets/images/2025/08/Planning/CreateCronjob.png "Create cronjob")
+![Create cronjob](/assets/images/2025/09/Planning/CreateCronjob.png "Create cronjob")
 
 ```bash
 enzo@planning:/opt/crontabs$ cat crontab.db | jq .
