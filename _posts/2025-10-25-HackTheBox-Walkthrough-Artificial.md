@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2027/10/HTB/Artificial
-img: 2027/10/Artificial/Artificial.png
+permalink: /2025/10/HTB/Artificial
+img: 2025/10/Artificial/Artificial.png
 ---
 
 In Artificial, I used Remote Code Execution to get a shell, cracked some password hashes, and exploited a backup application to elevate my privileges.
@@ -119,13 +119,13 @@ I ran scans for UDP ports and subdomains. They did not find anything.
 
 I launched a browser and took a look at the site on port 80.
 
-![Website](/assets/images/2027/10/Artificial/Website.png "Website")
+![Website](/assets/images/2025/10/Artificial/Website.png "Website")
 
 The site talked about building and testing AI models.
 
 There was also some code that showed how to build a model. 
 
-![Example Code](/assets/images/2027/10/Artificial/ExampleCode.png "Example Code")
+![Example Code](/assets/images/2025/10/Artificial/ExampleCode.png "Example Code")
 
 The code used [TensorFlow](https://www.tensorflow.org/) to build the model.
 
@@ -166,11 +166,11 @@ by Ben "epi" Risher 🤓                 ver: 2.11.0
 
 I created an account. 
 
-![Register](/assets/images/2027/10/Artificial/Register.png "Register")
+![Register](/assets/images/2025/10/Artificial/Register.png "Register")
 
 Once connected, I was presented with a form to upload AI models.
 
-![Connected](/assets/images/2027/10/Artificial/Connected.png "Connected")
+![Connected](/assets/images/2025/10/Artificial/Connected.png "Connected")
 
 The requirements link had a file that contained only one line.
 
@@ -253,11 +253,11 @@ To enable the following instructions: AVX2, in other operations, rebuild TensorF
 
 I uploaded the model.
 
-![Uploaded Model](/assets/images/2027/10/Artificial/UploadedModel.png "Uploaded Model")
+![Uploaded Model](/assets/images/2025/10/Artificial/UploadedModel.png "Uploaded Model")
 
 And I clicked on 'View Predictions' to see if I would get the result of the `ls` command.
 
-![Model Predictions](/assets/images/2027/10/Artificial/ModelPredictions.png "Model Predictions")
+![Model Predictions](/assets/images/2025/10/Artificial/ModelPredictions.png "Model Predictions")
 
 It did not show the listing, but it did not display any errors. So I tried to get a reverse shell by changing the `os.system` line and regenerating the model.
 
@@ -509,7 +509,7 @@ I created an SSH tunnel and looked at the website in a browser.
 $ ssh -L 9898:localhost:9898 gael@target
 ```
 
-![Backrest Login](/assets/images/2027/10/Artificial/BackrestLogin.png "Backrest Login")
+![Backrest Login](/assets/images/2025/10/Artificial/BackrestLogin.png "Backrest Login")
 
 I got a login page. I looked for default credentials. Backrest did not have any, it forces the creation of a user when it's installed. I tried admin/admin and combinations of all the usernames and passwords I had found. None of them worked. I looked for known vulnerabilities in Backrest 1.7.2, and didn't find any. There was a configuration file that could have been interesting, but I could not read it.
 
@@ -651,23 +651,23 @@ Stopped: Sun Jul  6 12:13:33 2025
 
 I used the found credentials to connect to Backrest.
 
-![Backrest Logged In](/assets/images/2027/10/Artificial/BackrestLogedIn.png "Backrest Logged In")
+![Backrest Logged In](/assets/images/2025/10/Artificial/BackrestLogedIn.png "Backrest Logged In")
 
 I tried creating a backup plan. It required a repository, so I created one using a local path.
 
-![Add Restic Repository](/assets/images/2027/10/Artificial/AddResticRepository.png "Add Restic Repository")
+![Add Restic Repository](/assets/images/2025/10/Artificial/AddResticRepository.png "Add Restic Repository")
 
 Then I created a plan that used the new repository.
 
-![Create Backup Plan](/assets/images/2027/10/Artificial/CreateBackupPlan.png "Create Backup Plan")
+![Create Backup Plan](/assets/images/2025/10/Artificial/CreateBackupPlan.png "Create Backup Plan")
 
 I added a command hook to the plan that copied `/bin/bash` in `/tmp` and made it `suid`.
 
-![Add Hook](/assets/images/2027/10/Artificial/AddHook.png "Add Hook")
+![Add Hook](/assets/images/2025/10/Artificial/AddHook.png "Add Hook")
 
 I ran the backup.
 
-![Backup Now](/assets/images/2027/10/Artificial/BackupNow.png "Backup Now")
+![Backup Now](/assets/images/2025/10/Artificial/BackupNow.png "Backup Now")
 
 I looked in `/tmp`. The copy of bash was in there with the `suid` bit set. I used it to become root and read the root flag.
 
