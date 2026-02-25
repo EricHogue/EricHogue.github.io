@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hack The Box Walkthrough - CodePartTwo
-date: 2025-12-30
+date: 2026-02-25
 type: post
 tags:
 - Walkthrough
@@ -9,8 +9,8 @@ tags:
 - HackTheBox
 - Easy
 - Machine
-permalink: /2025/12/HTB/CodePartTwo
-img: 2025/12/CodePartTwo/CodePartTwo.png
+permalink: /2026/02/HTB/CodePartTwo
+img: 2026/02/CodePartTwo/CodePartTwo.png
 ---
 
 In this machine I exploited a vulnerability in a JS code interpreter to get a shell on the server. Then I cracked a password to escalate to a different user. And finally exploited a backup utility to read files and become root.
@@ -108,7 +108,7 @@ It detected two ports:
 
 I opened Caido and Firefox to take a look at the website on port 8000.
 
-![Website](/assets/images/2025/12/CodePartTwo/Website.png "Website")
+![Website](/assets/images/2026/02/CodePartTwo/Website.png "Website")
 
 I also launched `FeroxBuster` to check for hidden pages.
 
@@ -151,8 +151,8 @@ It did not find anything that was not available from the website. I clicked on t
 
 I also created an account and connected to the application. It gave me access to a Dashboard that had buttons to save and run some JS code.
 
-![Dashboard](/assets/images/2025/12/CodePartTwo/Dashboard.png "Dashboard")
-![Dashboard Part 2](/assets/images/2025/12/CodePartTwo/DashboardPart2.png "Dashboard Part 2")
+![Dashboard](/assets/images/2026/02/CodePartTwo/Dashboard.png "Dashboard")
+![Dashboard Part 2](/assets/images/2026/02/CodePartTwo/DashboardPart2.png "Dashboard Part 2")
 
 This looked promising for code execution. I had access to the source code, so I unzipped it and looked at how the JS got executed. Especially since `nmap` was saying this was a Python application.
 
