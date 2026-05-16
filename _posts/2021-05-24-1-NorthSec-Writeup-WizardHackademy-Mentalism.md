@@ -12,5 +12,5 @@ permalink: /2021/05/NorthSec2021WriteupMentalism/
 ---
 
 
-![Come Back Soon](/assets/images/ComeBackSoon.jpg "Come Back Soon")
-Credit: [Thomas Hawk](https://www.flickr.com/photos/thomashawk/)
+![LeoSud](/assets/images/LeoSud.PNG "LeoSud")
+Credit: [NorthSec Memes Channel](https://discord.com/channels/444285101476544515/845555581220683788)
