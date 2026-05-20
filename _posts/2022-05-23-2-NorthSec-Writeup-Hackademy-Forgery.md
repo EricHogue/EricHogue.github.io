@@ -12,5 +12,5 @@ permalink: /2022/05/NorthSec/HackademyForgery
 img: 2022/05/NorthSec/Forgery/Forgery.png
 ---
 
-![LeoSud](/assets/images/LeoSud.PNG "LeoSud")
-Credit: [NorthSec Memes Channel](https://discord.com/channels/444285101476544515/845555581220683788)
+![Come Back Soon](/assets/images/ComeBackSoon.jpg "Come Back Soon")
+Credit: [Thomas Hawk](https://www.flickr.com/photos/thomashawk/)
